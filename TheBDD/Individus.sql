@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Individus]
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	prenom VARCHAR(25) NOT  NULL,
+	nom VArCHAR (30) NOT NULL,
+)
