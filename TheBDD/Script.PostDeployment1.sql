@@ -9,27 +9,19 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-/* INSERT INTO Statut (Id, nom) VALUES (1,'Etudiant'); 
+ INSERT INTO Statut (Id, nom) VALUES (1,'Etudiant'); 
  INSERT INTO Statut (Id, nom) VALUES (2, 'Professeur');
  
 
- INSERT INTO Individus (Id, nom, prenom) VALUES (1, 'bob', 'martin');
- INSERT INTO Individus (Id, nom, prenom) VALUES (2, 'martin', 'matin');
- INSERT INTO Individus (Id, nom, prenom) VALUES (3, 'stephane', 'dop');
+ INSERT INTO Individus (Id, nom, prenom) VALUES (1,  'martin','bob');
+ INSERT INTO Individus (Id, nom, prenom) VALUES (2,  'matin','martin');
+ INSERT INTO Individus (Id, nom, prenom) VALUES (3,  'dop','stephane');
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (1, 2);
-  insert into Statut_Individu (Id_individu, Id_statut) VALUES (1, 1);
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (3, 2);
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (2, 1);
   insert into Individus (Id, prenom, nom) Values (4, 'Mathieu', 'Louvet'),
   (5, 'T-Bow', 'Lasou'),
   (6, 'Tristan', 'Hermant'),
   (7, 'Yasmine', 'Kertous'),
-  (8, 'Bryan', 'Vigee');*/
+  (8, 'Bryan', 'Vigee');
 
-  
-
-
-
- Select * from Statut;
- select * from Individus;
- select *from Statut_Individu;
