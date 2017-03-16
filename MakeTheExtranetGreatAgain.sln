@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeTheExtranetGreatAgain", "MakeTheExtranetGreatAgain\MakeTheExtranetGreatAgain.csproj", "{B40F8DEB-33C9-446F-9DD3-847B29C058F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeTheExtranetGreatAgain.Tests", "MakeTheExtranetGreatAgain.Tests\MakeTheExtranetGreatAgain.Tests.csproj", "{FEAE9DA2-ADF4-4C4B-9A6C-DB70DA2D1057}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B40F8DEB-33C9-446F-9DD3-847B29C058F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B40F8DEB-33C9-446F-9DD3-847B29C058F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B40F8DEB-33C9-446F-9DD3-847B29C058F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B40F8DEB-33C9-446F-9DD3-847B29C058F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEAE9DA2-ADF4-4C4B-9A6C-DB70DA2D1057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEAE9DA2-ADF4-4C4B-9A6C-DB70DA2D1057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEAE9DA2-ADF4-4C4B-9A6C-DB70DA2D1057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEAE9DA2-ADF4-4C4B-9A6C-DB70DA2D1057}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
