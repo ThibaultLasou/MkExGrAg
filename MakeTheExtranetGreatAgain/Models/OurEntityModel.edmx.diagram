@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a8de330dfe84b6a87573553b15d4cdd" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="TheBDDModel.Activites" Width="1.5" PointX="12" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Cours" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Doc_Web" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Groupes" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Individus" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Messages" Width="1.5" PointX="12.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Options_Questionnaire" Width="1.5" PointX="12.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Questionnaires" Width="1.5" PointX="15" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Salles" Width="1.5" PointX="12" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Sous_doc_Web" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Statut" Width="1.5" PointX="9.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Tâches" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Types_Questionnaire" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheBDDModel.Creneaux" Width="1.5" PointX="14.25" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="TheBDDModel.fk_activite_creneau" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.FK_Cours_activite" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Fk_cours_groupe" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Fk_cours_prof" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.fk_docWeb_contenu" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.FK_expediteur_message" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.FK_contenu_questionnaire" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.FK_option_questionnaire" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.FK_Type_Questionnaire" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.fk_creneau_salle" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Appartenances" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Auteur_Doc" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Document_Groupe" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Notifications_Diffusions" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Notifications_simples" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Responsables_groupe" ManuallyRouted="false" />
+        <AssociationConnector Association="TheBDDModel.Statut_Individu" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

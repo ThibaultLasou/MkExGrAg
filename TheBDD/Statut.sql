@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[Statut]
-(
-	[Id] INT  NOT NULL PRIMARY KEY,
-	nom VARCHAR(15) NOT NULL, 
-)
