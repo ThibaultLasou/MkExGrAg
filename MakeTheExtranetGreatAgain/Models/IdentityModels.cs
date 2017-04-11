@@ -29,5 +29,33 @@ namespace MakeTheExtranetGreatAgain.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Groupes> Groupes { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Activites> Activites { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Cours> Cours { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Creneaux> Creneaux { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Doc_Web> Doc_Web { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Individus> Individus { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Messages> Messages { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Options_Questionnaire> Options_Questionnaire { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Questionnaires> Questionnaires { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Types_Questionnaire> Types_Questionnaire { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Salles> Salles { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Sous_doc_Web> Sous_doc_Web { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Statut> Statuts { get; set; }
+
+        public System.Data.Entity.DbSet<MakeTheExtranetGreatAgain.Tâches> Tâches { get; set; }
     }
 }
