@@ -1,5 +1,5 @@
 ﻿angular.module('myFormApp', [])
-    .controller('IndividuController', function ($scope, $http, $location, $window)
+    .controller('HomeController', function ($scope, $http, $location, $window)
     {
         $scope.ind = {};
         $scope.message = '';
@@ -16,7 +16,7 @@
             $http(
                 {
                     method: 'POST',
-                    url: '/Individu/CreerIndividu',
+                    url: '',
                     data: $scope.ind
                 }).success(function (data, status, headers, config)
                 {

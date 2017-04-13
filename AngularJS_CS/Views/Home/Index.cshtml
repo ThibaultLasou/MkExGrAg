@@ -1,39 +1,213 @@
 ﻿@{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Créer un individu.</h2>
-<link href="~/Views/Home/Index.css" rel="stylesheet" type="text/css"/>
-<div id="content" ng-controller="IndividuController">
-    <span ng-show="isViewLoading" class="viewLoading">
-        <img src="~/Content/Images/gears.gif"/> loading...
-    </span>
-    <div ng-class="result">{{message}}</div>
-    <hr />
-    <form ng-submit="submitForm()" name="frmIndividu">
-        <div>
-            <label for="email">Nom du client</label>
-            <input type="text" ng-model="ind.IndName" name="iname" placeholder="Entrez votre nom" requiredng-minlength="4" ng-maxlength="14" />
-            <span class="error" ng-show="(frmIndividu.$dirty||submitted)&&frmIndividu.iname.$error.required">Un nom de client est requis</span>
-            <span class="error" ng-show="frmIndividu.$dirty&&frmIndividu.iname.$error.minlength">La longueur minimale du nom est de 5 caractères.</span>
-            <span class="error" ng-show="frmIndividu.$dirty&&frmIndividu.iname.$error.maxlength">La longueur maximale du nom est de 15 caractères.</span>
+<section id="banner" class="wow fadeInUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="block">
+                    <p>
+                        L'école polytechnique de l'université Paris-Sud, dite aussi
+                        Polytech Paris-Sud est l'une des 210 écoles d'ingénieurs
+                        françaises habilitées à délivrer un diplôme d'ingénieur dans
+                        cinq spécialités : électronique, génie électrique, informatique,
+                        matériaux et optronique.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-1 col-sm-6">
+                <div class="block">
+                    <h1> Site interne Polytech Paris-Sud</h1>
+                    <p> </p>
+                    <ul class="download-btn">
+                        <li>
+                            <a href="#" class="btn btn-default btn-andriod">
+                                Se
+                                connecter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default btn-windows">Langues</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="email">Adresse e-mail</label>
-            <input type="email" ng-model="ind.IndEmail" name="email" placeholder="Entrez votre adresse e-mail" required />
-            <span class="error" ng-show="(frmIndividu.$dirty||submitted)&&frmIndividu.email.$error.required">Adresse e-mail requise !</span>
-            <span class="error" ng-show="(frmIndividu.$dirty||submitted)&&frmIndividu.$error.email">Adresse e-mail invalide !</span>
+    </div>
+</section>
+<section id="service">
+    <div class="container">
+        <div class="service-wrapper">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="block wow fadeInRight" data-wow-delay="1s">
+                        <div class="icon"> <i class="fa fa-desktop"></i> </div>
+                        <h3>Fully Customizable</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Sapiente, amet.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="block wow fadeInRight" data-wow-delay="1.3s">
+                        <div class="icon"> <i class="fa  fa-paper-plane"></i> </div>
+                        <h3>Gorgeous design</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Sapiente, amet.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="block wow fadeInRight" data-wow-delay="1.6s">
+                        <div class="icon"> <i class="fa  fa-file-text"></i> </div>
+                        <h3>Well documented.</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Sapiente, amet.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="block wow fadeInRight" data-wow-delay="1.9s">
+                        <div class="icon"> <i class="fa  fa-laptop"></i> </div>
+                        <h3>Responsive Design.</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Sapiente, amet.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <input type="submit" value="Submit" ng-disabled="myForm.$invalid">
+    </div>
+</section>
+<section id="feature">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 wow fadeInRight" data-wow-delay=".8s">
+                <h2 class="title">Our Focused on Feature</h2>
+                <div class="feature-item">
+                    <div class="media">
+                        <div class="pull-left icon" href="#">
+                            <i class="fa fa-paint-brush"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Reliable and Secure Platform</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisici ad minim
+                                veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                aliquip ex ea com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="media">
+                        <div class="pull-left icon" href="#">
+                            <i class="fa fa-qrcode"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Everything is perfectly orgainized</h4>
+                            <p>
+                                Aipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                nostrud exercitation ullamco laboris nisi
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="media">
+                        <div class="pull-left icon" href="#">
+                            <i class="fa fa-recycle"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Rapid customer support</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna
+                                aliqua. Ut enim ad
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 wow fadeInLeft" data-wow-delay=".8s">
+                <div class="block">
+                    <img class="img-responsive" src="images/featured-app.png"
+                         alt="">
+                </div>
+            </div>
         </div>
-    </form>
-</div>
-
-@section Javascript
-        {
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/angular-route.min.js"></script>
-    <script src="~/Scripts/AllOurScripts/IndividuController.js"></script>
-}
+    </div>
+</section>
+<section id="utility">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".8s">
+                <img class="img-responsive" src="images/mockup.png" alt="">
+            </div>
+            <div class="col-md-6 col-sm-6 wow fadeInDown" data-wow-delay=".8s">
+                <div class="block">
+                    <h2>Amazing Compatibility.</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                        do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea com Neque porro quisqua
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="utility-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 wow fadeInLeft" data-wow-delay=".8s">
+                <div class="block">
+                    <h2>Remarkable Features</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                        do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea com Neque porro quisquam est,
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 wow fadeInRight" data-wow-delay=".8s">
+                <img class="img-responsive" src="images/app-screen.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInDown" data-wow-delay=".8s">
+                <div class="block">
+                    <div class="title text-center">
+                        <h2>Stay Connected</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Hic, non!
+                        </p>
+                    </div>
+                    <form class="form-inline text-center col-sm-12 col-xs-12" role="form">
+                        <div class="form-group">
+                            <input class="form-control" id="signup-form"
+                                   type="text">
+                        </div>
+                        <a href="" type="submit" class="btn btn-default btn-signup">
+                            <i class="fa fa-paper-plane"></i>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

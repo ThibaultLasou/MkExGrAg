@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Créer un individu.</h2>
+<link href="~/Content/css/HomeIndex.css" rel="stylesheet" type="text/css"/>
+<div id="content" ng-controller="HomeController">
+    <span ng-show="isViewLoading" class="viewLoading">
+        <img src="~/Content/images/gears.gif"/> loading...
+    </span>
+    <div ng-class="result">{{message}}</div>
+    <hr />
+    <form ng-submit="submitForm()" name="frmIndividu">
+        <div>
+            <label for="email">Nom du client</label>
+            <input type="text" ng-model="ind.IndName" name="iname" placeholder="Entrez votre nom" requiredng-minlength="4" ng-maxlength="14" />
+            <span class="error" ng-show="(frmIndividu.$dirty||submitted)&&frmIndividu.iname.$error.required">Un nom de client est requis</span>
+            <span class="error" ng-show="frmIndividu.$dirty&&frmIndividu.iname.$error.minlength">La longueur minimale du nom est de 5 caractères.</span>
+            <span class="error" ng-show="frmIndividu.$dirty&&frmIndividu.iname.$error.maxlength">La longueur maximale du nom est de 15 caractères.</span>
+        </div>
+        <div>
+            <label for="email">Adresse e-mail</label>
+            <input type="email" ng-model="ind.IndEmail" name="email" placeholder="Entrez votre adresse e-mail" required />
+            <span class="error" ng-show="(frmIndividu.$dirty||submitted)&&frmIndividu.email.$error.required">Adresse e-mail requise !</span>
+            <span class="error" ng-show="(frmIndividu.$dirty||submitted)&&frmIndividu.$error.email">Adresse e-mail invalide !</span>
+        </div>
+        <div>
+            <input type="submit" value="Submit" ng-disabled="myForm.$invalid">
+        </div>
+    </form>
+</div>
+
+@section Javascript
+        {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/AllOurScripts/IndividuController.js"></script>
+}
