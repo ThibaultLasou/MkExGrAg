@@ -6,7 +6,7 @@ $('input[type="submit"]').mouseup(function(){
 });
 
 $('#loginform').click(function(){
-  $('.login').fadeToggle('slow');
+  $('.formholder').fadeToggle('slow');
   $(this).toggleClass('green');
 });
 
@@ -14,7 +14,7 @@ $('#loginform').click(function(){
 
 $(document).mouseup(function (e)
 {
-    var container = $(".login");
+    var container = $(".formholder");
 
     if (!container.is(e.target) // if the target of the click isn't the container...
         && container.has(e.target).length === 0) // ... nor a descendant of the container

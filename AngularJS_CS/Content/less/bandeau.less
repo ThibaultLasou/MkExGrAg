@@ -56,38 +56,9 @@ body {
 
 @color_1: #ecf0f1;
 @color_2: #fff;
-@color_3: #1abc9c;
+@color_3: @green_psud;
+@color_4: 10a08 + @color_3;
 @font_family_1: Sans-serif;
-
-
-/*body {
-    margin: 0;
-    padding: 0;
-    font-family: @font_family_1;
-    background: #2c3e50;
-}
-
-#wrap {
-    margin: 0 auto 30px;
-}
-
-#regbar {
-    height: 67px;
-    background: #34495e;
-}
-
-#navthing {
-    margin-left: 50px;
-}
-
-h2 {
-    padding: 20px;
-    color: @color_1;
-}
-
-fieldset {
-    border: none;
-}*/
 
 .login {
     position: relative;
@@ -96,32 +67,36 @@ fieldset {
     right: 90%;
 }
 
-.arrow-up {
+/*.arrow-up {
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 15px solid #ECF0F1;
+    border-bottom: 15px solid @color_1;
     left: 100%;
     position: absolute;
     top: -10px;
-}
+}*/
 
 .formholder {
-    background: #ecf0f1;
+    background: @color_1;
     width: 350px;
-    border-radius: 5px;
+    border: solid 1px silver;
     padding-top: 5px;
-    left: 50%;
+    position: relative;
+
+    .fieldset {
+        border: 1px solid silver;
+    }
 
     input[type="email"] {
         padding: 7px 5px;
         margin: 10px 0;
-        width: 96%;
+        width: 100%;
         display: block;
         font-size: 18px;
         border-radius: 5px;
-        border: none;
+        border: 1px solid silver;
         -webkit-transition: 0.3s linear;
         -moz-transition: 0.3s linear;
         -o-transition: 0.3s linear;
@@ -129,18 +104,18 @@ fieldset {
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 1px 1px #1abc9c;
+            box-shadow: 0 0 1px 1px @color_3;
         }
     }
 
     input[type="password"] {
         padding: 7px 5px;
         margin: 10px 0;
-        width: 96%;
+        width: 100%;
         display: block;
         font-size: 18px;
         border-radius: 5px;
-        border: none;
+        border: 1px solid silver;
         -webkit-transition: 0.3s linear;
         -moz-transition: 0.3s linear;
         -o-transition: 0.3s linear;
@@ -148,25 +123,29 @@ fieldset {
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 1px 1px #1abc9c;
+            box-shadow: 0 0 1px 1px @color_3;
         }
     }
 
     input[type="submit"] {
-        background: #1abc9c;
+        background: @green_psud;
+        border: 1px solid transparent;
+        -webkit-transition: .2s all;
+        -o-transition: .2s all;
+        transition: .2s all;
         padding: 10px;
         font-size: 20px;
         display: block;
         width: 100%;
-        border: none;
-        color: @color_2;
-        border-radius: 5px;
 
         &:hover {
-            background: #1bc6a4;
+            color: @green_psud;
+            background: #fff;
+            border: 1px solid @green_psud;
         }
     }
 }
+
 
 .randompad {
     padding: 10px;
