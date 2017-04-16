@@ -19,17 +19,18 @@ body {
         li {
             display: inline-block;
 
+            hidden_div {
+                display: none;
+            }
+
             a {
                 color: @bg_white;
-                border: none;
                 border-radius: 0;
                 padding: 2px 6px 3px;
                 font-size: 15px;
             }
 
-            hidden_div {
-                display: none;
-            }
+
 
             .btn-andriod {
                 background: @green_psud;
@@ -61,6 +62,7 @@ body {
             }
 
             .formholder {
+                padding: 10px;
                 background: @color_1;
                 width: 350px;
                 border: solid 1px silver;
@@ -127,32 +129,5 @@ body {
                 }
             }
         }
-    }
-}
-
-.login {
-    position: relative;
-    width: 350px;
-    display: none;
-    right: 90%;
-}
-
-
-
-
-.randompad {
-    padding: 10px;
-}
-
-.green {
-    color: @green_psud;
-}
-
-a {
-    color: @color_1;
-    text-decoration: none;
-
-    &:hover {
-        color: @green_psud;
     }
 }
