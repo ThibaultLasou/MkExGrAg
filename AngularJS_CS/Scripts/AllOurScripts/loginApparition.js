@@ -1,25 +1,14 @@
-﻿$('input[type="submit"]').mousedown(function(){
-  $(this).css('background', '#2ecc71');
+﻿$('#loginform').click(function ()
+{
+    $('#hidden_div').removeClass('hidden');
+    $('.formholder').fadeToggle('slow');
 });
-$('input[type="submit"]').mouseup(function(){
-  $(this).css('background', '#1abc9c');
-});
-
-$('#loginform').click(function(){
-  $('.formholder').fadeToggle('slow');
-  $(this).toggleClass('green');
-});
-
-
 
 $(document).mouseup(function (e)
 {
     var container = $(".formholder");
 
-    if (!container.is(e.target) // if the target of the click isn't the container...
-        && container.has(e.target).length === 0) // ... nor a descendant of the container
-    {
+    // Si la cible du clic n'est pas le conteneur ou l'un de ses descendants, on le ferme
+    if (!container.is(e.target) && container.has(e.target).length === 0)
         container.hide();
-        $('#loginform').removeClass('green');
-    }
 });
