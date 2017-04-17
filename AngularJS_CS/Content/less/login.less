@@ -1,0 +1,109 @@
+﻿@blue_polytech: #00afec;
+@green_psud: #6fbf39;
+@bg_white: #fff;
+
+
+
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,300italic);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+    font-size: 52px;
+}
+
+h2 {
+    font-size: 38px;
+    font-weight: 200;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 15px;
+}
+
+ul {
+    padding-left: 0;
+    li {
+        list-style: square;
+        list-style-position: inside;
+    }
+}
+
+.fieldset {
+    border: 1px solid silver;
+    padding: 10px;
+    width: 350px;
+    padding-top: 5px;
+}
+
+input[type="email"] {
+    padding: 7px 5px;
+    margin: 10px 0;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+    border: 1px solid silver;
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+    -o-transition: 0.3s linear;
+    transition: 0.3s linear;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 1px 1px @green_psud;
+    }
+}
+
+input[type="password"] {
+    padding: 7px 5px;
+    margin: 10px 0;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+    border: 1px solid silver;
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+    -o-transition: 0.3s linear;
+    transition: 0.3s linear;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 1px 1px @green_psud;
+    }
+}
+
+input[type="submit"] {
+    background: @green_psud;
+    border: 1px solid transparent;
+    -webkit-transition: .2s all;
+    -o-transition: .2s all;
+    transition: .2s all;
+    padding: 10px;
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    color: @bg_white;
+
+    &:hover {
+        color: @green_psud;
+        background: @bg_white;
+        border: 1px solid @green_psud;
+    }
+}
