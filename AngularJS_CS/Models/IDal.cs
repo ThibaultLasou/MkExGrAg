@@ -9,7 +9,7 @@ namespace AngularJS_CS.Models
     //Interface définissant la Data Access Layer (ou couche d'accès aux données)
     public interface IDal : IDisposable
     {
-        Individu Authenticate(string username, int password);
+        Individu Authenticate(string username, string password);
 
         Individu ObtenirInidividu();
     }

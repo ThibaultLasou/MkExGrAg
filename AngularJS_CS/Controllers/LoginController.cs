@@ -25,7 +25,7 @@ namespace AngularJS_CS.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            UtilisateurViewModel uvm = new UtilisateurViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
+            IndividuViewModel uvm = new IndividuViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
 
             if (HttpContext.User.Identity.IsAuthenticated)
                 uvm.Individu = dal.ObtenirInidividu();
@@ -34,12 +34,12 @@ namespace AngularJS_CS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(UtilisateurViewModel uvm, string returnUrl)
+        public ActionResult Index(IndividuViewModel uvm, string returnUrl)
         {
             if (!ModelState.IsValid) //Vérifie la présence du login et du mot de passe
                 return View(uvm);
 
-            Individu ind = dal.Authenticate(uvm.Login, uvm.NumCarte);
+            Individu ind = dal.Authenticate(uvm.Individu.userLogin, uvm.Individu.numCarte);
             if (ind != null) //Authentification réussie
             {
                 FormsAuthentication.SetAuthCookie(ind.Id.ToString(), false);

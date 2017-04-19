@@ -10,6 +10,8 @@ CREATE TABLE [dbo].[Individu]
 	[Id] INT NOT NULL PRIMARY KEY,
 	prenom VARCHAR(25) NOT  NULL,
 	nom VArCHAR (30) NOT NULL,
+	userLogin VARCHAR(8) NOT NULL,
+	numCarte VARCHAR(8) NOT NULL,
 )
 
 
@@ -242,15 +244,15 @@ Modèle de script de post-déploiement
  INSERT INTO Statut (Id, nom) VALUES (2, 'Professeur');
  
 
- INSERT INTO Individu (Id, nom, prenom) VALUES (1,  'martin','bob');
- INSERT INTO Individu (Id, nom, prenom) VALUES (2,  'matin','martin');
- INSERT INTO Individu (Id, nom, prenom) VALUES (3,  'dop','stephane');
+ INSERT INTO Individu (Id, nom, prenom, userLogin, numCarte) VALUES (1,  'martin','bob', 'bobmart', 11111111);
+ INSERT INTO Individu (Id, nom, prenom, userLogin, numCarte) VALUES (2,  'matin','martin', 'martmati', 22222222);
+ INSERT INTO Individu (Id, nom, prenom, userLogin, numCarte) VALUES (3,  'dop','stephane', 'stepdop', 33333333);
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (1, 2);
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (3, 2);
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (2, 1);
-  insert into Individu (Id, prenom, nom) Values (4, 'Mathieu', 'Louvet'),
-  (5, 'T-Bow', 'Lasou'),
-  (6, 'Tristan', 'Hermant'),
-  (7, 'Yasmine', 'Kertous'),
-  (8, 'Bryan', 'Vigee');
+  insert into Individu (Id, prenom, nom, userLogin, numCarte) Values (4, 'Mathieu', 'Louvet', 'louvmath', 44444444),
+  (5, 'T-Bow', 'Lasou', 'lasothib', 55555555),
+  (6, 'Tristan', 'Hermant', 'hermtris', 66666666),
+  (7, 'Yasmine', 'Kertous', 'kertyasm', 77777777),
+  (8, 'Bryan', 'Vigee', 'vigebrya', 88888888);
 

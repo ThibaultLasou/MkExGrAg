@@ -87,6 +87,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="prenom" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="userLogin" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="numCarte" Type="varchar" MaxLength="8" Nullable="false" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -693,6 +695,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userLogin" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numCarte" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cours" Relationship="Self.Fk_cours_prof" FromRole="Individu" ToRole="Cours" />
           <NavigationProperty Name="Message" Relationship="Self.FK_expediteur_message" FromRole="Individu" ToRole="Message" />
           <NavigationProperty Name="Groupe" Relationship="Self.Appartenance" FromRole="Individu" ToRole="Groupe" />
@@ -935,7 +939,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
           <End Role="Statut" Type="Self.Statut" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MainDBEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MainDBEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activite" EntityType="Self.Activite" />
           <EntitySet Name="Cours" EntityType="Self.Cours" />
           <EntitySet Name="Doc_Web" EntityType="Self.Doc_Web" />
@@ -1024,7 +1028,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities2">
+        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities3">
           <EntitySetMapping Name="Activite">
             <EntityTypeMapping TypeName="MainDBModel.Activite">
               <MappingFragment StoreEntitySet="Activite">
@@ -1066,6 +1070,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="prenom" ColumnName="prenom" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+                <ScalarProperty Name="numCarte" ColumnName="numCarte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

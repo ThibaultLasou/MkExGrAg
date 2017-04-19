@@ -13,10 +13,10 @@ namespace AngularJS_CS.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MainDBEntities2 : DbContext
+    public partial class MainDBEntities3 : DbContext
     {
-        public MainDBEntities2()
-            : base("name=MainDBEntities2")
+        public MainDBEntities3()
+            : base("name=MainDBEntities3")
         {
         }
     
