@@ -1,0 +1,12 @@
+﻿@model AngularJS_CS.Models.Doc_Web
+@{
+
+}
+
+<h2>@Model.nom</h2>
+
+@{foreach (AngularJS_CS.Models.Sous_doc_Web a in Model.Sous_doc_Web)
+    {
+        @Html.Raw(a.contenu_html);
+    }
+}

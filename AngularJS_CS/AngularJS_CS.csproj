@@ -261,6 +261,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\SidenavOverlay.cshtml" />
+    <Content Include="Views\Home\Doc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

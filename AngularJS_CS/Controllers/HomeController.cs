@@ -16,6 +16,27 @@ namespace AngularJS_CS.Controllers
             else
                 return View("Error");
         }
+
+        public ActionResult Doc(string id)
+        {
+            if(id != null)
+            {
+                // using (IDal dal = new Dal())
+                { 
+                    //Doc_Web doc = dal.ObtenirDoc(id);
+                    Doc_Web doc = new Doc_Web();
+                    doc.nom = "Test";
+                    Sous_doc_Web s = new Sous_doc_Web();
+                    s.contenu_html = "<p> alalallalazdfkldsjfsqhdfljhqssihfqhsdygfh <p>";
+                    doc.Sous_doc_Web.Add(s);
+                    if(doc != null)
+                    {
+                        return View(doc);
+                    }
+                }
+            }
+            return View("Error");
+        }
         //Ne fonctionne pas.
         //[HttpPost]
         //public JsonResult CreateIndividu(Individus model)

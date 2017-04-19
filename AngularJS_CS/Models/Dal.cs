@@ -22,7 +22,12 @@ namespace AngularJS_CS.Models
             throw new NotImplementedException();
         }
 
-        public Individu ObtenirInidividu()
+        public Doc_Web ObtenirDoc(string nom)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Individu ObtenirIndividu()
         {
             throw new NotImplementedException();
         }
