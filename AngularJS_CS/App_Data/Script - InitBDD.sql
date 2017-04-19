@@ -1,11 +1,11 @@
-CREATE TABLE [dbo].[Groupes]
+CREATE TABLE [dbo].[Groupe]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	nom VARCHAR (15) NOT NULL,
 )
 
 
-CREATE TABLE [dbo].[Individus]
+CREATE TABLE [dbo].[Individu]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	prenom VARCHAR(25) NOT  NULL,
@@ -18,12 +18,12 @@ CREATE TABLE [dbo].[Cours]
 	[Id] INT NOT NULL PRIMARY KEY,
 	Id_prof int not null,
 	Id_groupe int not null,
-	constraint [Fk_cours_prof] foreign key (Id_prof) references Individus (Id),
-	constraint [Fk_cours_groupe] foreign key (Id_groupe) references Groupes (Id),
+	constraint [Fk_cours_prof] foreign key (Id_prof) references Individu (Id),
+	constraint [Fk_cours_groupe] foreign key (Id_groupe) references Groupe (Id),
 )
 
 
-CREATE TABLE [dbo].[Activites]
+CREATE TABLE [dbo].[Activite]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	Id_cours int NOT NULL,
@@ -31,16 +31,16 @@ CREATE TABLE [dbo].[Activites]
 	constraint [FK_Cours_activite] foreign key (Id_cours) references Cours (Id),
 )
 
-CREATE TABLE [dbo].[Appartenances]
+CREATE TABLE [dbo].[Appartenance]
 (
 	[Id_groupe] INT NOT NULL ,
 	Id_individu int not null,
-	constraint [FK_Appat_groupe] foreign key (Id_groupe) references Groupes (Id),
-	constraint [FK_Appat_individu] foreign key (Id_individu) references Individus (Id),
+	constraint [FK_Appat_groupe] foreign key (Id_groupe) references Groupe (Id),
+	constraint [FK_Appat_individu] foreign key (Id_individu) references Individu (Id),
 );
 Go
 CREATE CLUSTERED INDEX idx_Appartenance
-ON dbo.Appartenances
+ON dbo.Appartenance
 (
 Id_groupe, Id_individu
 );
@@ -66,7 +66,7 @@ CREATE TABLE [dbo].[Auteur_Doc]
 (
 	[Id_individu] INT NOT NULL ,
 	[Id_Doc] INT NOT NULL ,
-	constraint [FK_Auteur_individu] foreign key (Id_individu) references Individus (Id),
+	constraint [FK_Auteur_individu] foreign key (Id_individu) references Individu (Id),
 	constraint [FK_Auteur_doc] foreign key (Id_Doc) references Doc_Web (Id),
 );
 
@@ -78,7 +78,7 @@ ON dbo.Auteur_Doc
 Id_individu, Id_Doc
 );
 
-CREATE TABLE [dbo].[Salles]
+CREATE TABLE [dbo].[Salle]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	nom VARCHAR(20) not null,
@@ -86,18 +86,18 @@ CREATE TABLE [dbo].[Salles]
 )
 
 
-CREATE TABLE [dbo].[Creneaux]
+CREATE TABLE [dbo].[Creneau]
 (
     [debut] DATETIME2 not NULL,
 	fin DATETIME2 not null,
 	Id_Salle int NOT null,
 	Id_Activite int not null,
-	constraint [fk_creneau_salle] foreign key (Id_Salle) references Salles (Id),
-	constraint [fk_activite_creneau] foreign key (Id_Activite) references Activites (Id)
+	constraint [fk_creneau_salle] foreign key (Id_Salle) references Salle (Id),
+	constraint [fk_activite_creneau] foreign key (Id_Activite) references Activite (Id)
 );
 Go
-CREATE CLUSTERED INDEX idx_Creneaux
-ON dbo.Creneaux
+CREATE CLUSTERED INDEX idx_Creneau
+ON dbo.Creneau
 (
 debut, fin, Id_Salle
 );
@@ -107,7 +107,7 @@ CREATE TABLE [dbo].[Document_Groupe]
 	[Id_Document] INT NOT NULL,
 	Id_groupe int not null,
 	constraint [FK_doc_groupe_DocWeb] foreign key (Id_Document) references Doc_Web (Id),
-	constraint [FK_doc_groupe_groupe] foreign key (Id_groupe) references Groupes (Id)
+	constraint [FK_doc_groupe_groupe] foreign key (Id_groupe) references Groupe (Id)
 );
 
 Go
@@ -118,83 +118,83 @@ ON dbo.Document_Groupe
 Id_Document, Id_groupe
 );
 
-CREATE TABLE [dbo].[Messages]
+CREATE TABLE [dbo].[Message]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	Id_expediteur int NOT NULL,
 	contenu text NOT NULL, 
     [recu] BIT NOT NULL,
 	lu BIT NOT NULL,
-	constraint [FK_expediteur_message] foreign key (Id_expediteur) references Individus (Id)
+	constraint [FK_expediteur_message] foreign key (Id_expediteur) references Individu (Id)
 
 )
 
-CREATE TABLE [dbo].[Notifications_Diffusions]
+CREATE TABLE [dbo].[Notification_Diffusion]
 (
 	[Id_groupe] INT NOT NULL ,
 	Id_message int NOT NULL ,
-	constraint [Fk_Dif_Notif_groupe] foreign key (Id_groupe) references Groupes (Id),
-	constraint [Fk_Dif_Notif_message] foreign key (Id_message) references Messages (Id),
+	constraint [Fk_Dif_Notif_groupe] foreign key (Id_groupe) references Groupe (Id),
+	constraint [Fk_Dif_Notif_message] foreign key (Id_message) references Message (Id),
 );
 go
 CREATE CLUSTERED INDEX idx_Notif_diff
-ON dbo.Notifications_Diffusions
+ON dbo.Notification_Diffusion
 (
 Id_groupe, Id_message
 );
 
-CREATE TABLE [dbo].[Notifications_simples]
+CREATE TABLE [dbo].[Notification_Simple]
 (
 	[Id_message] INT NOT NULL ,
 	Id_individu int not null,
-	constraint [FK_Snotif_message] foreign key (Id_message) references Messages (Id),
-	Constraint [FK_Snotif_individu] Foreign key (Id_individu) references Individus (Id),
+	constraint [FK_Snotif_message] foreign key (Id_message) references Message (Id),
+	Constraint [FK_Snotif_individu] Foreign key (Id_individu) references Individu (Id),
 );
 
 Go
 
 CREATE CLUSTERED INDEX idx_notif_simpl
-ON dbo.Notifications_simples
+ON dbo.Notification_Simple
 (
 Id_message, Id_individu
 );
 
-CREATE TABLE [dbo].[Options_Questionnaire]
+CREATE TABLE [dbo].[Option_Questionnaire]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	valeur Ntext Not null,
 )
 
-CREATE TABLE [dbo].[Types_Questionnaire]
+CREATE TABLE [dbo].[Type_Questionnaire]
 (
 	[type] VARCHAR(15) NOT NULL PRIMARY KEY
 )
 
 
-CREATE TABLE [dbo].[Questionnaires]
+CREATE TABLE [dbo].[Questionnaire]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	Id_message int not null,
 	Id_Option int not null,
 	[type] varchar(15) not null,
-	constraint [FK_option_questionnaire] foreign key (Id_Option) references Options_Questionnaire (Id),
-	constraint [FK_contenu_questionnaire] foreign key (Id_message) references Messages (Id),
-	constraint [FK_Type_Questionnaire] foreign key ([type]) references Types_Questionnaire ([type])
+	constraint [FK_option_questionnaire] foreign key (Id_Option) references Option_Questionnaire (Id),
+	constraint [FK_contenu_questionnaire] foreign key (Id_message) references Message (Id),
+	constraint [FK_Type_Questionnaire] foreign key ([type]) references Type_Questionnaire ([type])
 )
 
 
-CREATE TABLE [dbo].[Responsables_groupe]
+CREATE TABLE [dbo].[Responsable_groupe]
 (
 	[Id_individu] INT NOT NULL ,
 	[Id_groupe] INT NOT NULL ,
-	constraint [FK_groupe_reponsable_groupe] foreign key (Id_groupe) references Groupes (Id),
-	constraint [FK_groupe_reponsable_individu] foreign key (Id_individu) references Individus (Id)
+	constraint [FK_groupe_reponsable_groupe] foreign key (Id_groupe) references Groupe (Id),
+	constraint [FK_groupe_reponsable_individu] foreign key (Id_individu) references Individu (Id)
 );
 
 Go
 
 CREATE CLUSTERED INDEX idx_Respondable
-ON dbo.Responsables_groupe
+ON dbo.Responsable_groupe
 (
 Id_individu, Id_groupe
 );
@@ -211,7 +211,7 @@ CREATE TABLE [dbo].[Statut_Individu]
 	[Id_individu] INT NOT NULL,
 	[Id_statut] INT NOT NULL ,
 	constraint [FK_statut_individu_statut] foreign key (Id_statut) references Statut (Id),
-	constraint [FK_statut_individu_individu] foreign key (Id_individu) references Individus (Id)
+	constraint [FK_statut_individu_individu] foreign key (Id_individu) references Individu (Id)
 );
 
 Go 
@@ -222,7 +222,7 @@ ON dbo.Statut_Individu
 Id_individu, Id_statut
 );
 
-CREATE TABLE [dbo].[Tâches]
+CREATE TABLE [dbo].[Tâche]
 (
 	[Id] INT NOT NULL PRIMARY KEY
 )
@@ -242,13 +242,13 @@ Modèle de script de post-déploiement
  INSERT INTO Statut (Id, nom) VALUES (2, 'Professeur');
  
 
- INSERT INTO Individus (Id, nom, prenom) VALUES (1,  'martin','bob');
- INSERT INTO Individus (Id, nom, prenom) VALUES (2,  'matin','martin');
- INSERT INTO Individus (Id, nom, prenom) VALUES (3,  'dop','stephane');
+ INSERT INTO Individu (Id, nom, prenom) VALUES (1,  'martin','bob');
+ INSERT INTO Individu (Id, nom, prenom) VALUES (2,  'matin','martin');
+ INSERT INTO Individu (Id, nom, prenom) VALUES (3,  'dop','stephane');
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (1, 2);
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (3, 2);
   insert into Statut_Individu (Id_individu, Id_statut) VALUES (2, 1);
-  insert into Individus (Id, prenom, nom) Values (4, 'Mathieu', 'Louvet'),
+  insert into Individu (Id, prenom, nom) Values (4, 'Mathieu', 'Louvet'),
   (5, 'T-Bow', 'Lasou'),
   (6, 'Tristan', 'Hermant'),
   (7, 'Yasmine', 'Kertous'),

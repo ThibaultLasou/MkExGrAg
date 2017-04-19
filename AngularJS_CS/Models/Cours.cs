@@ -17,7 +17,7 @@ namespace AngularJS_CS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cours()
         {
-            this.Activites = new HashSet<Activites>();
+            this.Activite = new HashSet<Activite>();
         }
     
         public int Id { get; set; }
@@ -25,8 +25,8 @@ namespace AngularJS_CS.Models
         public int Id_groupe { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Activites> Activites { get; set; }
-        public virtual Groupes Groupes { get; set; }
-        public virtual Individus Individus { get; set; }
+        public virtual ICollection<Activite> Activite { get; set; }
+        public virtual Groupe Groupe { get; set; }
+        public virtual Individu Individu { get; set; }
     }
 }
