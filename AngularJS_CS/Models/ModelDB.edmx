@@ -1201,6 +1201,11 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
               <ScalarProperty Name="Id" ColumnName="Id_statut" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_docWeb_contenu" TypeName="MainDBModel.fk_docWeb_contenu" StoreEntitySet="Doc_Web">
+            <EndProperty Name="Sous_doc_Web">
+              <ScalarProperty Name="Id" ColumnName="Id_contenu" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
