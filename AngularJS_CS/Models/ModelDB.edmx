@@ -55,13 +55,22 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_Salle" Type="int" Nullable="false" />
           <Property Name="Id_Activite" Type="int" Nullable="false" />
         </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Doc_Contenu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Doc_Contenu">
+          <Key>
+            <PropertyRef Name="Id_doc" />
+            <PropertyRef Name="Id_contenu" />
+          </Key>
+          <Property Name="Id_doc" Type="int" Nullable="false" />
+          <Property Name="Id_contenu" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Doc_Web">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Id_contenu" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Document_Groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -358,18 +367,6 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_docWeb_contenu">
-          <End Role="Sous_doc_Web" Type="Self.Sous_doc_Web" Multiplicity="1" />
-          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sous_doc_Web">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Doc_Web">
-              <PropertyRef Name="Id_contenu" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_expediteur_message">
           <End Role="Individu" Type="Self.Individu" Multiplicity="1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
@@ -403,6 +400,18 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             </Principal>
             <Dependent Role="Responsable_groupe">
               <PropertyRef Name="Id_individu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Main_doc">
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="1" />
+          <End Role="Doc_Contenu" Type="Self.Doc_Contenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doc_Web">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doc_Contenu">
+              <PropertyRef Name="Id_doc" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -466,6 +475,18 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sub_doc">
+          <End Role="Sous_doc_Web" Type="Self.Sous_doc_Web" Multiplicity="1" />
+          <End Role="Doc_Contenu" Type="Self.Doc_Contenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sous_doc_Web">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doc_Contenu">
+              <PropertyRef Name="Id_contenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Type_Questionnaire">
           <End Role="Type_Questionnaire" Type="Self.Type_Questionnaire" Multiplicity="1" />
           <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="*" />
@@ -511,6 +532,12 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
     [Creneau].[Id_Salle] AS [Id_Salle], 
     [Creneau].[Id_Activite] AS [Id_Activite]
     FROM [dbo].[Creneau] AS [Creneau]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Doc_Contenu" EntityType="Self.Doc_Contenu" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Doc_Contenu].[Id_doc] AS [Id_doc], 
+    [Doc_Contenu].[Id_contenu] AS [Id_contenu]
+    FROM [dbo].[Doc_Contenu] AS [Doc_Contenu]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Document_Groupe" EntityType="Self.Document_Groupe" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -598,10 +625,6 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             <End Role="Groupe" EntitySet="Groupe" />
             <End Role="Document_Groupe" EntitySet="Document_Groupe" />
           </AssociationSet>
-          <AssociationSet Name="fk_docWeb_contenu" Association="Self.fk_docWeb_contenu">
-            <End Role="Sous_doc_Web" EntitySet="Sous_doc_Web" />
-            <End Role="Doc_Web" EntitySet="Doc_Web" />
-          </AssociationSet>
           <AssociationSet Name="FK_expediteur_message" Association="Self.FK_expediteur_message">
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Message" EntitySet="Message" />
@@ -613,6 +636,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <AssociationSet Name="FK_groupe_reponsable_individu" Association="Self.FK_groupe_reponsable_individu">
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Responsable_groupe" EntitySet="Responsable_groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Main_doc" Association="Self.FK_Main_doc">
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+            <End Role="Doc_Contenu" EntitySet="Doc_Contenu" />
           </AssociationSet>
           <AssociationSet Name="FK_option_questionnaire" Association="Self.FK_option_questionnaire">
             <End Role="Option_Questionnaire" EntitySet="Option_Questionnaire" />
@@ -633,6 +660,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <AssociationSet Name="FK_statut_individu_statut" Association="Self.FK_statut_individu_statut">
             <End Role="Statut" EntitySet="Statut" />
             <End Role="Statut_Individu" EntitySet="Statut_Individu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sub_doc" Association="Self.FK_Sub_doc">
+            <End Role="Sous_doc_Web" EntitySet="Sous_doc_Web" />
+            <End Role="Doc_Contenu" EntitySet="Doc_Contenu" />
           </AssociationSet>
           <AssociationSet Name="FK_Type_Questionnaire" Association="Self.FK_Type_Questionnaire">
             <End Role="Type_Questionnaire" EntitySet="Type_Questionnaire" />
@@ -671,9 +702,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Id_contenu" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Sous_doc_Web" Relationship="Self.fk_docWeb_contenu" FromRole="Doc_Web" ToRole="Sous_doc_Web" />
           <NavigationProperty Name="Individu" Relationship="Self.Auteur_Doc" FromRole="Doc_Web" ToRole="Individu" />
+          <NavigationProperty Name="Sous_doc_Web" Relationship="Self.Doc_Contenu" FromRole="Doc_Web" ToRole="Sous_doc_Web" />
           <NavigationProperty Name="Groupe" Relationship="Self.Document_Groupe" FromRole="Doc_Web" ToRole="Groupe" />
         </EntityType>
         <EntityType Name="Groupe">
@@ -754,7 +784,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="contenu_html" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Doc_Web" Relationship="Self.fk_docWeb_contenu" FromRole="Sous_doc_Web" ToRole="Doc_Web" />
+          <NavigationProperty Name="Doc_Web" Relationship="Self.Doc_Contenu" FromRole="Sous_doc_Web" ToRole="Doc_Web" />
         </EntityType>
         <EntityType Name="Statut">
           <Key>
@@ -839,10 +869,6 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_docWeb_contenu">
-          <End Role="Sous_doc_Web" Type="Self.Sous_doc_Web" Multiplicity="*" />
-          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="1" />
-        </Association>
         <Association Name="FK_expediteur_message">
           <End Role="Individu" Type="Self.Individu" Multiplicity="1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
@@ -911,6 +937,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
           <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
         </Association>
+        <Association Name="Doc_Contenu">
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
+          <End Role="Sous_doc_Web" Type="Self.Sous_doc_Web" Multiplicity="*" />
+        </Association>
         <Association Name="Document_Groupe">
           <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
           <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
@@ -931,7 +961,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
           <End Role="Statut" Type="Self.Statut" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MainDBEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MainDBEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activite" EntityType="Self.Activite" />
           <EntitySet Name="Cours" EntityType="Self.Cours" />
           <EntitySet Name="Doc_Web" EntityType="Self.Doc_Web" />
@@ -962,10 +992,6 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Cours" EntitySet="Cours" />
           </AssociationSet>
-          <AssociationSet Name="fk_docWeb_contenu" Association="Self.fk_docWeb_contenu">
-            <End Role="Sous_doc_Web" EntitySet="Sous_doc_Web" />
-            <End Role="Doc_Web" EntitySet="Doc_Web" />
-          </AssociationSet>
           <AssociationSet Name="FK_expediteur_message" Association="Self.FK_expediteur_message">
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Message" EntitySet="Message" />
@@ -994,6 +1020,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             <End Role="Doc_Web" EntitySet="Doc_Web" />
             <End Role="Individu" EntitySet="Individu" />
           </AssociationSet>
+          <AssociationSet Name="Doc_Contenu" Association="Self.Doc_Contenu">
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+            <End Role="Sous_doc_Web" EntitySet="Sous_doc_Web" />
+          </AssociationSet>
           <AssociationSet Name="Document_Groupe" Association="Self.Document_Groupe">
             <End Role="Doc_Web" EntitySet="Doc_Web" />
             <End Role="Groupe" EntitySet="Groupe" />
@@ -1020,7 +1050,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities3">
+        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities4">
           <EntitySetMapping Name="Activite">
             <EntityTypeMapping TypeName="MainDBModel.Activite">
               <MappingFragment StoreEntitySet="Activite">
@@ -1044,7 +1074,6 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
               <MappingFragment StoreEntitySet="Doc_Web">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="Id_contenu" ColumnName="Id_contenu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1161,6 +1190,14 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
               <ScalarProperty Name="Id" ColumnName="Id_individu" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="Doc_Contenu" TypeName="MainDBModel.Doc_Contenu" StoreEntitySet="Doc_Contenu">
+            <EndProperty Name="Doc_Web">
+              <ScalarProperty Name="Id" ColumnName="Id_doc" />
+            </EndProperty>
+            <EndProperty Name="Sous_doc_Web">
+              <ScalarProperty Name="Id" ColumnName="Id_contenu" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="Document_Groupe" TypeName="MainDBModel.Document_Groupe" StoreEntitySet="Document_Groupe">
             <EndProperty Name="Doc_Web">
               <ScalarProperty Name="Id" ColumnName="Id_Document" />
@@ -1199,11 +1236,6 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             </EndProperty>
             <EndProperty Name="Statut">
               <ScalarProperty Name="Id" ColumnName="Id_statut" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="fk_docWeb_contenu" TypeName="MainDBModel.fk_docWeb_contenu" StoreEntitySet="Doc_Web">
-            <EndProperty Name="Sous_doc_Web">
-              <ScalarProperty Name="Id" ColumnName="Id_contenu" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

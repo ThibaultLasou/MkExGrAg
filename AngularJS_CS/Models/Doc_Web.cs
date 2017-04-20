@@ -17,19 +17,18 @@ namespace AngularJS_CS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doc_Web()
         {
-            this.Sous_doc_Web = new HashSet<Sous_doc_Web>();
             this.Individu = new HashSet<Individu>();
+            this.Sous_doc_Web = new HashSet<Sous_doc_Web>();
             this.Groupe = new HashSet<Groupe>();
         }
     
         public int Id { get; set; }
         public string nom { get; set; }
-        public int Id_contenu { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sous_doc_Web> Sous_doc_Web { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Individu> Individu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sous_doc_Web> Sous_doc_Web { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Groupe> Groupe { get; set; }
     }
