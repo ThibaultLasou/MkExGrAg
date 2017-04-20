@@ -1,0 +1,133 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700);
+
+@blue_polytech: #00afec;
+@green_psud: #6fbf39;
+@color_1: #ecf0f1;
+@bg_white: #fff;
+@color_4: 10a08 + @green_psud;
+@font_family_1: Sans-serif;
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+#loginZone {
+    padding-top: 5px;
+
+    .download-btn {
+        li {
+            display: inline-block;
+
+            hidden_div {
+                display: none;
+            }
+
+            a {
+                color: @bg_white;
+                border-radius: 0;
+                padding: 2px 6px 3px;
+                font-size: 15px;
+            }
+
+
+
+            .btn-andriod {
+                background: @green_psud;
+                border: 1px solid transparent;
+                -webkit-transition: .2s all;
+                -o-transition: .2s all;
+                transition: .2s all;
+                position: relative;
+
+                &:hover {
+                    color: @green_psud;
+                    background: @bg_white;
+                    border: 1px solid @green_psud;
+                }
+            }
+
+            .btn-windows {
+                background: @blue_polytech;
+                border: 1px solid transparent;
+                -webkit-transition: .2s all;
+                -o-transition: .2s all;
+                transition: .2s all;
+
+                &:hover {
+                    color: @blue_polytech;
+                    background: @bg_white;
+                    border: 1px solid @blue_polytech;
+                }
+            }
+
+            .formholder {
+                padding: 10px;
+                background: @bg_white;
+                width: 350px;
+                border: solid 1px silver;
+                padding-top: 5px;
+                position: absolute;
+
+                .fieldset {
+                    border: 1px solid silver;
+                }
+
+                input[type="email"] {
+                    padding: 7px 5px;
+                    margin: 10px 0;
+                    width: 100%;
+                    display: block;
+                    font-size: 18px;
+                    border: 1px solid silver;
+                    -webkit-transition: 0.3s linear;
+                    -moz-transition: 0.3s linear;
+                    -o-transition: 0.3s linear;
+                    transition: 0.3s linear;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0 0 1px 1px @green_psud;
+                    }
+                }
+
+                input[type="password"] {
+                    padding: 7px 5px;
+                    margin: 10px 0;
+                    width: 100%;
+                    display: block;
+                    font-size: 18px;
+                    border: 1px solid silver;
+                    -webkit-transition: 0.3s linear;
+                    -moz-transition: 0.3s linear;
+                    -o-transition: 0.3s linear;
+                    transition: 0.3s linear;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0 0 1px 1px @green_psud;
+                    }
+                }
+
+                input[type="submit"] {
+                    background: @green_psud;
+                    border: 1px solid transparent;
+                    -webkit-transition: .2s all;
+                    -o-transition: .2s all;
+                    transition: .2s all;
+                    padding: 10px;
+                    font-size: 20px;
+                    display: block;
+                    width: 100%;
+                    color: @bg_white;
+
+                    &:hover {
+                        color: @green_psud;
+                        background: @bg_white;
+                        border: 1px solid @green_psud;
+                    }
+                }
+            }
+        }
+    }
+}

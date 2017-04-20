@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- Fonts -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet/less" href="~/Content/less/main.less">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+    <link rel="stylesheet/less" href="~/Content/less/bandeau.less">
+    <base href="/">
+</head>
+<body ng-app="myFormApp">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-6 col-sm-3">
+                    <a href="#" class="logo">
+                        <img style="width: 148px; height: 50px;" src="~/Content/images/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="col-md-6 col-xs-6 col-sm-6">
+                    <div class="menu">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed"
+                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="#banner">Documents</a></li>
+                                        <li><a href="#service">Messages</a></li>
+                                        <li><a href="#feature">Agenda</a></li>
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div>
+                <div id="loginZone" class="col-md-3 col-xs-12 col-sm-3">
+                    <ul class="download-btn">
+                        <li>
+                            <div>
+                                <a href="#" id="loginform" class="btn btn-default btn-andriod">Se connecter</a>
+                            </div>
+                            <div id="hidden_div" class="hidden">
+                                <div class="formholder">
+                                    <fieldset>
+                                        <input type="email" placeholder="Utilisateur" />
+                                        <input type="password" placeholder="Mot de passe" />
+                                        <input type="submit" value="Entrer" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default btn-windows">Langues</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="banner">
+        <div class="container body-content">
+            @RenderBody()
+            @*<hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>*@
+        </div>
+    </section>
+    <footer class="wow fadeInUp" data-wow-delay=".8s">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="footer-logo" href="#">
+                        <img class="img-responsive"
+                             src="images/footer-logo.png" alt="">
+                    </a>
+                    <p>
+                        Copyright © 2014 Themefisher. All rights reserved. Designed &amp;
+                        developed by themefisher.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/Frameworks/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Frameworks/less-1.5.1.js" type="text/javascript"></script>
+    <script src="~/Scripts/AllOurScripts/loginApparition.js"></script>
+    @RenderSection("JavaScript", false)
+</body>
+</html>

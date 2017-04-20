@@ -1,4 +1,0 @@
-﻿CREATE TABLE [dbo].[Tâches]
-(
-	[Id] INT NOT NULL PRIMARY KEY
-)

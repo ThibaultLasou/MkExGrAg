@@ -82,7 +82,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -94,11 +93,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -204,65 +201,93 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activites.cs" />
-    <Compile Include="appl.cs" />
+    <Compile Include="App_Start\WebApiConfig2.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\IndividussAPIController.cs" />
+    <Compile Include="Models\Activites.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ActivitesController.cs" />
-    <Compile Include="Controllers\CoursController.cs" />
-    <Compile Include="Controllers\CreneauxController.cs" />
-    <Compile Include="Controllers\Doc_WebController.cs" />
-    <Compile Include="Controllers\GroupesController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IndividusController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Controllers\Options_QuestionnaireController.cs" />
-    <Compile Include="Controllers\QuestionnairesController.cs" />
-    <Compile Include="Controllers\SallesController.cs" />
-    <Compile Include="Controllers\Sous_doc_WebController.cs" />
-    <Compile Include="Controllers\StatutsController.cs" />
-    <Compile Include="Controllers\TheBDDController.cs" />
-    <Compile Include="Controllers\Types_QuestionnaireController.cs" />
-    <Compile Include="Controllers\TâchesController.cs" />
-    <Compile Include="Cours.cs" />
-    <Compile Include="Creneaux.cs" />
-    <Compile Include="Doc_Web.cs" />
+    <Compile Include="Models\Cours.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Creneaux.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Doc_Web.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Groupes.cs" />
-    <Compile Include="Individus.cs" />
-    <Compile Include="Messages.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Options_Questionnaire.cs" />
+    <Compile Include="Models\Groupes.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Individus.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Messages.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Options_Questionnaire.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OurEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OurEntityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OurEntityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OurEntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OurEntityModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Questionnaires.cs" />
-    <Compile Include="Salles.cs" />
-    <Compile Include="Sous_doc_Web.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="Statut.cs" />
-    <Compile Include="Types_Questionnaire.cs" />
-    <Compile Include="Tâches.cs" />
+    <Compile Include="Models\Questionnaires.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Salles.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sous_doc_Web.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Statut.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Types_Questionnaire.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tâches.cs">
+      <DependentUpon>OurEntityModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TheBDD.mdf" />
     <Content Include="App_Data\TheBDD_log.ldf">
       <DependentUpon>TheBDD.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
+    <Content Include="Content-CSS\bootstrap.css" />
+    <Content Include="Content-CSS\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content-CSS\Site.css" />
+    <Content Include="Models\OurEntityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OurEntityModel.edmx</DependentUpon>
+      <LastGenOutput>OurEntityModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OurEntityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OurEntityModel.edmx</DependentUpon>
+      <LastGenOutput>OurEntityModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -305,6 +330,13 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <EntityDeploy Include="Models\OurEntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OurEntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\OurEntityModel.edmx.diagram">
+      <DependentUpon>OurEntityModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -1043,6 +1075,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyScripts\Module.js" />
+    <Content Include="Scripts\MyScripts\Service.js" />
+    <Content Include="Scripts\MyScripts\Controller.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -1053,46 +1088,20 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Individus\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_GlobalResources\" />
-    <Folder Include="Views\TheBDD\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1108,7 +1117,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50092</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

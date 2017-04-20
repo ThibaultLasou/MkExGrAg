@@ -1,0 +1,1229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TheBDDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_cours" Type="int" Nullable="false" />
+          <Property Name="Id_reunion" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Appartenances' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Appartenances">
+          <Key>
+            <PropertyRef Name="Id_groupe" />
+            <PropertyRef Name="Id_individu" />
+          </Key>
+          <Property Name="Id_groupe" Type="int" Nullable="false" />
+          <Property Name="Id_individu" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Auteur_Doc' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Auteur_Doc">
+          <Key>
+            <PropertyRef Name="Id_individu" />
+            <PropertyRef Name="Id_Doc" />
+          </Key>
+          <Property Name="Id_individu" Type="int" Nullable="false" />
+          <Property Name="Id_Doc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_prof" Type="int" Nullable="false" />
+          <Property Name="Id_groupe" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Creneaux' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Creneaux">
+          <Key>
+            <PropertyRef Name="debut" />
+            <PropertyRef Name="fin" />
+            <PropertyRef Name="Id_Salle" />
+            <PropertyRef Name="Id_Activite" />
+          </Key>
+          <Property Name="debut" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="fin" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Id_Salle" Type="int" Nullable="false" />
+          <Property Name="Id_Activite" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doc_Web">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Id_contenu" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Document_Groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Document_Groupe">
+          <Key>
+            <PropertyRef Name="Id_Document" />
+            <PropertyRef Name="Id_groupe" />
+          </Key>
+          <Property Name="Id_Document" Type="int" Nullable="false" />
+          <Property Name="Id_groupe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groupes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Individus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="prenom" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_expediteur" Type="int" Nullable="false" />
+          <Property Name="contenu" Type="text" Nullable="false" />
+          <Property Name="recu" Type="bit" Nullable="false" />
+          <Property Name="lu" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Notifications_Diffusions' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Notifications_Diffusions">
+          <Key>
+            <PropertyRef Name="Id_groupe" />
+            <PropertyRef Name="Id_message" />
+          </Key>
+          <Property Name="Id_groupe" Type="int" Nullable="false" />
+          <Property Name="Id_message" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Notifications_simples' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Notifications_simples">
+          <Key>
+            <PropertyRef Name="Id_message" />
+            <PropertyRef Name="Id_individu" />
+          </Key>
+          <Property Name="Id_message" Type="int" Nullable="false" />
+          <Property Name="Id_individu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Options_Questionnaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="valeur" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questionnaires">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_message" Type="int" Nullable="false" />
+          <Property Name="Id_Option" Type="int" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Responsables_groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Responsables_groupe">
+          <Key>
+            <PropertyRef Name="Id_individu" />
+            <PropertyRef Name="Id_groupe" />
+          </Key>
+          <Property Name="Id_individu" Type="int" Nullable="false" />
+          <Property Name="Id_groupe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="capacite" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sous_doc_Web">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="contenu_html" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\MAKETHEEXTRANETGREATAGAIN\APP_DATA\THEBDD.MDF.dbo.Statut_Individu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Statut_Individu">
+          <Key>
+            <PropertyRef Name="Id_individu" />
+            <PropertyRef Name="Id_statut" />
+          </Key>
+          <Property Name="Id_individu" Type="int" Nullable="false" />
+          <Property Name="Id_statut" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tâches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types_Questionnaire">
+          <Key>
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="type" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_activite_creneau">
+          <End Role="Activites" Type="Self.Activites" Multiplicity="1" />
+          <End Role="Creneaux" Type="Self.Creneaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Creneaux">
+              <PropertyRef Name="Id_Activite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appat_groupe">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="1" />
+          <End Role="Appartenances" Type="Self.Appartenances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appartenances">
+              <PropertyRef Name="Id_groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appat_individu">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Appartenances" Type="Self.Appartenances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appartenances">
+              <PropertyRef Name="Id_individu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auteur_doc">
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="1" />
+          <End Role="Auteur_Doc" Type="Self.Auteur_Doc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doc_Web">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auteur_Doc">
+              <PropertyRef Name="Id_Doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auteur_individu">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Auteur_Doc" Type="Self.Auteur_Doc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auteur_Doc">
+              <PropertyRef Name="Id_individu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contenu_questionnaire">
+          <End Role="Messages" Type="Self.Messages" Multiplicity="1" />
+          <End Role="Questionnaires" Type="Self.Questionnaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionnaires">
+              <PropertyRef Name="Id_message" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_activite">
+          <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Activites" Type="Self.Activites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activites">
+              <PropertyRef Name="Id_cours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_cours_groupe">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Id_groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_cours_prof">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Id_prof" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_creneau_salle">
+          <End Role="Salles" Type="Self.Salles" Multiplicity="1" />
+          <End Role="Creneaux" Type="Self.Creneaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Creneaux">
+              <PropertyRef Name="Id_Salle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Dif_Notif_groupe">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="1" />
+          <End Role="Notifications_Diffusions" Type="Self.Notifications_Diffusions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications_Diffusions">
+              <PropertyRef Name="Id_groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Dif_Notif_message">
+          <End Role="Messages" Type="Self.Messages" Multiplicity="1" />
+          <End Role="Notifications_Diffusions" Type="Self.Notifications_Diffusions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications_Diffusions">
+              <PropertyRef Name="Id_message" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doc_groupe_DocWeb">
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="1" />
+          <End Role="Document_Groupe" Type="Self.Document_Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doc_Web">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document_Groupe">
+              <PropertyRef Name="Id_Document" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doc_groupe_groupe">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="1" />
+          <End Role="Document_Groupe" Type="Self.Document_Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document_Groupe">
+              <PropertyRef Name="Id_groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_docWeb_contenu">
+          <End Role="Sous_doc_Web" Type="Self.Sous_doc_Web" Multiplicity="1" />
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sous_doc_Web">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doc_Web">
+              <PropertyRef Name="Id_contenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expediteur_message">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Id_expediteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_groupe_reponsable_groupe">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="1" />
+          <End Role="Responsables_groupe" Type="Self.Responsables_groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Responsables_groupe">
+              <PropertyRef Name="Id_groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_groupe_reponsable_individu">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Responsables_groupe" Type="Self.Responsables_groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Responsables_groupe">
+              <PropertyRef Name="Id_individu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_option_questionnaire">
+          <End Role="Options_Questionnaire" Type="Self.Options_Questionnaire" Multiplicity="1" />
+          <End Role="Questionnaires" Type="Self.Questionnaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options_Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionnaires">
+              <PropertyRef Name="Id_Option" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Snotif_individu">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Notifications_simples" Type="Self.Notifications_simples" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications_simples">
+              <PropertyRef Name="Id_individu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Snotif_message">
+          <End Role="Messages" Type="Self.Messages" Multiplicity="1" />
+          <End Role="Notifications_simples" Type="Self.Notifications_simples" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications_simples">
+              <PropertyRef Name="Id_message" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_statut_individu_individu">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Statut_Individu" Type="Self.Statut_Individu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Statut_Individu">
+              <PropertyRef Name="Id_individu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_statut_individu_statut">
+          <End Role="Statut" Type="Self.Statut" Multiplicity="1" />
+          <End Role="Statut_Individu" Type="Self.Statut_Individu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statut">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Statut_Individu">
+              <PropertyRef Name="Id_statut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_Questionnaire">
+          <End Role="Types_Questionnaire" Type="Self.Types_Questionnaire" Multiplicity="1" />
+          <End Role="Questionnaires" Type="Self.Questionnaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_Questionnaire">
+              <PropertyRef Name="type" />
+            </Principal>
+            <Dependent Role="Questionnaires">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TheBDDModelStoreContainer">
+          <EntitySet Name="Activites" EntityType="Self.Activites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cours" EntityType="Self.Cours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doc_Web" EntityType="Self.Doc_Web" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groupes" EntityType="Self.Groupes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Individus" EntityType="Self.Individus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Options_Questionnaire" EntityType="Self.Options_Questionnaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questionnaires" EntityType="Self.Questionnaires" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salles" EntityType="Self.Salles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sous_doc_Web" EntityType="Self.Sous_doc_Web" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statut" EntityType="Self.Statut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tâches" EntityType="Self.Tâches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types_Questionnaire" EntityType="Self.Types_Questionnaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Appartenances" EntityType="Self.Appartenances" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Appartenances].[Id_groupe] AS [Id_groupe], 
+    [Appartenances].[Id_individu] AS [Id_individu]
+    FROM [dbo].[Appartenances] AS [Appartenances]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Auteur_Doc" EntityType="Self.Auteur_Doc" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Auteur_Doc].[Id_individu] AS [Id_individu], 
+    [Auteur_Doc].[Id_Doc] AS [Id_Doc]
+    FROM [dbo].[Auteur_Doc] AS [Auteur_Doc]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Creneaux" EntityType="Self.Creneaux" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Creneaux].[debut] AS [debut], 
+    [Creneaux].[fin] AS [fin], 
+    [Creneaux].[Id_Salle] AS [Id_Salle], 
+    [Creneaux].[Id_Activite] AS [Id_Activite]
+    FROM [dbo].[Creneaux] AS [Creneaux]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Document_Groupe" EntityType="Self.Document_Groupe" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Document_Groupe].[Id_Document] AS [Id_Document], 
+    [Document_Groupe].[Id_groupe] AS [Id_groupe]
+    FROM [dbo].[Document_Groupe] AS [Document_Groupe]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Notifications_Diffusions" EntityType="Self.Notifications_Diffusions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Notifications_Diffusions].[Id_groupe] AS [Id_groupe], 
+    [Notifications_Diffusions].[Id_message] AS [Id_message]
+    FROM [dbo].[Notifications_Diffusions] AS [Notifications_Diffusions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Notifications_simples" EntityType="Self.Notifications_simples" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Notifications_simples].[Id_message] AS [Id_message], 
+    [Notifications_simples].[Id_individu] AS [Id_individu]
+    FROM [dbo].[Notifications_simples] AS [Notifications_simples]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Responsables_groupe" EntityType="Self.Responsables_groupe" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Responsables_groupe].[Id_individu] AS [Id_individu], 
+    [Responsables_groupe].[Id_groupe] AS [Id_groupe]
+    FROM [dbo].[Responsables_groupe] AS [Responsables_groupe]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Statut_Individu" EntityType="Self.Statut_Individu" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Statut_Individu].[Id_individu] AS [Id_individu], 
+    [Statut_Individu].[Id_statut] AS [Id_statut]
+    FROM [dbo].[Statut_Individu] AS [Statut_Individu]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_activite_creneau" Association="Self.fk_activite_creneau">
+            <End Role="Activites" EntitySet="Activites" />
+            <End Role="Creneaux" EntitySet="Creneaux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appat_groupe" Association="Self.FK_Appat_groupe">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Appartenances" EntitySet="Appartenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appat_individu" Association="Self.FK_Appat_individu">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Appartenances" EntitySet="Appartenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auteur_doc" Association="Self.FK_Auteur_doc">
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+            <End Role="Auteur_Doc" EntitySet="Auteur_Doc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auteur_individu" Association="Self.FK_Auteur_individu">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Auteur_Doc" EntitySet="Auteur_Doc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contenu_questionnaire" Association="Self.FK_contenu_questionnaire">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_activite" Association="Self.FK_Cours_activite">
+            <End Role="Cours" EntitySet="Cours" />
+            <End Role="Activites" EntitySet="Activites" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_cours_groupe" Association="Self.Fk_cours_groupe">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_cours_prof" Association="Self.Fk_cours_prof">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="fk_creneau_salle" Association="Self.fk_creneau_salle">
+            <End Role="Salles" EntitySet="Salles" />
+            <End Role="Creneaux" EntitySet="Creneaux" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Dif_Notif_groupe" Association="Self.Fk_Dif_Notif_groupe">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Notifications_Diffusions" EntitySet="Notifications_Diffusions" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Dif_Notif_message" Association="Self.Fk_Dif_Notif_message">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Notifications_Diffusions" EntitySet="Notifications_Diffusions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doc_groupe_DocWeb" Association="Self.FK_doc_groupe_DocWeb">
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+            <End Role="Document_Groupe" EntitySet="Document_Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doc_groupe_groupe" Association="Self.FK_doc_groupe_groupe">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Document_Groupe" EntitySet="Document_Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_docWeb_contenu" Association="Self.fk_docWeb_contenu">
+            <End Role="Sous_doc_Web" EntitySet="Sous_doc_Web" />
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expediteur_message" Association="Self.FK_expediteur_message">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_groupe_reponsable_groupe" Association="Self.FK_groupe_reponsable_groupe">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Responsables_groupe" EntitySet="Responsables_groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_groupe_reponsable_individu" Association="Self.FK_groupe_reponsable_individu">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Responsables_groupe" EntitySet="Responsables_groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_option_questionnaire" Association="Self.FK_option_questionnaire">
+            <End Role="Options_Questionnaire" EntitySet="Options_Questionnaire" />
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Snotif_individu" Association="Self.FK_Snotif_individu">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Notifications_simples" EntitySet="Notifications_simples" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Snotif_message" Association="Self.FK_Snotif_message">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Notifications_simples" EntitySet="Notifications_simples" />
+          </AssociationSet>
+          <AssociationSet Name="FK_statut_individu_individu" Association="Self.FK_statut_individu_individu">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Statut_Individu" EntitySet="Statut_Individu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_statut_individu_statut" Association="Self.FK_statut_individu_statut">
+            <End Role="Statut" EntitySet="Statut" />
+            <End Role="Statut_Individu" EntitySet="Statut_Individu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_Questionnaire" Association="Self.FK_Type_Questionnaire">
+            <End Role="Types_Questionnaire" EntitySet="Types_Questionnaire" />
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TheBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_cours" Type="Int32" Nullable="false" />
+          <Property Name="Id_reunion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Creneaux" Relationship="Self.fk_activite_creneau" FromRole="Activites" ToRole="Creneaux" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_Cours_activite" FromRole="Activites" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_prof" Type="Int32" Nullable="false" />
+          <Property Name="Id_groupe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activites" Relationship="Self.FK_Cours_activite" FromRole="Cours" ToRole="Activites" />
+          <NavigationProperty Name="Groupes" Relationship="Self.Fk_cours_groupe" FromRole="Cours" ToRole="Groupes" />
+          <NavigationProperty Name="Individus" Relationship="Self.Fk_cours_prof" FromRole="Cours" ToRole="Individus" />
+        </EntityType>
+        <EntityType Name="Doc_Web">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_contenu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sous_doc_Web" Relationship="Self.fk_docWeb_contenu" FromRole="Doc_Web" ToRole="Sous_doc_Web" />
+          <NavigationProperty Name="Individus" Relationship="Self.Auteur_Doc" FromRole="Doc_Web" ToRole="Individus" />
+          <NavigationProperty Name="Groupes" Relationship="Self.Document_Groupe" FromRole="Doc_Web" ToRole="Groupes" />
+        </EntityType>
+        <EntityType Name="Groupes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="Self.Fk_cours_groupe" FromRole="Groupes" ToRole="Cours" />
+          <NavigationProperty Name="Individus" Relationship="Self.Appartenances" FromRole="Groupes" ToRole="Individus" />
+          <NavigationProperty Name="Doc_Web" Relationship="Self.Document_Groupe" FromRole="Groupes" ToRole="Doc_Web" />
+          <NavigationProperty Name="Messages" Relationship="Self.Notifications_Diffusions" FromRole="Groupes" ToRole="Messages" />
+          <NavigationProperty Name="Individus1" Relationship="Self.Responsables_groupe" FromRole="Groupes" ToRole="Individus" />
+        </EntityType>
+        <EntityType Name="Individus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="Self.Fk_cours_prof" FromRole="Individus" ToRole="Cours" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_expediteur_message" FromRole="Individus" ToRole="Messages" />
+          <NavigationProperty Name="Groupes" Relationship="Self.Appartenances" FromRole="Individus" ToRole="Groupes" />
+          <NavigationProperty Name="Doc_Web" Relationship="Self.Auteur_Doc" FromRole="Individus" ToRole="Doc_Web" />
+          <NavigationProperty Name="Messages1" Relationship="Self.Notifications_simples" FromRole="Individus" ToRole="Messages" />
+          <NavigationProperty Name="Groupes1" Relationship="Self.Responsables_groupe" FromRole="Individus" ToRole="Groupes" />
+          <NavigationProperty Name="Statut" Relationship="Self.Statut_Individu" FromRole="Individus" ToRole="Statut" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_expediteur" Type="Int32" Nullable="false" />
+          <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recu" Type="Boolean" Nullable="false" />
+          <Property Name="lu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Individus" Relationship="Self.FK_expediteur_message" FromRole="Messages" ToRole="Individus" />
+          <NavigationProperty Name="Questionnaires" Relationship="Self.FK_contenu_questionnaire" FromRole="Messages" ToRole="Questionnaires" />
+          <NavigationProperty Name="Groupes" Relationship="Self.Notifications_Diffusions" FromRole="Messages" ToRole="Groupes" />
+          <NavigationProperty Name="Individus1" Relationship="Self.Notifications_simples" FromRole="Messages" ToRole="Individus" />
+        </EntityType>
+        <EntityType Name="Options_Questionnaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="valeur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Questionnaires" Relationship="Self.FK_option_questionnaire" FromRole="Options_Questionnaire" ToRole="Questionnaires" />
+        </EntityType>
+        <EntityType Name="Questionnaires">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_message" Type="Int32" Nullable="false" />
+          <Property Name="Id_Option" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_contenu_questionnaire" FromRole="Questionnaires" ToRole="Messages" />
+          <NavigationProperty Name="Options_Questionnaire" Relationship="Self.FK_option_questionnaire" FromRole="Questionnaires" ToRole="Options_Questionnaire" />
+          <NavigationProperty Name="Types_Questionnaire" Relationship="Self.FK_Type_Questionnaire" FromRole="Questionnaires" ToRole="Types_Questionnaire" />
+        </EntityType>
+        <EntityType Name="Salles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="capacite" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Creneaux" Relationship="Self.fk_creneau_salle" FromRole="Salles" ToRole="Creneaux" />
+        </EntityType>
+        <EntityType Name="Sous_doc_Web">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="contenu_html" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Doc_Web" Relationship="Self.fk_docWeb_contenu" FromRole="Sous_doc_Web" ToRole="Doc_Web" />
+        </EntityType>
+        <EntityType Name="Statut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Individus" Relationship="Self.Statut_Individu" FromRole="Statut" ToRole="Individus" />
+        </EntityType>
+        <EntityType Name="Tâches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types_Questionnaire">
+          <Key>
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Questionnaires" Relationship="Self.FK_Type_Questionnaire" FromRole="Types_Questionnaire" ToRole="Questionnaires" />
+        </EntityType>
+        <EntityType Name="Creneaux">
+          <Key>
+            <PropertyRef Name="debut" />
+            <PropertyRef Name="fin" />
+            <PropertyRef Name="Id_Salle" />
+            <PropertyRef Name="Id_Activite" />
+          </Key>
+          <Property Name="debut" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="fin" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Id_Salle" Type="Int32" Nullable="false" />
+          <Property Name="Id_Activite" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activites" Relationship="Self.fk_activite_creneau" FromRole="Creneaux" ToRole="Activites" />
+          <NavigationProperty Name="Salles" Relationship="Self.fk_creneau_salle" FromRole="Creneaux" ToRole="Salles" />
+        </EntityType>
+        <Association Name="fk_activite_creneau">
+          <End Role="Activites" Type="Self.Activites" Multiplicity="1" />
+          <End Role="Creneaux" Type="Self.Creneaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Creneaux">
+              <PropertyRef Name="Id_Activite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_activite">
+          <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Activites" Type="Self.Activites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activites">
+              <PropertyRef Name="Id_cours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_cours_groupe">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Id_groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_cours_prof">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Id_prof" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_docWeb_contenu">
+          <End Role="Sous_doc_Web" Type="Self.Sous_doc_Web" Multiplicity="1" />
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sous_doc_Web">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doc_Web">
+              <PropertyRef Name="Id_contenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expediteur_message">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Id_expediteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contenu_questionnaire">
+          <End Role="Messages" Type="Self.Messages" Multiplicity="1" />
+          <End Role="Questionnaires" Type="Self.Questionnaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionnaires">
+              <PropertyRef Name="Id_message" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_option_questionnaire">
+          <End Role="Options_Questionnaire" Type="Self.Options_Questionnaire" Multiplicity="1" />
+          <End Role="Questionnaires" Type="Self.Questionnaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options_Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionnaires">
+              <PropertyRef Name="Id_Option" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_Questionnaire">
+          <End Role="Types_Questionnaire" Type="Self.Types_Questionnaire" Multiplicity="1" />
+          <End Role="Questionnaires" Type="Self.Questionnaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_Questionnaire">
+              <PropertyRef Name="type" />
+            </Principal>
+            <Dependent Role="Questionnaires">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_creneau_salle">
+          <End Role="Salles" Type="Self.Salles" Multiplicity="1" />
+          <End Role="Creneaux" Type="Self.Creneaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Creneaux">
+              <PropertyRef Name="Id_Salle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Appartenances">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="*" />
+          <End Role="Individus" Type="Self.Individus" Multiplicity="*" />
+        </Association>
+        <Association Name="Auteur_Doc">
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
+          <End Role="Individus" Type="Self.Individus" Multiplicity="*" />
+        </Association>
+        <Association Name="Document_Groupe">
+          <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="*" />
+        </Association>
+        <Association Name="Notifications_Diffusions">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="*" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+        </Association>
+        <Association Name="Notifications_simples">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="*" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+        </Association>
+        <Association Name="Responsables_groupe">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="*" />
+          <End Role="Individus" Type="Self.Individus" Multiplicity="*" />
+        </Association>
+        <Association Name="Statut_Individu">
+          <End Role="Individus" Type="Self.Individus" Multiplicity="*" />
+          <End Role="Statut" Type="Self.Statut" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TheBDDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activites" EntityType="Self.Activites" />
+          <EntitySet Name="Cours" EntityType="Self.Cours" />
+          <EntitySet Name="Doc_Web" EntityType="Self.Doc_Web" />
+          <EntitySet Name="Groupes" EntityType="Self.Groupes" />
+          <EntitySet Name="Individus" EntityType="Self.Individus" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" />
+          <EntitySet Name="Options_Questionnaire" EntityType="Self.Options_Questionnaire" />
+          <EntitySet Name="Questionnaires" EntityType="Self.Questionnaires" />
+          <EntitySet Name="Salles" EntityType="Self.Salles" />
+          <EntitySet Name="Sous_doc_Web" EntityType="Self.Sous_doc_Web" />
+          <EntitySet Name="Statut" EntityType="Self.Statut" />
+          <EntitySet Name="Tâches" EntityType="Self.Tâches" />
+          <EntitySet Name="Types_Questionnaire" EntityType="Self.Types_Questionnaire" />
+          <EntitySet Name="Creneaux" EntityType="Self.Creneaux" />
+          <AssociationSet Name="fk_activite_creneau" Association="Self.fk_activite_creneau">
+            <End Role="Activites" EntitySet="Activites" />
+            <End Role="Creneaux" EntitySet="Creneaux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_activite" Association="Self.FK_Cours_activite">
+            <End Role="Cours" EntitySet="Cours" />
+            <End Role="Activites" EntitySet="Activites" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_cours_groupe" Association="Self.Fk_cours_groupe">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_cours_prof" Association="Self.Fk_cours_prof">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="fk_docWeb_contenu" Association="Self.fk_docWeb_contenu">
+            <End Role="Sous_doc_Web" EntitySet="Sous_doc_Web" />
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expediteur_message" Association="Self.FK_expediteur_message">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contenu_questionnaire" Association="Self.FK_contenu_questionnaire">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_option_questionnaire" Association="Self.FK_option_questionnaire">
+            <End Role="Options_Questionnaire" EntitySet="Options_Questionnaire" />
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_Questionnaire" Association="Self.FK_Type_Questionnaire">
+            <End Role="Types_Questionnaire" EntitySet="Types_Questionnaire" />
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="fk_creneau_salle" Association="Self.fk_creneau_salle">
+            <End Role="Salles" EntitySet="Salles" />
+            <End Role="Creneaux" EntitySet="Creneaux" />
+          </AssociationSet>
+          <AssociationSet Name="Appartenances" Association="Self.Appartenances">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Individus" EntitySet="Individus" />
+          </AssociationSet>
+          <AssociationSet Name="Auteur_Doc" Association="Self.Auteur_Doc">
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+            <End Role="Individus" EntitySet="Individus" />
+          </AssociationSet>
+          <AssociationSet Name="Document_Groupe" Association="Self.Document_Groupe">
+            <End Role="Doc_Web" EntitySet="Doc_Web" />
+            <End Role="Groupes" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="Notifications_Diffusions" Association="Self.Notifications_Diffusions">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="Notifications_simples" Association="Self.Notifications_simples">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="Responsables_groupe" Association="Self.Responsables_groupe">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Individus" EntitySet="Individus" />
+          </AssociationSet>
+          <AssociationSet Name="Statut_Individu" Association="Self.Statut_Individu">
+            <End Role="Individus" EntitySet="Individus" />
+            <End Role="Statut" EntitySet="Statut" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TheBDDModelStoreContainer" CdmEntityContainer="TheBDDEntities">
+          <EntitySetMapping Name="Activites">
+            <EntityTypeMapping TypeName="TheBDDModel.Activites">
+              <MappingFragment StoreEntitySet="Activites">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_cours" ColumnName="Id_cours" />
+                <ScalarProperty Name="Id_reunion" ColumnName="Id_reunion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cours">
+            <EntityTypeMapping TypeName="TheBDDModel.Cours">
+              <MappingFragment StoreEntitySet="Cours">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_prof" ColumnName="Id_prof" />
+                <ScalarProperty Name="Id_groupe" ColumnName="Id_groupe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doc_Web">
+            <EntityTypeMapping TypeName="TheBDDModel.Doc_Web">
+              <MappingFragment StoreEntitySet="Doc_Web">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="Id_contenu" ColumnName="Id_contenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groupes">
+            <EntityTypeMapping TypeName="TheBDDModel.Groupes">
+              <MappingFragment StoreEntitySet="Groupes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Individus">
+            <EntityTypeMapping TypeName="TheBDDModel.Individus">
+              <MappingFragment StoreEntitySet="Individus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="TheBDDModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_expediteur" ColumnName="Id_expediteur" />
+                <ScalarProperty Name="contenu" ColumnName="contenu" />
+                <ScalarProperty Name="recu" ColumnName="recu" />
+                <ScalarProperty Name="lu" ColumnName="lu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Options_Questionnaire">
+            <EntityTypeMapping TypeName="TheBDDModel.Options_Questionnaire">
+              <MappingFragment StoreEntitySet="Options_Questionnaire">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="valeur" ColumnName="valeur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionnaires">
+            <EntityTypeMapping TypeName="TheBDDModel.Questionnaires">
+              <MappingFragment StoreEntitySet="Questionnaires">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_message" ColumnName="Id_message" />
+                <ScalarProperty Name="Id_Option" ColumnName="Id_Option" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salles">
+            <EntityTypeMapping TypeName="TheBDDModel.Salles">
+              <MappingFragment StoreEntitySet="Salles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="capacite" ColumnName="capacite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sous_doc_Web">
+            <EntityTypeMapping TypeName="TheBDDModel.Sous_doc_Web">
+              <MappingFragment StoreEntitySet="Sous_doc_Web">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="contenu_html" ColumnName="contenu_html" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statut">
+            <EntityTypeMapping TypeName="TheBDDModel.Statut">
+              <MappingFragment StoreEntitySet="Statut">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tâches">
+            <EntityTypeMapping TypeName="TheBDDModel.Tâches">
+              <MappingFragment StoreEntitySet="Tâches">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types_Questionnaire">
+            <EntityTypeMapping TypeName="TheBDDModel.Types_Questionnaire">
+              <MappingFragment StoreEntitySet="Types_Questionnaire">
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Creneaux">
+            <EntityTypeMapping TypeName="TheBDDModel.Creneaux">
+              <MappingFragment StoreEntitySet="Creneaux">
+                <ScalarProperty Name="debut" ColumnName="debut" />
+                <ScalarProperty Name="fin" ColumnName="fin" />
+                <ScalarProperty Name="Id_Salle" ColumnName="Id_Salle" />
+                <ScalarProperty Name="Id_Activite" ColumnName="Id_Activite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Appartenances" TypeName="TheBDDModel.Appartenances" StoreEntitySet="Appartenances">
+            <EndProperty Name="Groupes">
+              <ScalarProperty Name="Id" ColumnName="Id_groupe" />
+            </EndProperty>
+            <EndProperty Name="Individus">
+              <ScalarProperty Name="Id" ColumnName="Id_individu" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Auteur_Doc" TypeName="TheBDDModel.Auteur_Doc" StoreEntitySet="Auteur_Doc">
+            <EndProperty Name="Doc_Web">
+              <ScalarProperty Name="Id" ColumnName="Id_Doc" />
+            </EndProperty>
+            <EndProperty Name="Individus">
+              <ScalarProperty Name="Id" ColumnName="Id_individu" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Document_Groupe" TypeName="TheBDDModel.Document_Groupe" StoreEntitySet="Document_Groupe">
+            <EndProperty Name="Doc_Web">
+              <ScalarProperty Name="Id" ColumnName="Id_Document" />
+            </EndProperty>
+            <EndProperty Name="Groupes">
+              <ScalarProperty Name="Id" ColumnName="Id_groupe" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Notifications_Diffusions" TypeName="TheBDDModel.Notifications_Diffusions" StoreEntitySet="Notifications_Diffusions">
+            <EndProperty Name="Groupes">
+              <ScalarProperty Name="Id" ColumnName="Id_groupe" />
+            </EndProperty>
+            <EndProperty Name="Messages">
+              <ScalarProperty Name="Id" ColumnName="Id_message" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Notifications_simples" TypeName="TheBDDModel.Notifications_simples" StoreEntitySet="Notifications_simples">
+            <EndProperty Name="Individus">
+              <ScalarProperty Name="Id" ColumnName="Id_individu" />
+            </EndProperty>
+            <EndProperty Name="Messages">
+              <ScalarProperty Name="Id" ColumnName="Id_message" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Responsables_groupe" TypeName="TheBDDModel.Responsables_groupe" StoreEntitySet="Responsables_groupe">
+            <EndProperty Name="Groupes">
+              <ScalarProperty Name="Id" ColumnName="Id_groupe" />
+            </EndProperty>
+            <EndProperty Name="Individus">
+              <ScalarProperty Name="Id" ColumnName="Id_individu" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Statut_Individu" TypeName="TheBDDModel.Statut_Individu" StoreEntitySet="Statut_Individu">
+            <EndProperty Name="Individus">
+              <ScalarProperty Name="Id" ColumnName="Id_individu" />
+            </EndProperty>
+            <EndProperty Name="Statut">
+              <ScalarProperty Name="Id" ColumnName="Id_statut" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
