@@ -111,9 +111,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MainDB.mdf" />
-    <Content Include="App_Data\MainDB_log.ldf">
-      <DependentUpon>MainDB.mdf</DependentUpon>
+    <Content Include="App_Data\MainDb.mdf" />
+    <Content Include="App_Data\MainDb_log.ldf">
+      <DependentUpon>MainDb.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\Script - InitBDD.sql" />
     <Content Include="Content\bootstrap.css" />

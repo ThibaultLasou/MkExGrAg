@@ -14,9 +14,16 @@ namespace AngularJS_CS.Models
     
     public partial class Sous_doc_Web
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sous_doc_Web()
+        {
+            this.Doc_Web = new HashSet<Doc_Web>();
+        }
+    
         public int Id { get; set; }
         public string contenu_html { get; set; }
     
-        public virtual Doc_Web Doc_Web { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Doc_Web> Doc_Web { get; set; }
     }
 }

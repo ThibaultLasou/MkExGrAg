@@ -59,10 +59,21 @@ CREATE TABLE [dbo].[Doc_Web]
 (
 	[Id] INT NOT NULL PRIMARY KEY,
 	nom VARCHAR(30) not null,
-	[Id_contenu] int not null,
-	constraint [fk_docWeb_contenu] foreign key (Id_contenu)REFERENCES Sous_doc_Web (Id)
-)
+);
 
+CREATE TABLE [dbo].[Doc_Contenu]
+(
+	[Id_doc] INT NOT NULL ,
+	Id_contenu int not null,
+	constraint [FK_Main_doc] foreign key (Id_doc) references Doc_Web (Id),
+	constraint [FK_Sub_doc] foreign key (Id_contenu) references Sous_doc_Web (Id),
+);
+Go
+CREATE CLUSTERED INDEX idx_Sous_doc
+ON dbo.Doc_Contenu
+(
+Id_doc, Id_contenu
+);
 
 CREATE TABLE [dbo].[Auteur_Doc]
 (
