@@ -11,5 +11,20 @@ namespace AngularJS_CS.Models
         {
 
         }
+
+        public Individu Authenticate(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Individu ObtenirInidividu()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
