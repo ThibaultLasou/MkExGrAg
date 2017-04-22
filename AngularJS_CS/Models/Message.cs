@@ -18,8 +18,8 @@ namespace AngularJS_CS.Models
         public Message()
         {
             this.Questionnaire = new HashSet<Questionnaire>();
-            this.Groupe = new HashSet<Groupe>();
-            this.Individu1 = new HashSet<Individu>();
+            this.GroupDestinataire = new HashSet<Groupe>();
+            this.IndiDestinataire = new HashSet<Individu>();
         }
     
         public int Id { get; set; }
@@ -28,12 +28,12 @@ namespace AngularJS_CS.Models
         public bool recu { get; set; }
         public bool lu { get; set; }
     
-        public virtual Individu Individu { get; set; }
+        public virtual Individu Expediteur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questionnaire> Questionnaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groupe> Groupe { get; set; }
+        public virtual ICollection<Groupe> GroupDestinataire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Individu> Individu1 { get; set; }
+        public virtual ICollection<Individu> IndiDestinataire { get; set; }
     }
 }
