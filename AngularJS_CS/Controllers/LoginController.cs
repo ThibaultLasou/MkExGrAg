@@ -28,7 +28,7 @@ namespace AngularJS_CS.Controllers
             IndividuViewModel uvm = new IndividuViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
 
             if (HttpContext.User.Identity.IsAuthenticated)
-                uvm.Individu = dal.ObtenirInidividu();
+                uvm.Individu = dal.ObtenirIndividu();
 
             return View(uvm);
         }

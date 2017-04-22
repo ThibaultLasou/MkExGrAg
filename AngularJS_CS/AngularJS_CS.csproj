@@ -190,6 +190,7 @@
     <Compile Include="Models\Activite.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Cours.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>

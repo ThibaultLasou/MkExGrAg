@@ -17,6 +17,7 @@
     <link rel="stylesheet/less" href="~/Content/less/bandeau.less">
     <base href="/">
 </head>
+@model AngularJS_CS.ViewModels.IndividuViewModel
 <body ng-app="myFormApp">
     <header>
         <div class="container">
@@ -56,7 +57,15 @@
                     <ul class="download-btn">
                         <li>
                             <div>
-                                <a href="#" id="loginform" class="btn btn-default btn-andriod">Se connecter</a>
+                                <a href="#" id="loginform" class="btn btn-default btn-andriod">
+                                    @if (Model.Authenticated)
+                                    {
+                                        <text>Déconnexion</text>}
+                                    else
+                                    {
+                                    <text> Se connecter </text>
+                                    }
+                                </a>
                             </div>
                             <div id="hidden_div" class="hidden">
                                 <div class="formholder">
