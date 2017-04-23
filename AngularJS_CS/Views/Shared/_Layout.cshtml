@@ -58,12 +58,19 @@
                         <li>
                             <div>
                                 <a href="#" id="loginform" class="btn btn-default btn-andriod">
-                                    @if (Model.Authenticated)
+                                    @if (Model != null)
                                     {
-                                        <text>Déconnexion</text>}
+                                        if (Model.Authenticated)
+                                        {
+                                            <text>Déconnexion</text>}
+                                        else
+                                        {
+                                            <text> Connexion </text>
+                                        }
+                                    }
                                     else
                                     {
-                                    <text> Se connecter </text>
+                                        <text> Se connecter </text>
                                     }
                                 </a>
                             </div>
