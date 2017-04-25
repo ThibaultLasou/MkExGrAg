@@ -141,6 +141,7 @@
     <Content Include="Scripts\AllOurScripts\IndividuController.js" />
     <Content Include="Scripts\AllOurScripts\loginApparition.js" />
     <Content Include="Scripts\AllOurScripts\main.js" />
+    <Content Include="Scripts\AllOurScripts\Overlay.js" />
     <Content Include="Scripts\AllOurScripts\plugins.js" />
     <Content Include="Scripts\AllOurScripts\wow.min.js" />
     <Content Include="Scripts\Frameworks\angular-mocks.js" />
@@ -168,6 +169,7 @@
     <Content Include="Models\ModelDb.edmx.diagram">
       <DependentUpon>ModelDb.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\less\sidenav.less" />
     <None Include="Scripts\Frameworks\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\Frameworks\jquery-3.1.1.js" />
     <Content Include="Scripts\Frameworks\jquery-3.1.1.min.js" />
@@ -258,6 +260,7 @@
     <Content Include="Scripts\Frameworks\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\SidenavOverlay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
