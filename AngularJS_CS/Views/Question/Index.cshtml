@@ -1,8 +1,23 @@
 ﻿@*@model AngularJS_CS.Models.Questionnaire*@
-
+@*@{ 
+    var db = Database.Open("MainDBEntities4");
+    var crit = "SELECT * FROM Individu";
+    List<SelectListItem> agentdropdownlistdata = new List<SelectListItem>();
+    bool isSelected = false;
+    foreach (var item in db.Query(crit))
+    {
+        agentdropdownlistdata.Add(new SelectListItem
+        {
+            Text = item.AgentName,
+            Value = item.AgentID.ToString(),
+            Selected = isSelected
+        });
+    }
+}*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 @model AngularJS_CS.Controllers.QuestionController
@@ -18,7 +33,7 @@
         <hr />
         <div class="form-group">
             <div class="col-ld-10">
-                @*@Html.DropDownListFor(model=>model.Question.Id_Option, Model.reponses )*@
+                @Html.DropDownList("A",ViewBag.)
                 <h4>Destinataires</h4>
                 @Html.TextBoxFor(model=>model.Question.Message.Groupe, htmlAttributes: new { type="destinataire", placeholder="Destinataire(s)"})
                 <h4>Sujet du questionnaire</h4>
