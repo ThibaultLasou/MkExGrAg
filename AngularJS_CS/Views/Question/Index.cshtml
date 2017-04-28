@@ -1,0 +1,44 @@
+﻿@*@model AngularJS_CS.Models.Questionnaire*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AngularJS_CS.Controllers.QuestionController
+<link rel="stylesheet/less" href="~/Content/less/questionnaire.less" />
+<h2>Nouveau Questionnaire</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <div class="col-ld-10">
+                @*@Html.DropDownListFor(model=>model.Question.Id_Option, Model.reponses )*@
+                <h4>Destinataires</h4>
+                @Html.TextBoxFor(model=>model.Question.Message.Groupe, htmlAttributes: new { type="destinataire", placeholder="Destinataire(s)"})
+                <h4>Sujet du questionnaire</h4>
+                @Html.TextBoxFor(model=>model.Question.Message, htmlAttributes: new { type="message", placeholder="sujet"})
+            </div>
+            @Html.TextAreaFor(model => model.Question.Message.contenu, htmlAttributes: new { type = "detail", placeholder = "Details" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-ld-offset-2 col-md-10">
+                <input type="submit" value="Envoyer" class="btn btn-block" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "../")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

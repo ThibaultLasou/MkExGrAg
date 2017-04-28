@@ -7,52 +7,73 @@
 /* Position and style the close button (top right corner) */
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    opacity: 0.5;
+    color: black;
+    overflow-x: hidden;
+    background-color: black;
+    //transition: 0.2s;
+}
+
 .sidenav {
-	height: 100%;
-	width: 0;
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	background-color: @background_color_1;
-	overflow-x: hidden;
-	padding-top: 60px;
-	transition: 0.9s; 
-	a {
-		padding: 8px 8px 8px 32px;
-		text-decoration: none;
-		font-size: 25px;
-		color: @color_1;
-		display: block;
-		transition: 0.3s;
-		&:hover {
-			color: @color_2;
-		}
-	}
-	.closebtn {
-		position: absolute;
-		top: 0;
-		right: 25px;
-		font-size: 36px;
-		margin-left: 50px;
-	}
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: @background_color_1;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.9s;
+
+    a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: @color_1;
+        display: block;
+        transition: 0.3s;
+
+        &:hover {
+            color: @color_1;
+        }
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-right: 0px;
+    }
 }
+
 .offcanvas {
-	a {
-		&:focus {
-			color: @color_2;
-		}
-	}
+    a {
+        &:focus {
+            color: @color_1;
+        }
+    }
 }
+
 #main {
-	transition: margin-left .5s;
-	padding: 20px;
+    transition: margin-right .5s;
+    padding: 20px;
 }
+
 @media screen and (max-height: 450px) {
-	.sidenav {
-		padding-top: 15px;
-		a {
-			font-size: 18px;
-		}
-	}
+    .sidenav {
+        padding-top: 15px;
+
+        a {
+            font-size: 18px;
+        }
+    }
 }
