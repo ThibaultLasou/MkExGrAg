@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace AngularJS_CS.Controllers
@@ -21,18 +22,28 @@ namespace AngularJS_CS.Controllers
         {
             if(id != null)
             {
-                // using (IDal dal = new Dal())
-                { 
-                    //Doc_Web doc = dal.ObtenirDoc(id);
-                    Doc_Web doc = new Doc_Web();
-                    doc.nom = "Test";
-                    Sous_doc_Web s = new Sous_doc_Web();
-                    s.contenu_html = "<p> alalallalazdfkldsjfsqhdfljhqssihfqhsdygfh <p>";
-                    doc.Sous_doc_Web.Add(s);
-                    if(doc != null)
+                Doc_Web doc = new Doc_Web();
+/*                using (IDal dal = new Dal())
+                {
+                    try
                     {
-                        return View(doc);
+                        doc = dal.ObtenirDoc(id);
                     }
+                    catch (NotImplementedException)
+                    {
+  */                      doc.nom = id;
+                        Sous_doc_Web sub = new Sous_doc_Web();
+                        sub.contenu_html = "<h1>BLBLBLBLBLLB</h1>\n<p>lalalalala</p>";
+                        doc.Contenu.Add(sub);
+                        Sous_doc_Web sub2 = new Sous_doc_Web();
+                        sub2.contenu_html = "<h2>BLBLBLBLBLLB</h2><p>lalalalala</p>";
+                        doc.Contenu.Add(sub2);
+/*                    }
+                }
+*/                if (doc != null)
+                {
+                    ViewData["Doc"] = doc;
+                    return View();
                 }
             }
             return View("Error");

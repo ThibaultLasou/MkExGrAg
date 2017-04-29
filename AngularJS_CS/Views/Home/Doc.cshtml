@@ -1,12 +1,24 @@
-﻿@model AngularJS_CS.Models.Doc_Web
+﻿@model AngularJS_CS.ViewModels.IndividuViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    AngularJS_CS.Models.Doc_Web doc = (AngularJS_CS.Models.Doc_Web)ViewData["Doc"];
 }
 
-<h2>@Model.nom</h2>
+<script src="~/Assets/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/AllOurScripts/editor.js"></script>
 
-@{foreach (AngularJS_CS.Models.Sous_doc_Web a in Model.Sous_doc_Web)
+@{int i = 0;
+    foreach (AngularJS_CS.Models.Sous_doc_Web subDoc in doc.Contenu)
     {
-        @Html.Raw(a.contenu_html);
+        i++;
+        string str = "editor" + i;
+        <div id="@str">
+        @Html.Raw(subDoc.contenu_html)
+        </div>
+          //if(Model != null && Model.Authenticated && doc.Auteur == Model.Individu)
+        {
+            <input onclick="createEditor(@i);" type="button" value="Modifier" id="create_@i">
+            <input onclick="removeEditor(@i);" type="button" value="Valider" id="remove_@i" style="display:none">
+        }
     }
 }
