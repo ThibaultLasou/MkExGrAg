@@ -17,13 +17,13 @@ namespace AngularJS_CS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Statut()
         {
-            this.Individu = new HashSet<Individu>();
+            this.Membres = new HashSet<Individu>();
         }
     
         public int Id { get; set; }
         public string nom { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Individu> Individu { get; set; }
+        public virtual ICollection<Individu> Membres { get; set; }
     }
 }

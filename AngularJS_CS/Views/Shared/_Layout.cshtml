@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="~/Content/css/animate.css">
     <link rel="stylesheet" href="~/Content/css/responsive.css">
     <link rel="stylesheet/less" href="~/Content/less/bandeau.less">
+    <link rel="stylesheet/less" href="~/Content/less/sidenav.less">
     <base href="/">
+    
 </head>
 @model AngularJS_CS.ViewModels.IndividuViewModel
 <body ng-app="myFormApp">
+    
     <header>
         <div class="container">
             <div class="row">
@@ -52,7 +55,11 @@
                             <!-- /.container-fluid -->
                         </nav>
                     </div>
+                    <input type="button" value="LAPATA" onclick="navCall()" />
+
                 </div>
+                @Html.Partial("~/Views/Shared/SidenavOverlay.cshtml");
+                
                 <div id="loginZone" class="col-md-3 col-xs-12 col-sm-3">
                     <ul class="download-btn">
                         <li>
@@ -93,6 +100,7 @@
         </div>
     </header>
 
+
     <section id="banner">
         <div class="container body-content">
             @RenderBody()
@@ -118,10 +126,12 @@
             </div>
         </div>
     </footer>
+    <script src="~/Scripts/Frameworks/angular.js"></script>
     <script src="~/Scripts/Frameworks/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/Frameworks/less-1.5.1.js" type="text/javascript"></script>
     <script src="~/Scripts/AllOurScripts/loginApparition.js"></script>
+    <script src="~/Scripts/AllOurScripts/Overlay.js"></script>
     @RenderSection("JavaScript", false)
 </body>
 </html>

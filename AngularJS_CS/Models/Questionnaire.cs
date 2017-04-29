@@ -20,7 +20,7 @@ namespace AngularJS_CS.Models
         public string type { get; set; }
     
         public virtual Message Message { get; set; }
-        public virtual Option_Questionnaire Option_Questionnaire { get; set; }
-        public virtual Type_Questionnaire Type_Questionnaire { get; set; }
+        public virtual Option_Questionnaire Options { get; set; }
+        public virtual Type_Questionnaire Type { get; set; }
     }
 }

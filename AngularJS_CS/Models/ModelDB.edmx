@@ -693,8 +693,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_prof" Type="Int32" Nullable="false" />
           <Property Name="Id_groupe" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Activite" Relationship="Self.FK_Cours_activite" FromRole="Cours" ToRole="Activite" />
-          <NavigationProperty Name="Groupe" Relationship="Self.Fk_cours_groupe" FromRole="Cours" ToRole="Groupe" />
-          <NavigationProperty Name="Individu" Relationship="Self.Fk_cours_prof" FromRole="Cours" ToRole="Individu" />
+          <NavigationProperty Name="GroupeEleves" Relationship="Self.Fk_cours_groupe" FromRole="Cours" ToRole="Groupe" />
+          <NavigationProperty Name="Enseignant" Relationship="Self.Fk_cours_prof" FromRole="Cours" ToRole="Individu" />
         </EntityType>
         <EntityType Name="Doc_Web">
           <Key>
@@ -702,9 +702,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Individu" Relationship="Self.Auteur_Doc" FromRole="Doc_Web" ToRole="Individu" />
-          <NavigationProperty Name="Sous_doc_Web" Relationship="Self.Doc_Contenu" FromRole="Doc_Web" ToRole="Sous_doc_Web" />
-          <NavigationProperty Name="Groupe" Relationship="Self.Document_Groupe" FromRole="Doc_Web" ToRole="Groupe" />
+          <Property Name="Id_contenu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contenu" Relationship="Self.fk_docWeb_contenu" FromRole="Doc_Web" ToRole="Sous_doc_Web" />
+          <NavigationProperty Name="Auteur" Relationship="Self.Auteur_Doc" FromRole="Doc_Web" ToRole="Individu" />
+          <NavigationProperty Name="GroupeCible" Relationship="Self.Document_Groupe" FromRole="Doc_Web" ToRole="Groupe" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -713,10 +714,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="nom" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cours" Relationship="Self.Fk_cours_groupe" FromRole="Groupe" ToRole="Cours" />
-          <NavigationProperty Name="Individu" Relationship="Self.Appartenance" FromRole="Groupe" ToRole="Individu" />
-          <NavigationProperty Name="Doc_Web" Relationship="Self.Document_Groupe" FromRole="Groupe" ToRole="Doc_Web" />
-          <NavigationProperty Name="Message" Relationship="Self.Notification_Diffusion" FromRole="Groupe" ToRole="Message" />
-          <NavigationProperty Name="Individu1" Relationship="Self.Responsable_groupe" FromRole="Groupe" ToRole="Individu" />
+          <NavigationProperty Name="Membres" Relationship="Self.Appartenance" FromRole="Groupe" ToRole="Individu" />
+          <NavigationProperty Name="Documents" Relationship="Self.Document_Groupe" FromRole="Groupe" ToRole="Doc_Web" />
+          <NavigationProperty Name="MessagesRecus" Relationship="Self.Notification_Diffusion" FromRole="Groupe" ToRole="Message" />
+          <NavigationProperty Name="Responsable" Relationship="Self.Responsable_groupe" FromRole="Groupe" ToRole="Individu" />
         </EntityType>
         <EntityType Name="Individu">
           <Key>
@@ -728,11 +729,11 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="userLogin" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="numCarte" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cours" Relationship="Self.Fk_cours_prof" FromRole="Individu" ToRole="Cours" />
-          <NavigationProperty Name="Message" Relationship="Self.FK_expediteur_message" FromRole="Individu" ToRole="Message" />
-          <NavigationProperty Name="Groupe" Relationship="Self.Appartenance" FromRole="Individu" ToRole="Groupe" />
-          <NavigationProperty Name="Doc_Web" Relationship="Self.Auteur_Doc" FromRole="Individu" ToRole="Doc_Web" />
-          <NavigationProperty Name="Message1" Relationship="Self.Notification_Simple" FromRole="Individu" ToRole="Message" />
-          <NavigationProperty Name="Groupe1" Relationship="Self.Responsable_groupe" FromRole="Individu" ToRole="Groupe" />
+          <NavigationProperty Name="MessagesEnvoyés" Relationship="Self.FK_expediteur_message" FromRole="Individu" ToRole="Message" />
+          <NavigationProperty Name="Groupes" Relationship="Self.Appartenance" FromRole="Individu" ToRole="Groupe" />
+          <NavigationProperty Name="Documents" Relationship="Self.Auteur_Doc" FromRole="Individu" ToRole="Doc_Web" />
+          <NavigationProperty Name="MessagesRecus" Relationship="Self.Notification_Simple" FromRole="Individu" ToRole="Message" />
+          <NavigationProperty Name="Responsabilités" Relationship="Self.Responsable_groupe" FromRole="Individu" ToRole="Groupe" />
           <NavigationProperty Name="Statut" Relationship="Self.Statut_Individu" FromRole="Individu" ToRole="Statut" />
         </EntityType>
         <EntityType Name="Message">
@@ -744,10 +745,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="recu" Type="Boolean" Nullable="false" />
           <Property Name="lu" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Individu" Relationship="Self.FK_expediteur_message" FromRole="Message" ToRole="Individu" />
+          <NavigationProperty Name="Expediteur" Relationship="Self.FK_expediteur_message" FromRole="Message" ToRole="Individu" />
           <NavigationProperty Name="Questionnaire" Relationship="Self.FK_contenu_questionnaire" FromRole="Message" ToRole="Questionnaire" />
-          <NavigationProperty Name="Groupe" Relationship="Self.Notification_Diffusion" FromRole="Message" ToRole="Groupe" />
-          <NavigationProperty Name="Individu1" Relationship="Self.Notification_Simple" FromRole="Message" ToRole="Individu" />
+          <NavigationProperty Name="GroupDestinataire" Relationship="Self.Notification_Diffusion" FromRole="Message" ToRole="Groupe" />
+          <NavigationProperty Name="IndiDestinataire" Relationship="Self.Notification_Simple" FromRole="Message" ToRole="Individu" />
         </EntityType>
         <EntityType Name="Option_Questionnaire">
           <Key>
@@ -766,8 +767,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_Option" Type="Int32" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Message" Relationship="Self.FK_contenu_questionnaire" FromRole="Questionnaire" ToRole="Message" />
-          <NavigationProperty Name="Option_Questionnaire" Relationship="Self.FK_option_questionnaire" FromRole="Questionnaire" ToRole="Option_Questionnaire" />
-          <NavigationProperty Name="Type_Questionnaire" Relationship="Self.FK_Type_Questionnaire" FromRole="Questionnaire" ToRole="Type_Questionnaire" />
+          <NavigationProperty Name="Options" Relationship="Self.FK_option_questionnaire" FromRole="Questionnaire" ToRole="Option_Questionnaire" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Type_Questionnaire" FromRole="Questionnaire" ToRole="Type_Questionnaire" />
         </EntityType>
         <EntityType Name="Salle">
           <Key>
@@ -784,7 +785,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="contenu_html" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Doc_Web" Relationship="Self.Doc_Contenu" FromRole="Sous_doc_Web" ToRole="Doc_Web" />
+          <NavigationProperty Name="Contenant" Relationship="Self.fk_docWeb_contenu" FromRole="Sous_doc_Web" ToRole="Doc_Web" />
         </EntityType>
         <EntityType Name="Statut">
           <Key>
@@ -792,7 +793,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="nom" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Individu" Relationship="Self.Statut_Individu" FromRole="Statut" ToRole="Individu" />
+          <NavigationProperty Name="Membres" Relationship="Self.Statut_Individu" FromRole="Statut" ToRole="Individu" />
         </EntityType>
         <EntityType Name="Tâche">
           <Key>
@@ -1236,6 +1237,14 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             </EndProperty>
             <EndProperty Name="Statut">
               <ScalarProperty Name="Id" ColumnName="Id_statut" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_docWeb_contenu" TypeName="MainDBModel.fk_docWeb_contenu" StoreEntitySet="Doc_Web">
+            <EndProperty Name="Doc_Web">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Sous_doc_Web">
+              <ScalarProperty Name="Id" ColumnName="Id_contenu" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1163fe796bd04c9692ada5bc4e59d9e4" Name="Diagram1">
-        <EntityTypeShape EntityType="MainDBModel.Activite" Width="1.5" PointX="9.75" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Cours" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Doc_Web" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Groupe" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Individu" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Message" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Option_Questionnaire" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Questionnaire" Width="1.5" PointX="12.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Salle" Width="1.5" PointX="9.75" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Sous_doc_Web" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Statut" Width="1.5" PointX="7.5" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Tâche" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Type_Questionnaire" Width="1.5" PointX="10.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDBModel.Creneau" Width="1.5" PointX="12" PointY="10.5" IsExpanded="true" />
+      <Diagram DiagramId="f1e55c1a55f94c5aa24bcde1228731e0" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="MainDBModel.Activite" Width="1.5" PointX="12" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Cours" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Doc_Web" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Groupe" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Individu" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Message" Width="1.5" PointX="12.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Option_Questionnaire" Width="1.5" PointX="12.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Questionnaire" Width="1.5" PointX="15" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Salle" Width="1.5" PointX="12" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Sous_doc_Web" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Statut" Width="1.5" PointX="9.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Tâche" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Type_Questionnaire" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDBModel.Creneau" Width="1.5" PointX="14.25" PointY="10.25" IsExpanded="true" />
         <AssociationConnector Association="MainDBModel.fk_activite_creneau" ManuallyRouted="false" />
         <AssociationConnector Association="MainDBModel.FK_Cours_activite" ManuallyRouted="false" />
         <AssociationConnector Association="MainDBModel.Fk_cours_groupe" ManuallyRouted="false" />

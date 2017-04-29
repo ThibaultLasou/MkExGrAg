@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace AngularJS_CS.Controllers
@@ -15,6 +16,37 @@ namespace AngularJS_CS.Controllers
                 return View();
             else
                 return View("Error");
+        }
+
+        public ActionResult Doc(string id)
+        {
+            if(id != null)
+            {
+                Doc_Web doc = new Doc_Web();
+/*                using (IDal dal = new Dal())
+                {
+                    try
+                    {
+                        doc = dal.ObtenirDoc(id);
+                    }
+                    catch (NotImplementedException)
+                    {
+  */                      doc.nom = id;
+                        Sous_doc_Web sub = new Sous_doc_Web();
+                        sub.contenu_html = "<h1>BLBLBLBLBLLB</h1>\n<p>lalalalala</p>";
+                        doc.Contenu.Add(sub);
+                        Sous_doc_Web sub2 = new Sous_doc_Web();
+                        sub2.contenu_html = "<h2>BLBLBLBLBLLB</h2><p>lalalalala</p>";
+                        doc.Contenu.Add(sub2);
+/*                    }
+                }
+*/                if (doc != null)
+                {
+                    ViewData["Doc"] = doc;
+                    return View();
+                }
+            }
+            return View("Error");
         }
         //Ne fonctionne pas.
         //[HttpPost]

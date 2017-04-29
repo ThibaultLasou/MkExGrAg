@@ -26,6 +26,11 @@ namespace AngularJS_CS.Models
             bdd.Dispose();
         }
 
+        public Doc_Web ObtenirDoc(string nom)
+        {
+            throw new NotImplementedException();
+        }
+
         public Individu ObtenirIndividu()
         {
             throw new NotImplementedException();

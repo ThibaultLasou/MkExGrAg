@@ -26,7 +26,7 @@ namespace AngularJS_CS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activite> Activite { get; set; }
-        public virtual Groupe Groupe { get; set; }
-        public virtual Individu Individu { get; set; }
+        public virtual Groupe GroupeEleves { get; set; }
+        public virtual Individu Enseignant { get; set; }
     }
 }

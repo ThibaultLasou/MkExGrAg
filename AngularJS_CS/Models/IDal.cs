@@ -12,5 +12,6 @@ namespace AngularJS_CS.Models
         Individu Authenticate(string username, string password);
 
         Individu ObtenirIndividu();
+        Doc_Web ObtenirDoc(string nom);
     }
 }
