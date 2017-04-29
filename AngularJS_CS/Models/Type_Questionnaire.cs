@@ -20,7 +20,6 @@ namespace AngularJS_CS.Models
             this.Questionnaire = new HashSet<Questionnaire>();
         }
     
-        public int Id { get; set; }
         public string type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

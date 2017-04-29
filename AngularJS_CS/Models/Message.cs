@@ -24,10 +24,9 @@ namespace AngularJS_CS.Models
     
         public int Id { get; set; }
         public int Id_expediteur { get; set; }
-        public string sujet { get; set; }
+        public string contenu { get; set; }
         public bool recu { get; set; }
         public bool lu { get; set; }
-        public string contenu { get; set; }
     
         public virtual Individu Individu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

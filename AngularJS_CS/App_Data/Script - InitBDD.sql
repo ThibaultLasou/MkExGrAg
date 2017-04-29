@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[Groupe]
 (
-	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY,
 	nom VARCHAR (15) NOT NULL,
 )
 
@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[Individu]
 
 CREATE TABLE [dbo].[Cours]
 (
-	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY,
 	Id_prof int not null,
 	Id_groupe int not null,
 	constraint [Fk_cours_prof] foreign key (Id_prof) references Individu (Id),
@@ -27,7 +27,7 @@ CREATE TABLE [dbo].[Cours]
 
 CREATE TABLE [dbo].[Activite]
 (
-	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY,
 	Id_cours int NOT NULL,
 	Id_reunion int not null,
 	constraint [FK_Cours_activite] foreign key (Id_cours) references Cours (Id),
@@ -50,14 +50,14 @@ Id_groupe, Id_individu
 
 CREATE TABLE [dbo].[Sous_doc_Web]
 (
-	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY,
 	contenu_html text not null,
 )
 
 
 CREATE TABLE [dbo].[Doc_Web]
 (
-	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY,
 	nom VARCHAR(30) not null,
 );
 
@@ -101,7 +101,6 @@ CREATE TABLE [dbo].[Salle]
 
 CREATE TABLE [dbo].[Creneau]
 (
-id int identity(1,1),
     [debut] DATETIME2 not NULL,
 	fin DATETIME2 not null,
 	Id_Salle int NOT null,
@@ -134,12 +133,11 @@ Id_Document, Id_groupe
 
 CREATE TABLE [dbo].[Message]
 (
-	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY,
 	Id_expediteur int NOT NULL,
-	sujet varchar(40) null,
+	contenu text NOT NULL, 
     [recu] BIT NOT NULL,
 	lu BIT NOT NULL,
-	contenu text NOT NULL, 
 	constraint [FK_expediteur_message] foreign key (Id_expediteur) references Individu (Id)
 
 )
@@ -176,37 +174,26 @@ Id_message, Id_individu
 
 CREATE TABLE [dbo].[Option_Questionnaire]
 (
-Id int Identity(1,1) not null primary key,
-	valeur varchar(30) Not null,
+	[Id] INT NOT NULL PRIMARY KEY,
+	valeur Ntext Not null,
 )
 
 CREATE TABLE [dbo].[Type_Questionnaire]
 (
-Id int not null Identity(1,1) primary key,
-	[type] VARCHAR(15) NOT NULL
+	[type] VARCHAR(15) NOT NULL PRIMARY KEY
 )
 
 
 CREATE TABLE [dbo].[Questionnaire]
 (
-	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY,
 	Id_message int not null,
-	[type] int not null,
+	Id_Option int not null,
+	[type] varchar(15) not null,
+	constraint [FK_option_questionnaire] foreign key (Id_Option) references Option_Questionnaire (Id),
 	constraint [FK_contenu_questionnaire] foreign key (Id_message) references Message (Id),
-	constraint [FK_Type_Questionnaire] foreign key ([type]) references Type_Questionnaire ([Id])
+	constraint [FK_Type_Questionnaire] foreign key ([type]) references Type_Questionnaire ([type])
 )
-
-Create Table [dbo].[Reponses](
-	Id_question int not null,
-	Id_reponse int not null,
-	constraint [FK_option_questionnaire] foreign key (Id_question) references Questionnaire (Id),
-	constraint FK_rep_quest foreign key (Id_reponse) references Option_Questionnaire (Id),
-);
-Go
-Create Clustered Index rep_pos_ques
-On dbo.Reponses(
-Id_question,Id_reponse
-);
 
 
 CREATE TABLE [dbo].[Responsable_groupe]
