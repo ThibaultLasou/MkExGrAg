@@ -7,15 +7,15 @@ namespace AngularJS_CS.Models
 {
     public class Dal : IDal
     {
-        private BddContext bdd;
+        private MainDBEntities4 bdd;
         public Dal()
         {
-            bdd = new BddContext();
+            bdd = new MainDBEntities4();
         }
 
         public Individu Authenticate(string username, string password)
         {
-            foreach (Individu ind in bdd.Individus)
+            foreach (Individu ind in bdd.Individu)
                 if (ind.userLogin == username && ind.numCarte == password)
                     return ind;
             return null;
