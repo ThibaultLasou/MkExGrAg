@@ -14,9 +14,13 @@ namespace AngularJS_CS.Controllers
         // GET: Question
         public IEnumerable<SelectList> reponses { get; set; }
         public List<Individu> Dests { get; set; }
+        public MainDBEntities5 db = new MainDBEntities5();
+
 
         public ActionResult Index()
         {
+            ViewBag.ListRep = new MultiSelectList(db.Option_Questionnaire.ToList(), "Id", "valeur");
+            ViewBag.ListIndividus = new SelectList(db.Individu.ToList(), "Id", "userLogin");
             return View();
         }
     }

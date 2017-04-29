@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -7,19 +8,23 @@ namespace AngularJS_CS.Models
 {
     public class Dal : IDal
     {
+        private BddContext bdd;
         public Dal()
         {
-
+            bdd = new BddContext();
         }
 
         public Individu Authenticate(string username, string password)
         {
-            throw new NotImplementedException();
+            foreach (Individu ind in bdd.Individus)
+                if (ind.userLogin == username && ind.numCarte == password)
+                    return ind;
+            return null;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            bdd.Dispose();
         }
 
         public Individu ObtenirInidividu()
