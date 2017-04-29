@@ -1,19 +1,19 @@
 ﻿@*@model AngularJS_CS.Models.Questionnaire*@
-@*@{ 
-    var db = Database.Open("MainDBEntities4");
-    var crit = "SELECT * FROM Individu";
-    List<SelectListItem> agentdropdownlistdata = new List<SelectListItem>();
-    bool isSelected = false;
-    foreach (var item in db.Query(crit))
-    {
-        agentdropdownlistdata.Add(new SelectListItem
+@*@{
+        var db = Database.Open("MainDBEntities4");
+        var crit = "SELECT * FROM Individu";
+        List<SelectListItem> agentdropdownlistdata = new List<SelectListItem>();
+        bool isSelected = false;
+        foreach (var item in db.Query(crit))
         {
-            Text = item.AgentName,
-            Value = item.AgentID.ToString(),
-            Selected = isSelected
-        });
-    }
-}*@
+            agentdropdownlistdata.Add(new SelectListItem
+            {
+                Text = item.AgentName,
+                Value = item.AgentID.ToString(),
+                Selected = isSelected
+            });
+        }
+    }*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,28 +25,31 @@
 <h2>Nouveau Questionnaire</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <hr />
-        <div class="form-group">
-            <div class="col-ld-10">
-                @Html.DropDownList("A",ViewBag.)
-                <h4>Destinataires</h4>
-                @Html.TextBoxFor(model=>model.Question.Message.Groupe, htmlAttributes: new { type="destinataire", placeholder="Destinataire(s)"})
-                <h4>Sujet du questionnaire</h4>
-                @Html.TextBoxFor(model=>model.Question.Message, htmlAttributes: new { type="message", placeholder="sujet"})
+        <form>
+            <hr />
+            <div class="form-group">
+                <div class="col-ld-10">
+                    <h5>Destinataires</h5>
+                    @Html.DropDownListFor(model=>model.Question.Message.Individu1, ViewBag.ListIndividus as SelectList, htmlAttributes:new {type ="destlist" })
+                    @Html.TextBoxFor(model => model.Question.Message.Individu.userLogin, htmlAttributes: new { type = "destinataire", placeholder = "Destinataire(s)" })
+                    <h5>Sujet du questionnaire</h5>
+                    @Html.TextBoxFor(model => model.Question.Message.sujet, htmlAttributes: new { type = "sujet", placeholder = "sujet" })
+                </div>
+                @Html.TextAreaFor(model => model.Question.Message.contenu, htmlAttributes: new { type = "detail", placeholder = "Details" })
+            @Html.ListBoxFor(model=>model.Question.Option_Questionnaire, ViewBag.ListRep as MultiSelectList, htmlAttributes:new {type = "reponses" })
             </div>
-            @Html.TextAreaFor(model => model.Question.Message.contenu, htmlAttributes: new { type = "detail", placeholder = "Details" })
-        </div>
 
-        <div class="form-group">
-            <div class="col-ld-offset-2 col-md-10">
-                <input type="submit" value="Envoyer" class="btn btn-block" />
+            <div class="form-group">
+                <div class="col-ld-offset-2 col-md-10">
+                    <input type="submit" value="Envoyer" class="btn btn-block" />
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 }
 
