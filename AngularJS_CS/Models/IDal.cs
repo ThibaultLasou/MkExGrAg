@@ -12,5 +12,11 @@ namespace AngularJS_CS.Models
         Individu Authenticate(string username, string password);
 
         Individu ObtenirInidividu();
+
+        List<Individu> GetIndividus();
+
+        List<Groupe> GetGroupes();
+
+        List<Option_Questionnaire> Reponses();
     }
 }

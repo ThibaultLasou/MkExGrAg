@@ -16,7 +16,7 @@ function closeNav() {
 }
 
 function isopen() {
-    return document.getElementById("Sidenav").style.width == "20%";
+    return document.getElementById("Sidenav").style.width === "20%";
 }
 
 function navCall() {
@@ -24,6 +24,20 @@ function navCall() {
         closeNav();
     else openNav();
 }
+function newDestin(value) {
+    if (document.getElementById("destbox").value === '')
+        document.getElementById("destbox").value = document.getElementById("destinchoi")[value].innerText + ';';
+    else document.getElementById("destbox").value = document.getElementById("destbox").value + document.getElementById("destinchoi")[value].innerText + ';';
+    document.getElementById("destinchoi").value = ''; 
+}
+function newDestgr(value) {
+    if (document.getElementById("destbox").value === '')
+        document.getElementById("destbox").value = document.getElementById("destgrchoi")[value].innerText + ';';
+    else document.getElementById("destbox").value = document.getElementById("destbox").value + document.getElementById("destgrchoi")[value].innerText + ';';
+    document.getElementById("destgrchoi").value = '';
+}
+
+
 
 function show_messages(id_section) {
 

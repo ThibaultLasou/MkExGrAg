@@ -143,9 +143,11 @@
     <Content Include="Scripts\AllOurScripts\IndividuController.js" />
     <Content Include="Scripts\AllOurScripts\loginApparition.js" />
     <Content Include="Scripts\AllOurScripts\main.js" />
+    <Content Include="Scripts\AllOurScripts\newrep.js" />
     <Content Include="Scripts\AllOurScripts\Overlay.js" />
     <Content Include="Scripts\AllOurScripts\plugins.js" />
     <Content Include="Scripts\AllOurScripts\QuestionController.js" />
+    <Content Include="Scripts\AllOurScripts\Repshow.js" />
     <Content Include="Scripts\AllOurScripts\wow.min.js" />
     <Content Include="Scripts\Frameworks\angular-mocks.js" />
     <Content Include="Scripts\Frameworks\angular-route.js" />
@@ -205,7 +207,6 @@
     <Compile Include="Models\Activite.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Cours.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
