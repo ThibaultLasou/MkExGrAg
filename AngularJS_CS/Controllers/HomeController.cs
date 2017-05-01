@@ -34,10 +34,10 @@ namespace AngularJS_CS.Controllers
   */                      doc.nom = id;
                         Sous_doc_Web sub = new Sous_doc_Web();
                         sub.contenu_html = "<h1>BLBLBLBLBLLB</h1>\n<p>lalalalala</p>";
-                        doc.Contenu.Add(sub);
+                        doc.Sous_doc_Web.Add(sub);
                         Sous_doc_Web sub2 = new Sous_doc_Web();
                         sub2.contenu_html = "<h2>BLBLBLBLBLLB</h2><p>lalalalala</p>";
-                        doc.Contenu.Add(sub2);
+                        doc.Sous_doc_Web.Add(sub2);
 /*                    }
                 }
 */                if (doc != null)

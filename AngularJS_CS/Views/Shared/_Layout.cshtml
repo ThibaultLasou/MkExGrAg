@@ -19,7 +19,7 @@
     <base href="/">
     
 </head>
-@model AngularJS_CS.ViewModels.IndividuViewModel
+@model AngularJS_CS.ViewModels.LoginViewModel
 <body ng-app="myFormApp">
     
     <header>
@@ -67,7 +67,7 @@
                                 <a href="#" id="loginform" class="btn btn-default btn-andriod">
                                     @if (Model != null)
                                     {
-                                        if (Model.Authenticated)
+                                        if (Model.Authenticated == true)
                                         {
                                             <text>Déconnexion</text>}
                                         else

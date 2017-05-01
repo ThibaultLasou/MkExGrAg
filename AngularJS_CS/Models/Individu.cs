@@ -18,11 +18,11 @@ namespace AngularJS_CS.Models
         public Individu()
         {
             this.Cours = new HashSet<Cours>();
-            this.MessagesEnvoyés = new HashSet<Message>();
-            this.Groupes = new HashSet<Groupe>();
-            this.Documents = new HashSet<Doc_Web>();
-            this.MessagesRecus = new HashSet<Message>();
-            this.Responsabilités = new HashSet<Groupe>();
+            this.Message = new HashSet<Message>();
+            this.Groupe = new HashSet<Groupe>();
+            this.Doc_Web = new HashSet<Doc_Web>();
+            this.Message1 = new HashSet<Message>();
+            this.Groupe1 = new HashSet<Groupe>();
             this.Statut = new HashSet<Statut>();
         }
     
@@ -35,15 +35,15 @@ namespace AngularJS_CS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cours> Cours { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> MessagesEnvoyés { get; set; }
+        public virtual ICollection<Message> Message { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groupe> Groupes { get; set; }
+        public virtual ICollection<Groupe> Groupe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Doc_Web> Documents { get; set; }
+        public virtual ICollection<Doc_Web> Doc_Web { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> MessagesRecus { get; set; }
+        public virtual ICollection<Message> Message1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groupe> Responsabilités { get; set; }
+        public virtual ICollection<Groupe> Groupe1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Statut> Statut { get; set; }
     }
