@@ -18,25 +18,26 @@ namespace AngularJS_CS.Controllers
         public string dests = "";
         public bool indiv = false;
         public bool grp = true;
-        public string rep = "";
+        public  string Rep = "";
         public ActionResult Index()
         {
             Dal db = new Dal();
+            var mod =  new QuestionController();
             ViewBag.ListRep = new MultiSelectList(db.Reponses(), "Id", "valeur");
             ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
             ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
-            return View(this);
-        }
-
-        [WebMethod]
-        public ActionResult Addrep()
-        {
-            new Dal().AddRep(rep);
-            rep = "";
-            return View();
+            db.Dispose();
+            return View(mod);
         }
 
         [HttpPost]
+        public ActionResult Index(object b = null)
+        {
+           new Dal().AddRep(ValueProvider.GetValue("Rep").AttemptedValue);
+            return View();
+        }
+
+        
         public ActionResult Action(Individu Bob)
         {
             Question.Message.Individu1.Add(Bob);

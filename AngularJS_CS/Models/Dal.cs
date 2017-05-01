@@ -48,7 +48,7 @@ namespace AngularJS_CS.Models
         }
         public void AddRep(string rep)
         {
-            if (rep != "")
+            if (rep != ""&&rep!=null)
             {
                 Option_Questionnaire nrep = new Option_Questionnaire()
                 {

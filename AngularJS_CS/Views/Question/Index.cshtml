@@ -1,20 +1,5 @@
 ﻿@*@model AngularJS_CS.Models.Questionnaire*@
-@*@{
-        var db = Database.Open("MainDBEntities4");
-        var crit = "SELECT * FROM Individu";
-        List<SelectListItem> agentdropdownlistdata = new List<SelectListItem>();
-        bool isSelected = false;
-        foreach (var item in db.Query(crit))
-        {
-            agentdropdownlistdata.Add(new SelectListItem
-            {
-                Text = item.AgentName,
-                Value = item.AgentID.ToString(),
-                Selected = isSelected
-            });
-        }
-    }*@
-@{
+@{ 
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -25,7 +10,7 @@
 <h2>Nouveau Questionnaire</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(""))
 {
     @Html.AntiForgeryToken()
 
@@ -34,37 +19,19 @@
         <div class="form-group">
             <div class="col-ld-10">
                 <h5>Destinataires</h5>
-                @Html.DropDownList("A", ViewBag.ListIndividus as SelectList, "Individus", htmlAttributes: new { id = "destinchoi", onchange = "newDestin(this.value)", type = "destlist" })
-                @Html.DropDownList("A", ViewBag.ListGroupe as SelectList, "Groupes", htmlAttributes: new { id = "destinchoi", onchange = "newDestin(this.value)", type = "destlist" })
+                @Html.DropDownListFor(model => model.Dests, ViewBag.ListIndividus as SelectList, "Individus", htmlAttributes: new { id = "destinchoi", onchange = "newDestin(this.value)", type = "destlist" })
+                @Html.DropDownListFor(model => model.Dests, ViewBag.ListGroupe as SelectList, "Groupes", htmlAttributes: new { id = "destinchoi", onchange = "newDestin(this.value)", type = "destlist" })
                 @Html.TextBoxFor(model => model.dests, htmlAttributes: new { id = "destbox", type = "destinataire", placeholder = "Destinataire(s)", required = true })
                 <h5>Sujet du questionnaire</h5>
                 @Html.TextBoxFor(model => model.Question.Message.sujet, htmlAttributes: new { type = "sujet", placeholder = "sujet" })
             </div>
             @Html.TextAreaFor(model => model.Question.Message.contenu, htmlAttributes: new { type = "detail", placeholder = "Details" })
             @Html.ListBoxFor(model => model.Question.Option_Questionnaire, ViewBag.ListRep as MultiSelectList, htmlAttributes: new { type = "reponses", required = true })
-            <div id="repZone" class="col-md-3 col-xs-12 col-sm-3">
-                <ul class="download-btn">
-                    <li>
-                        <div>
-                            <a id="repform" class="btn btn-default btn-andriod">Nouveau</a>
-                        </div>
-                        <div id="hidden_divrep" class="hidden">
-                            <div class="formrepholder">
-                                <fieldset>
-                                    @Html.TextBoxFor(model=>model.rep, htmlAttributes: new {id = "new_rep", type = "reponse", placeholder = "Réponse" })
-                                    @*@Html.Action("Addrep")*@
-                                    <input id="more" type="morep" class="btn btn-andriod" value="Ajouter" onclick="morerep()" />
-
-                                </fieldset>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            
 
             @*<div class="form-group">
                 <div class="col-ld-offset-2 col-md-10">*@
-            <input type="submit" value="Envoyer" class="btn btn-block" />
+            <input type="submit" class="btn btn-block" />
             @*</div>
                 </div>*@
         </div>
@@ -72,6 +39,27 @@
 
     </div>
 }
+
+@using (Html.BeginForm("Index")) {
+    <div id = "repZone" class="col-md-3 col-xs-12 col-sm-3">
+    <ul class="download-btn">
+        <li>
+            <div>
+                <a id="repform" class="btn btn-default btn-andriod">Nouveau</a>
+            </div>
+            <div id="hidden_divrep" class="hidden">
+                <div class="formrepholder">
+                    <fieldset>
+                        @Html.TextBoxFor(Model => Model.Rep, htmlAttributes: new { id = "new_rep", type = "reponse", placeholder = "Réponse" })
+                        @*@Html.Action("Addrep")*@
+                        <input class="btn btn-andriod" type = "submit" @Html.ActionLink("Ajouter", "Index", "QuestionController", null, null)   />
+
+                    </fieldset>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div> }
 
 <div>
     @Html.ActionLink("Back to List", "../")
