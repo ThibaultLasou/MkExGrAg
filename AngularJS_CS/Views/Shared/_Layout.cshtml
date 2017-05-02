@@ -19,6 +19,7 @@
     <base href="/">
     
 </head>
+@model AngularJS_CS.ViewModels.LoginViewModel
 <body ng-app="myFormApp">
     
     <header>
@@ -63,14 +64,32 @@
                     <ul class="download-btn">
                         <li>
                             <div>
-                                <a id="loginform" class="btn btn-default btn-andriod">Se connecter</a>
+                                <a href="#" id="loginform" class="btn btn-default btn-andriod">
+                                    @if (Model != null)
+                                    {
+                                        if (Model.Authenticated == true)
+                                        {
+                                            <text>Déconnexion</text>}
+                                        else
+                                        {
+                                            <text> Connexion </text>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <text> Se connecter </text>
+                                    }
+                                </a>
                             </div>
                             <div id="hidden_div" class="hidden">
                                 <div class="formholder">
                                     <fieldset>
-                                        <input type="email" placeholder="Utilisateur" />
-                                        <input type="password" placeholder="Mot de passe" />
-                                        <input type="submit" value="Entrer" />
+                                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                                        {
+                                            @Html.TextBoxFor(m => m.UserID, htmlAttributes: new { @class = "form-control", type = "user-identifier", placeholder = "Utilisateur" })
+                                            @Html.TextBoxFor(m => m.Password, htmlAttributes: new { type = "password", placeholder = "Mot de passe" })
+                                            <input type="submit" value="Entrer" />
+                                        }
                                     </fieldset>
                                 </div>
                             </div>

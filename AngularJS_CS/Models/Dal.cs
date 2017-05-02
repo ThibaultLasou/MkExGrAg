@@ -8,10 +8,10 @@ namespace AngularJS_CS.Models
 {
     public class Dal : IDal
     {
-        private MainDBEntities5 bdd;
+        private MainDBEntities bdd;
         public Dal()
         {
-            bdd = new MainDBEntities5();
+            bdd = new MainDBEntities();
         }
 
         public Individu Authenticate(string username, string password)
@@ -25,6 +25,11 @@ namespace AngularJS_CS.Models
         public void Dispose()
         {
             bdd.Dispose();
+        }
+
+        public Doc_Web ObtenirDoc(string nom)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Groupe> GetGroupes()
