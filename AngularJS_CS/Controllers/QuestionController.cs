@@ -27,14 +27,14 @@ namespace AngularJS_CS.Controllers
             ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
             ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
             db.Dispose();
-            return View(mod);
+            return View("");
         }
 
         [HttpPost]
         public ActionResult Index(object b = null)
         {
            new Dal().AddRep(ValueProvider.GetValue("Rep").AttemptedValue);
-            return View();
+            return Index();
         }
 
         

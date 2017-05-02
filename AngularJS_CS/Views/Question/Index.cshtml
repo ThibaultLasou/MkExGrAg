@@ -1,11 +1,11 @@
-﻿@*@model AngularJS_CS.Models.Questionnaire*@
+﻿@model AngularJS_CS.Controllers.QuestionController
 @{ 
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 
-@model AngularJS_CS.Controllers.QuestionController
+
 <link rel="stylesheet/less" href="~/Content/less/questionnaire.less" />
 <h2>Nouveau Questionnaire</h2>
 
@@ -52,7 +52,7 @@
                     <fieldset>
                         @Html.TextBoxFor(Model => Model.Rep, htmlAttributes: new { id = "new_rep", type = "reponse", placeholder = "Réponse" })
                         @*@Html.Action("Addrep")*@
-                        <input class="btn btn-andriod" type = "submit" @Html.ActionLink("Ajouter", "Index", "QuestionController", null, null)/>
+                        <input class="btn btn-andriod" type = "submit" @Html.ActionLink("Ajouter", "N_question", "QuestionController", null, null)/>
 
                     </fieldset>
                 </div>
