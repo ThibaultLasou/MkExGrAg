@@ -11,18 +11,12 @@
 <div class="col-md-4 col-sm-6">
     <h2>Se connecter</h2>
     <fieldset>
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, null))
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
         {
-
-
-
             @Html.TextBoxFor(m => m.UserID, htmlAttributes: new { @class = "form-control", type = "user-identifier", placeholder = "Utilisateur" })
             @Html.TextBoxFor(m => m.Password, htmlAttributes: new { @class = "form-control", type = "password", placeholder = "Mot de passe" })
-            @*<input type="email" placeholder="Utilisateur" />
-                <input type="password" placeholder="Mot d3 passe" />*@
-                <input type="submit" value="Entrer" />
-            @*@Html.ActionLink("Entrer", "Index", "Home", routeValues: null, htmlAttributes: new { type = "submit", value = "Entrez" });*@
-            }
+            <input type="submit" value="Entrer" />
+        }
 
     </fieldset>
 </div>

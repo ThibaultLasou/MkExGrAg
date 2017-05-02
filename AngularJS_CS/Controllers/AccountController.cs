@@ -59,12 +59,11 @@ namespace AngularJS_CS.Controllers
                 model.Authenticated = true;
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
-                return View(nameof(Index), model);
-                //return RedirectToAction("/Index", model);
+                return View("../Home/Index", model);
             }
 
             //"Login" est le getter dans le viewModel
-            ModelState.AddModelError("Login", "Identifiant et/ou numéro de carte invalide(s)");
+            ModelState.AddModelError(nameof(Login), "Identifiant et/ou numéro de carte invalide(s)");
             return View(model);
         }
 
