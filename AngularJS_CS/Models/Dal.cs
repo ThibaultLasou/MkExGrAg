@@ -8,10 +8,10 @@ namespace AngularJS_CS.Models
 {
     public class Dal : IDal
     {
-        private MainDBEntities5 bdd;
+        private MainDBEntities bdd;
         public Dal()
         {
-            bdd = new MainDBEntities5();
+            bdd = new MainDBEntities();
         }
 
         public Individu Authenticate(string username, string password)

@@ -14,7 +14,7 @@
           <Property Name="Id_reunion" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Appartenance' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Appartenance' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Appartenance">
           <Key>
             <PropertyRef Name="Id_groupe" />
@@ -24,7 +24,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="Id_individu" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Auteur_Doc' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Auteur_Doc' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Auteur_Doc">
           <Key>
             <PropertyRef Name="Id_individu" />
@@ -42,7 +42,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="Id_groupe" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Creneau' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Creneau' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Creneau">
           <Key>
             <PropertyRef Name="id" />
@@ -58,7 +58,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="Id_Activite" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Doc_Contenu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Doc_Contenu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Doc_Contenu">
           <Key>
             <PropertyRef Name="Id_doc" />
@@ -75,7 +75,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Document_Groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Document_Groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Document_Groupe">
           <Key>
             <PropertyRef Name="Id_Document" />
@@ -113,7 +113,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="contenu" Type="text" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Diffusion' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Diffusion' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Notification_Diffusion">
           <Key>
             <PropertyRef Name="Id_groupe" />
@@ -123,7 +123,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="Id_message" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Simple' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Simple' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Notification_Simple">
           <Key>
             <PropertyRef Name="Id_message" />
@@ -148,7 +148,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="type" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Reponses' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Reponses' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Reponses">
           <Key>
             <PropertyRef Name="Id_question" />
@@ -158,7 +158,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="Id_reponse" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Responsable_groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Responsable_groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Responsable_groupe">
           <Key>
             <PropertyRef Name="Id_individu" />
@@ -190,7 +190,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="nom" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Statut_Individu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Statut_Individu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Statut_Individu">
           <Key>
             <PropertyRef Name="Id_individu" />
@@ -992,7 +992,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
           <End Role="Statut" Type="Self.Statut" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MainDBEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MainDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activite" EntityType="Self.Activite" />
           <EntitySet Name="Cours" EntityType="Self.Cours" />
           <EntitySet Name="Doc_Web" EntityType="Self.Doc_Web" />
@@ -1081,7 +1081,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities5">
+        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities">
           <EntitySetMapping Name="Activite">
             <EntityTypeMapping TypeName="MainDBModel.Activite">
               <MappingFragment StoreEntitySet="Activite">
