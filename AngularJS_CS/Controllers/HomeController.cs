@@ -46,7 +46,7 @@ namespace AngularJS_CS.Controllers
                     return View();
                 }
             }
-            return View("Error");
+            return View("Index", "Error");
         }
         //Ne fonctionne pas.
         //[HttpPost]
