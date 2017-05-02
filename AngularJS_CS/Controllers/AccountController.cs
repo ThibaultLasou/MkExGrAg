@@ -22,16 +22,16 @@ namespace AngularJS_CS.Controllers
             this.dal = dalIoc;
         }
 
-        // GET: Login
-        public ActionResult Index()
-        {
-            LoginViewModel uvm = new LoginViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
+        //// GET: Login
+        //public ActionResult Index()
+        //{
+        //    LoginViewModel uvm = new LoginViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
 
-            //if (HttpContext.User.Identity.IsAuthenticated)
-            //    uvm.Individu = dal.ObtenirIndividu();
+        //    //if (HttpContext.User.Identity.IsAuthenticated)
+        //    //    uvm.Individu = dal.ObtenirIndividu();
 
-            return View();
-        }
+        //    return View();
+        //}
 
         public ActionResult Index(LoginViewModel model, string returnUrl)
         {
@@ -48,7 +48,7 @@ namespace AngularJS_CS.Controllers
         {
             if (!ModelState.IsValid) //Vérifie la présence du login et du mot de passe
             {
-                return View(model);
+                return RedirectToAction("Index", "Account");
             }
 
             Individu ind = dal.Authenticate(model.UserID, model.Password);
@@ -64,7 +64,8 @@ namespace AngularJS_CS.Controllers
 
             //"Login" est le getter dans le viewModel
             ModelState.AddModelError(nameof(Login), "Identifiant et/ou numéro de carte invalide(s)");
-            return View(model);
+            model.Authenticated = false;
+            return RedirectToAction("Index", "Account", model);
         }
 
         public ActionResult Deconnexion()
