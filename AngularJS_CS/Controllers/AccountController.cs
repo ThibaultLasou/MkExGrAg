@@ -1,11 +1,11 @@
 ﻿using AngularJS_CS.Models;
 using AngularJS_CS.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
 
 namespace AngularJS_CS.Controllers
 {
@@ -25,7 +25,7 @@ namespace AngularJS_CS.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            //LoginViewModel uvm = new LoginViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
+            LoginViewModel uvm = new LoginViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
 
             //if (HttpContext.User.Identity.IsAuthenticated)
             //    uvm.Individu = dal.ObtenirIndividu();
@@ -33,7 +33,7 @@ namespace AngularJS_CS.Controllers
             return View();
         }
 
-        public ActionResult Index(LoginViewModel model)
+        public ActionResult Index(LoginViewModel model, string returnUrl)
         {
             //LoginViewModel uvm = new LoginViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
 
@@ -59,7 +59,7 @@ namespace AngularJS_CS.Controllers
                 model.Authenticated = true;
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
-                return View("../Home/Index", model);
+                return RedirectToAction("Index", "Home");
             }
 
             //"Login" est le getter dans le viewModel
@@ -70,7 +70,8 @@ namespace AngularJS_CS.Controllers
         public ActionResult Deconnexion()
         {
             FormsAuthentication.SignOut();
-            return Redirect("/");
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

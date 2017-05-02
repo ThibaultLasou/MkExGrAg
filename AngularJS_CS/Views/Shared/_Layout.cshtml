@@ -26,7 +26,7 @@
         <div class="container" id="lapata">
             <div class="row">
                 <div class="col-md-3 col-xs-6 col-sm-3">
-                    <a href="~/Home/Index" class="logo">
+                    <a href="@Url.Action("Index", "Question")" class="logo">
                         <img style="width: 148px; height: 50px;" src="~/Content/images/logo.png" alt="">
                     </a>
                 </div>
@@ -62,38 +62,7 @@
                 
                 <div id="loginZone" class="col-md-3 col-xs-12 col-sm-3">
                     <ul class="download-btn">
-                        <li>
-                            <div>
-                                <a href="#" id="loginform" class="btn btn-default btn-andriod">
-                                    @if (Model != null)
-                                    {
-                                        if (Model.Authenticated == true)
-                                        {
-                                            <text>Déconnexion</text>}
-                                        else
-                                        {
-                                            <text> Connexion </text>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <text> Se connecter </text>
-                                    }
-                                </a>
-                            </div>
-                            <div id="hidden_div" class="hidden">
-                                <div class="formholder">
-                                    <fieldset>
-                                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                                        {
-                                            @Html.TextBoxFor(m => m.UserID, htmlAttributes: new { @class = "form-control", type = "user-identifier", placeholder = "Utilisateur" })
-                                            @Html.TextBoxFor(m => m.Password, htmlAttributes: new { type = "password", placeholder = "Mot de passe" })
-                                            <input type="submit" value="Entrer" />
-                                        }
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </li>
+                        @Html.Partial("_LoginPartial")
                         <li>
                             <a href="#" class="btn btn-default btn-windows">Langues</a>
                         </li>
