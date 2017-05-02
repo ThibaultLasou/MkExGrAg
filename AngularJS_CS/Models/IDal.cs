@@ -18,5 +18,6 @@ namespace AngularJS_CS.Models
         List<Groupe> GetGroupes();
 
         List<Option_Questionnaire> Reponses();
+        Doc_Web ObtenirDoc(string nom);
     }
 }

@@ -141,6 +141,7 @@
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\AllOurScripts\IndividuController.js" />
+    <Content Include="Scripts\AllOurScripts\editor.js" />
     <Content Include="Scripts\AllOurScripts\loginApparition.js" />
     <Content Include="Scripts\AllOurScripts\main.js" />
     <Content Include="Scripts\AllOurScripts\newrep.js" />
@@ -199,8 +200,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+	<Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,7 +265,7 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\IndividuViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -274,7 +275,7 @@
     <Content Include="Scripts\Frameworks\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\Frameworks\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\SidenavOverlay.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
@@ -286,7 +287,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
