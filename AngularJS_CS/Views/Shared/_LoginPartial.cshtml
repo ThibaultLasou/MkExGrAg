@@ -1,0 +1,43 @@
+﻿@using AngularJS_CS.ViewModels
+@using AngularJS_CS.Controllers
+@model LoginViewModel
+@if (Request.IsAuthenticated)
+{
+    <li>
+        <a href="#" id="HelloMsg">
+            @("Bonjour " + HttpContext.Current.User.Identity.Name + " !")
+        </a>
+    </li>
+}
+
+
+<li>
+    <div>
+        @if (Request.IsAuthenticated)
+        {
+            @Html.ActionLink("Deconnexion", nameof(AccountController.Deconnexion), nameof(AccountController).Replace("Controller", string.Empty), null, new { id = "loginform", @class = "btn btn-default btn-andriod" })
+        }
+        else
+        {
+            <a id="loginform" class="btn btn-default btn-andriod">
+                <text> Se connecter </text>
+            </a>
+        }
+    </div>
+    @* Si ça marche pas, commenter le if ci-dessous et rediriger simplement vers la page de connexion *@
+    @if (!Request.IsAuthenticated)
+    {
+        <div id="hidden_div" class="hidden">
+            <div class="formholder">
+                <fieldset>
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                {
+                        @Html.TextBoxFor(m => m.UserID, htmlAttributes: new { @class = "form-control", type = "user-identifier", placeholder = "Utilisateur" })
+                        @Html.TextBoxFor(m => m.Password, htmlAttributes: new { type = "password", placeholder = "Mot de passe" })
+                        <input type="submit" value="Entrer" />
+                    }
+                </fieldset>
+            </div>
+        </div>
+    }
+</li>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AngularJS_CS.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,22 @@ namespace AngularJS_CS
             // Code qui s’exécute au démarrage de l’application
            AreaRegistration.RegisterAllAreas();
            RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        protected void Application_EndRequest()
+        {
+            if (Context.Response.StatusCode == 404)
+            {
+                Response.Clear();
+
+                var rd = new RouteData();
+                //rd.DataTokens["area"] = "Shared"; // In case controller is in another area
+                rd.Values["controller"] = "Error";
+                rd.Values["action"] = "Index";
+
+                IController c = new ErrorController();
+                c.Execute(new RequestContext(new HttpContextWrapper(Context), rd));
+            }
         }
     }
 }

@@ -1,0 +1,231 @@
+﻿@blue_polytech: #00afec;
+@green_psud: #6fbf39;
+@bg_white: #fff;
+
+
+
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,300italic);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+    font-size: 52px;
+}
+
+h2 {
+    font-size: 38px;
+    font-weight: 200;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 15px;
+}
+
+ul {
+    padding-left: 0;
+
+    li {
+        list-style: square;
+        list-style-position: inside;
+    }
+}
+
+.fieldset {
+    border: 1px solid silver;
+    padding: 10px;
+    width: 350px;
+    padding-top: 5px;
+}
+
+#repZone {
+    padding-top: 5px;
+    margin: 0 75%;
+    .download-btn {
+        li {
+            display: inline-block;
+
+            hidden_divrep {
+                display: none;
+            }
+
+            a {
+                color: @bg_white;
+                border-radius: 0;
+                padding: 2px 6px 3px;
+                font-size: 15px;
+            }
+
+
+
+            .btn-andriod {
+                background: @green_psud;
+                border: 1px solid transparent;
+                -webkit-transition: .2s all;
+                -o-transition: .2s all;
+                transition: .2s all;
+                position: relative;
+
+                &:hover {
+                    color: @green_psud;
+                    background: @bg_white;
+                    border: 1px solid @green_psud;
+                }
+            }
+
+            .btn-windows {
+                background: @blue_polytech;
+                border: 1px solid transparent;
+                -webkit-transition: .2s all;
+                -o-transition: .2s all;
+                transition: .2s all;
+
+                &:hover {
+                    color: @blue_polytech;
+                    background: @bg_white;
+                    border: 1px solid @blue_polytech;
+                }
+            }
+
+            .formrepholder {
+                padding: 10px;
+                background: @bg_white;
+                width: 300px;
+                border: solid 1px silver;
+                padding-top: 5px;
+                position: absolute;
+
+                .fieldset {
+                    border: 1px solid silver;
+                }
+
+                input[type="reponse"] {
+                    padding: 7px 5px;
+                    margin: 10px 0;
+                    width: 100%;
+                    display: block;
+                    font-size: 18px;
+                    border: 1px solid silver;
+                    -webkit-transition: 0.3s linear;
+                    -moz-transition: 0.3s linear;
+                    -o-transition: 0.3s linear;
+                    transition: 0.3s linear;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0 0 1px 1px @green_psud;
+                    }
+                }
+                
+                input[type="submit"] {
+                    background: @green_psud;
+                    border: 1px solid transparent;
+                    -webkit-transition: .2s all;
+                    -o-transition: .2s all;
+                    transition: .2s all;
+                    padding: 10px;
+                    font-size: 20px;
+                    display: block;
+                    width: 100%;
+                    color: @bg_white;
+
+                    &:hover {
+                        color: @green_psud;
+                        background: @bg_white;
+                        border: 1px solid @green_psud;
+                    }
+                }
+            }
+        }
+    }
+}
+
+input[type=sujet] {
+    padding: 7px 5px;
+    width: 100%;
+    margin: 0;
+    /*display: block;*/
+    font-size: 18px;
+    border: 1px solid gold;
+}
+
+input[type=destinataire] {
+    padding: 7px 5px;
+    margin: 0;
+    width: 83%;
+    font-size: 16px;
+    border: 1px solid green;
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+    -o-transition: 0.3s linear;
+    transition: 0.3s linear;
+}
+
+input[type="submit"] {
+    background: @green_psud;
+    border: 1px solid transparent;
+    -webkit-transition: .2s all;
+    -o-transition: .2s all;
+    transition: .2s all;
+    padding: 10px;
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    color: @bg_white;
+
+    &:hover {
+        color: @green_psud;
+        background: @bg_white;
+        border: 1px solid @green_psud;
+    }
+}
+
+textarea[type=detail] {
+    padding: 7px 5px;
+    margin: 10px 0;
+    width: 70%;
+    resize: none;
+    min-height: 70%;
+    height: 400px;
+    max-height: 80%;
+    font-size: 16px;
+    border: 1px solid red;
+}
+
+select[type = reponses] {
+    padding: 7px 5px;
+    margin: 10px;
+    width: 28%;
+    height: 400px;
+}
+
+select[type=destlist] {
+    padding: 7px 5px;
+    margin: 10px 0;
+    width: 8%;
+    font-size: 10px;
+    border: 1px solid purple;
+    visibility: visible;
+}
+
+input[type=radio] {
+    padding: 7px 5px;
+    margin: 0px 0px 0px 90%;
+    text-align: right;
+}

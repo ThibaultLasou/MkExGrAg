@@ -1,6 +1,64 @@
+/* Drop all Foreign Key constraints */
+DECLARE @name VARCHAR(128)
+DECLARE @constraint VARCHAR(254)
+DECLARE @SQL VARCHAR(254)
+
+SELECT @name = (SELECT TOP 1 TABLE_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'FOREIGN KEY' ORDER BY TABLE_NAME)
+
+WHILE @name is not null
+BEGIN
+    SELECT @constraint = (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'FOREIGN KEY' AND TABLE_NAME = @name ORDER BY CONSTRAINT_NAME)
+    WHILE @constraint IS NOT NULL
+    BEGIN
+        SELECT @SQL = 'ALTER TABLE [dbo].[' + RTRIM(@name) +'] DROP CONSTRAINT [' + RTRIM(@constraint) +']'
+        EXEC (@SQL)
+        PRINT 'Dropped FK Constraint: ' + @constraint + ' on ' + @name
+        SELECT @constraint = (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'FOREIGN KEY' AND CONSTRAINT_NAME <> @constraint AND TABLE_NAME = @name ORDER BY CONSTRAINT_NAME)
+    END
+SELECT @name = (SELECT TOP 1 TABLE_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'FOREIGN KEY' ORDER BY TABLE_NAME)
+END
+GO
+
+/* Drop all Primary Key constraints */
+DECLARE @name VARCHAR(128)
+DECLARE @constraint VARCHAR(254)
+DECLARE @SQL VARCHAR(254)
+
+SELECT @name = (SELECT TOP 1 TABLE_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'PRIMARY KEY' ORDER BY TABLE_NAME)
+
+WHILE @name IS NOT NULL
+BEGIN
+    SELECT @constraint = (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'PRIMARY KEY' AND TABLE_NAME = @name ORDER BY CONSTRAINT_NAME)
+    WHILE @constraint is not null
+    BEGIN
+        SELECT @SQL = 'ALTER TABLE [dbo].[' + RTRIM(@name) +'] DROP CONSTRAINT [' + RTRIM(@constraint)+']'
+        EXEC (@SQL)
+        PRINT 'Dropped PK Constraint: ' + @constraint + ' on ' + @name
+        SELECT @constraint = (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'PRIMARY KEY' AND CONSTRAINT_NAME <> @constraint AND TABLE_NAME = @name ORDER BY CONSTRAINT_NAME)
+    END
+SELECT @name = (SELECT TOP 1 TABLE_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE constraint_catalog=DB_NAME() AND CONSTRAINT_TYPE = 'PRIMARY KEY' ORDER BY TABLE_NAME)
+END
+GO
+
+
+/* Drop all tables */
+DECLARE @name VARCHAR(128)
+DECLARE @SQL VARCHAR(254)
+
+SELECT @name = (SELECT TOP 1 [name] FROM sysobjects WHERE [type] = 'U' AND category = 0 ORDER BY [name])
+
+WHILE @name IS NOT NULL
+BEGIN
+    SELECT @SQL = 'DROP TABLE [dbo].[' + RTRIM(@name) +']'
+    EXEC (@SQL)
+    PRINT 'Dropped Table: ' + @name
+    SELECT @name = (SELECT TOP 1 [name] FROM sysobjects WHERE [type] = 'U' AND category = 0 AND [name] > @name ORDER BY [name])
+END
+GO
+
 CREATE TABLE [dbo].[Groupe]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	nom VARCHAR (15) NOT NULL,
 )
 
@@ -17,7 +75,7 @@ CREATE TABLE [dbo].[Individu]
 
 CREATE TABLE [dbo].[Cours]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	Id_prof int not null,
 	Id_groupe int not null,
 	constraint [Fk_cours_prof] foreign key (Id_prof) references Individu (Id),
@@ -27,7 +85,7 @@ CREATE TABLE [dbo].[Cours]
 
 CREATE TABLE [dbo].[Activite]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	Id_cours int NOT NULL,
 	Id_reunion int not null,
 	constraint [FK_Cours_activite] foreign key (Id_cours) references Cours (Id),
@@ -50,14 +108,14 @@ Id_groupe, Id_individu
 
 CREATE TABLE [dbo].[Sous_doc_Web]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	contenu_html text not null,
 )
 
 
 CREATE TABLE [dbo].[Doc_Web]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	nom VARCHAR(30) not null,
 );
 
@@ -101,6 +159,7 @@ CREATE TABLE [dbo].[Salle]
 
 CREATE TABLE [dbo].[Creneau]
 (
+id int identity(1,1),
     [debut] DATETIME2 not NULL,
 	fin DATETIME2 not null,
 	Id_Salle int NOT null,
@@ -133,11 +192,12 @@ Id_Document, Id_groupe
 
 CREATE TABLE [dbo].[Message]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	Id_expediteur int NOT NULL,
-	contenu text NOT NULL, 
+	sujet varchar(40) null,
     [recu] BIT NOT NULL,
 	lu BIT NOT NULL,
+	contenu text NOT NULL, 
 	constraint [FK_expediteur_message] foreign key (Id_expediteur) references Individu (Id)
 
 )
@@ -174,26 +234,37 @@ Id_message, Id_individu
 
 CREATE TABLE [dbo].[Option_Questionnaire]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
-	valeur Ntext Not null,
+Id int Identity(1,1) not null primary key,
+	valeur varchar(30) Not null,
 )
 
 CREATE TABLE [dbo].[Type_Questionnaire]
 (
-	[type] VARCHAR(15) NOT NULL PRIMARY KEY
+Id int not null Identity(1,1) primary key,
+	[type] VARCHAR(15) NOT NULL
 )
 
 
 CREATE TABLE [dbo].[Questionnaire]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	Id_message int not null,
-	Id_Option int not null,
-	[type] varchar(15) not null,
-	constraint [FK_option_questionnaire] foreign key (Id_Option) references Option_Questionnaire (Id),
+	[type] int not null,
 	constraint [FK_contenu_questionnaire] foreign key (Id_message) references Message (Id),
-	constraint [FK_Type_Questionnaire] foreign key ([type]) references Type_Questionnaire ([type])
+	constraint [FK_Type_Questionnaire] foreign key ([type]) references Type_Questionnaire ([Id])
 )
+
+Create Table [dbo].[Reponses](
+	Id_question int not null,
+	Id_reponse int not null,
+	constraint [FK_option_questionnaire] foreign key (Id_question) references Questionnaire (Id),
+	constraint FK_rep_quest foreign key (Id_reponse) references Option_Questionnaire (Id),
+);
+Go
+Create Clustered Index rep_pos_ques
+On dbo.Reponses(
+Id_question,Id_reponse
+);
 
 
 CREATE TABLE [dbo].[Responsable_groupe]

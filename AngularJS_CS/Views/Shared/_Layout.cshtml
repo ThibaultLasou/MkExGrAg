@@ -19,13 +19,14 @@
     <base href="/">
     
 </head>
+@model AngularJS_CS.ViewModels.LoginViewModel
 <body ng-app="myFormApp">
     
     <header>
-        <div class="container">
+        <div class="container" id="lapata">
             <div class="row">
                 <div class="col-md-3 col-xs-6 col-sm-3">
-                    <a href="#" class="logo">
+                    <a href="@Url.Action("Index", "Question")" class="logo">
                         <img style="width: 148px; height: 50px;" src="~/Content/images/logo.png" alt="">
                     </a>
                 </div>
@@ -45,7 +46,7 @@
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
                                         <li><a href="#banner">Documents</a></li>
-                                        <li><a href="#service">Messages</a></li>
+                                        <li><a href="~/Question/Index">Messages</a></li>
                                         <li><a href="#feature">Agenda</a></li>
                                     </ul>
                                 </div>
@@ -57,24 +58,11 @@
                     <input type="button" value="LAPATA" onclick="navCall()" />
 
                 </div>
-                @Html.Partial("~/Views/Shared/SidenavOverlay.cshtml");
+                @Html.Partial("~/Views/Shared/SidenavOverlay.cshtml")
                 
                 <div id="loginZone" class="col-md-3 col-xs-12 col-sm-3">
                     <ul class="download-btn">
-                        <li>
-                            <div>
-                                <a href="#" id="loginform" class="btn btn-default btn-andriod">Se connecter</a>
-                            </div>
-                            <div id="hidden_div" class="hidden">
-                                <div class="formholder">
-                                    <fieldset>
-                                        <input type="email" placeholder="Utilisateur" />
-                                        <input type="password" placeholder="Mot de passe" />
-                                        <input type="submit" value="Entrer" />
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </li>
+                        @Html.Partial("_LoginPartial")
                         <li>
                             <a href="#" class="btn btn-default btn-windows">Langues</a>
                         </li>

@@ -14,6 +14,7 @@ namespace AngularJS_CS.Models
     
     public partial class Creneau
     {
+        public int id { get; set; }
         public System.DateTime debut { get; set; }
         public System.DateTime fin { get; set; }
         public int Id_Salle { get; set; }

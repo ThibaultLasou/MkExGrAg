@@ -11,7 +11,6 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-
 #loginZone {
     padding-top: 5px;
 
@@ -30,7 +29,17 @@ body {
                 font-size: 15px;
             }
 
+            a[id="HelloMsg"] {
+                font-size: 15px;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-weight: 200;
+                color: #666;
+                padding: 5px 15px;
 
+                &:hover {
+                    color: #f48e5c;
+                }
+            }
 
             .btn-andriod {
                 background: @green_psud;
@@ -71,9 +80,29 @@ body {
 
                 .fieldset {
                     border: 1px solid silver;
+
+                    .form {
+                        input[name="Password"] {
+                            padding: 7px 5px;
+                            margin: 10px 0;
+                            width: 100%;
+                            display: block;
+                            font-size: 18px;
+                            border: 1px solid silver;
+                            -webkit-transition: 0.3s linear;
+                            -moz-transition: 0.3s linear;
+                            -o-transition: 0.3s linear;
+                            transition: 0.3s linear;
+
+                            &:focus {
+                                outline: none;
+                                box-shadow: 0 0 1px 1px @green_psud;
+                            }
+                        }
+                    }
                 }
 
-                input[type="email"] {
+                UserID[type="user-identifier"] {
                     padding: 7px 5px;
                     margin: 10px 0;
                     width: 100%;
@@ -91,23 +120,7 @@ body {
                     }
                 }
 
-                input[type="password"] {
-                    padding: 7px 5px;
-                    margin: 10px 0;
-                    width: 100%;
-                    display: block;
-                    font-size: 18px;
-                    border: 1px solid silver;
-                    -webkit-transition: 0.3s linear;
-                    -moz-transition: 0.3s linear;
-                    -o-transition: 0.3s linear;
-                    transition: 0.3s linear;
 
-                    &:focus {
-                        outline: none;
-                        box-shadow: 0 0 1px 1px @green_psud;
-                    }
-                }
 
                 input[type="submit"] {
                     background: @green_psud;
