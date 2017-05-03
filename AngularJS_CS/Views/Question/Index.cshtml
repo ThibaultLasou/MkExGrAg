@@ -1,5 +1,4 @@
-﻿@model AngularJS_CS.Controllers.QuestionController
-@{ 
+﻿@model AngularJS_CS.ViewModels.QuestionView 
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -25,7 +24,7 @@
                 <h5>Sujet du questionnaire</h5>
                 @Html.TextBoxFor(model => model.Question.Message.sujet, htmlAttributes: new { type = "sujet", placeholder = "sujet" })
             </div>
-            @Html.TextAreaFor(model => model.Question.Message.contenu, htmlAttributes: new { type = "detail", placeholder = "Details" })
+            @Html.TextAreaFor(model => model.detail, htmlAttributes: new { type = "detail", placeholder = "Details" })
             @Html.ListBoxFor(model => model.Question.Option_Questionnaire, ViewBag.ListRep as MultiSelectList, htmlAttributes: new { type = "reponses", required = true })
             
 

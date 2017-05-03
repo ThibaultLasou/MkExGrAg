@@ -17,11 +17,10 @@
     <link rel="stylesheet/less" href="~/Content/less/bandeau.less">
     <link rel="stylesheet/less" href="~/Content/less/sidenav.less">
     <base href="/">
-    
+
 </head>
-@model AngularJS_CS.ViewModels.LoginViewModel
 <body ng-app="myFormApp">
-    
+
     <header>
         <div class="container" id="lapata">
             <div class="row">
@@ -59,10 +58,11 @@
 
                 </div>
                 @Html.Partial("~/Views/Shared/SidenavOverlay.cshtml")
-                
+
                 <div id="loginZone" class="col-md-3 col-xs-12 col-sm-3">
                     <ul class="download-btn">
-                        @Html.Partial("_LoginPartial")
+                        @{@*@model AngularJS_CS.ViewModels.LoginViewModel*@
+                        @Html.Partial("_LoginPartial") }
                         <li>
                             <a href="#" class="btn btn-default btn-windows">Langues</a>
                         </li>

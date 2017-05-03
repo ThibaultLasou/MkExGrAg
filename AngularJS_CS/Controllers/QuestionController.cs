@@ -27,7 +27,7 @@ namespace AngularJS_CS.Controllers
             ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
             ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
             db.Dispose();
-            return View("");
+            return View(mod);
         }
 
         [HttpPost]
