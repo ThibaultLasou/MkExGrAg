@@ -16,6 +16,13 @@ namespace AngularJS_CS.Models
 
         public Individu Authenticate(string username, string password)
         {
+            return bdd.Individu.FirstOrDefault(ind => ind.userLogin == username && ind.numCarte == password);
+
+            Individu res = (from ind in bdd.Individu
+                            where ind.userLogin == username && ind.numCarte == password
+                            select ind).FirstOrDefault();
+            return res;
+
             foreach (Individu ind in bdd.Individu)
                 if (ind.userLogin == username && ind.numCarte == password)
                     return ind;
@@ -53,7 +60,7 @@ namespace AngularJS_CS.Models
         }
         public void AddRep(string rep)
         {
-            if (rep != ""&&rep!=null)
+            if (rep != "" && rep != null)
             {
                 Option_Questionnaire nrep = new Option_Questionnaire()
                 {
