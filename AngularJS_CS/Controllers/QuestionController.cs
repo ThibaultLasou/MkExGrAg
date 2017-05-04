@@ -17,21 +17,22 @@ namespace AngularJS_CS.Controllers
         private Dal db = new Dal();
         public ActionResult Index()
         {
+            QuestionView mod =  new QuestionView();
             ViewBag.ListRep = new MultiSelectList(db.Reponses(), "Id", "valeur");
             ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
             ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
-            return View();
+            return View(mod);
         }
 
         [HttpPost]
-        public ActionResult Ajout()
+        public ActionResult Ajout(QuestionView mod)
         {
-           new Dal().AddRep(ValueProvider.GetValue("Rep").AttemptedValue);
+            new Dal().AddRep(mod.Rep);
             return RedirectToAction("Index", "Question");
         }
 
         [HttpPost]
-        public ActionResult Action()
+        public ActionResult Action(QuestionView mod)
         {
             string dest = ValueProvider.GetValue("dests").AttemptedValue;
             string sujet = ValueProvider.GetValue("sujet").AttemptedValue;

@@ -65,7 +65,7 @@
 
                 <div id="loginZone" class="col-md-3 col-xs-12 col-sm-3">
                     <ul class="download-btn">
-                        @Html.Partial("_LoginPartial")
+                        @Html.Partial("_LoginPartial", new AngularJS_CS.ViewModels.LoginViewModel())
                         <li>
                             <a class="btn btn-default btn-windows" onclick="navCall()">Notifs</a>
                         </li>
