@@ -19,5 +19,6 @@ namespace AngularJS_CS.Models
 
         List<Option_Questionnaire> Reponses();
         Doc_Web ObtenirDoc(string nom);
+        string GetName(string id);
     }
 }

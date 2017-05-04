@@ -18,15 +18,15 @@ namespace AngularJS_CS.Models
         {
             return bdd.Individu.FirstOrDefault(ind => ind.userLogin == username && ind.numCarte == password);
 
-            Individu res = (from ind in bdd.Individu
-                            where ind.userLogin == username && ind.numCarte == password
-                            select ind).FirstOrDefault();
-            return res;
+            //Individu res = (from ind in bdd.Individu
+            //                where ind.userLogin == username && ind.numCarte == password
+            //                select ind).FirstOrDefault();
+            //return res;
 
-            foreach (Individu ind in bdd.Individu)
-                if (ind.userLogin == username && ind.numCarte == password)
-                    return ind;
-            return null;
+            //foreach (Individu ind in bdd.Individu)
+            //    if (ind.userLogin == username && ind.numCarte == password)
+            //        return ind;
+            //return null;
         }
 
         public void Dispose()
@@ -73,6 +73,15 @@ namespace AngularJS_CS.Models
                 bdd.Option_Questionnaire.Add(nrep);
                 bdd.SaveChanges();
             }
+        }
+
+        public string GetName(string strId)
+        {
+            int id = -1;
+            int.TryParse(strId, out id);
+            Individu ind = bdd.Individu.FirstOrDefault(i => i.Id == id);
+
+            return ind?.prenom ?? "Individu inconnu";
         }
     }
 }

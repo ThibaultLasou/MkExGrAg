@@ -1,11 +1,16 @@
 ﻿@using AngularJS_CS.ViewModels
 @using AngularJS_CS.Controllers
+@using AngularJS_CS.Models
 @model LoginViewModel
 @if (Request.IsAuthenticated)
 {
     <li>
         <a href="#" id="HelloMsg">
-            @("Bonjour " + HttpContext.Current.User.Identity.Name + " !")
+            @{ 
+                IDal dal = new Dal();
+                @("Bonjour " + dal.GetName(HttpContext.Current.User.Identity.Name) + " !")
+            }
+            
         </a>
     </li>
 }
