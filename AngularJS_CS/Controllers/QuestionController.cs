@@ -15,12 +15,12 @@ namespace AngularJS_CS.Controllers
         //public Message Message { get; set; }
         // GET: Question
         private Dal db = new Dal();
-        public ActionResult Index(QuestionView model)
+        public ActionResult Index()
         {
             ViewBag.ListRep = new MultiSelectList(db.Reponses(), "Id", "valeur");
             ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
             ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
-            return View(model);
+            return View();
         }
 
         [HttpPost]
