@@ -1,8 +1,8 @@
 ﻿@using AngularJS_CS.ViewModels
 @using AngularJS_CS.Controllers
-@model LoginViewModel
+
 @if (Request.IsAuthenticated)
-{
+    {
     <li>
         <a href="#" id="HelloMsg">
             @("Bonjour " + HttpContext.Current.User.Identity.Name + " !")
@@ -19,13 +19,13 @@
         }
         else
         {
-            <a id="loginform" class="btn btn-default btn-andriod">
+            <a id="loginform" class="btn btn-default btn-andriod" href="~/Account/Index">
                 <text> Se connecter </text>
             </a>
         }
     </div>
     @* Si ça marche pas, commenter le if ci-dessous et rediriger simplement vers la page de connexion *@
-    @*@if (!Request.IsAuthenticated)
+   @*@if (!Request.IsAuthenticated)
     {
         <div id="hidden_div" class="hidden">
             <div class="formholder">
@@ -41,3 +41,5 @@
         </div>
     }*@
 </li>
+
+<script src="~/Scripts/AllOurScripts/loginApparition.js"></script>
