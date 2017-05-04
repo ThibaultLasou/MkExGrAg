@@ -271,6 +271,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\QuestionView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

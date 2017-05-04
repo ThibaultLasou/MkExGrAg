@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services;
+using AngularJS_CS.ViewModels;
 
 namespace AngularJS_CS.Controllers
 {
@@ -13,35 +14,31 @@ namespace AngularJS_CS.Controllers
         public Questionnaire Question { get; set; }
         //public Message Message { get; set; }
         // GET: Question
-        public IEnumerable<SelectList> Reponses { get; set; }
-        public List<Individu> Dests { get; set; }
-        public string dests = "";
-        public bool indiv = false;
-        public bool grp = true;
-        public  string Rep = "";
-        public ActionResult Index()
+        private Dal db = new Dal();
+        public ActionResult Index(QuestionView model)
         {
-            Dal db = new Dal();
-            var mod =  new QuestionController();
             ViewBag.ListRep = new MultiSelectList(db.Reponses(), "Id", "valeur");
             ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
             ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
-            db.Dispose();
-            return View("");
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(object b = null)
+        public ActionResult Ajout()
         {
            new Dal().AddRep(ValueProvider.GetValue("Rep").AttemptedValue);
-            return Index();
+            return RedirectToAction("Index", "Question");
         }
 
-        
-        public ActionResult Action(Individu Bob)
+        [HttpPost]
+        public ActionResult Action()
         {
-            Question.Message.Individu1.Add(Bob);
-            return View();
+            string dest = ValueProvider.GetValue("dests").AttemptedValue;
+            string sujet = ValueProvider.GetValue("sujet").AttemptedValue;
+            string detail = ValueProvider.GetValue("detail").AttemptedValue;
+            string reps = ValueProvider.GetValue("Reponses").AttemptedValue;
+            db.Dispose();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
