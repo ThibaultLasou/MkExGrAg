@@ -2,18 +2,18 @@
 [Priorité] Description de la tâche {Qui taffe actuellement dessus}
 
 Rapport :
-	- Découpage du rapport en parties, création du plan
-	- Rédaction
+	- [2] Découpage du rapport en parties, création du plan
+	- [3] Rédaction
 Messagerie :
-	- Questionnaires {Bryan, Mathieu}
-	- Messages {Mathieu}
-	- Notifications {Bryan, Tristan}
+	- [1] Questionnaires {Bryan, Mathieu}
+	- [1] Messages {Mathieu}
+	- [1] Notifications {Bryan, Tristan}
 Moins urgent : 
-	- Emploi du temps
-	- Interface multilingue
+	- [3 ou 4] Emploi du temps
+	- [3 ou 4] Interface multilingue
 	
 Administration :
-	- Vue d'ajout/suppression/edition [permissions] :
+	- [2] Vue d'ajout/suppression/edition [permissions] :
 		- Individus [Admin]
 		- Cours	[Admin, prof]
 		- Créneaux [Admin, prof]
@@ -21,6 +21,6 @@ Administration :
 
 
 Finitions :
-	- CSS / LESS
-	- Interface mobile à peaufiner
-	- Accès distant au serveur
+	- [4] CSS / LESS
+	- [4] Interface mobile à peaufiner
+	- [4] Accès distant au serveur
