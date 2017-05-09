@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    var list = ViewBag.ListRep as MultiSelectList;
 }
 @model AngularJS_CS.ViewModels.QuestionView
 
@@ -24,14 +24,14 @@
                 @Html.TextBoxFor(model => model.sujet, htmlAttributes: new { type = "sujet", placeholder = "sujet" })
             </div>
             @Html.TextAreaFor(model => model.detail, htmlAttributes: new { type = "detail", placeholder = "Details" })
-            @Html.ListBoxFor(model => model.Reponses, ViewBag.ListRep as MultiSelectList, htmlAttributes: new { type = "reponses", required = true })
-
+            @Html.ListBoxFor(model => model.Reponses, list, htmlAttributes: new {id = "rep_list", type = "reponses", required = true , onchange="custom_type()"})
+            @Html.DropDownListFor(model=>model.type, ViewBag.ListType as SelectList, "Type de questionnaire", htmlAttributes:new {id = "type_choice", required = true, onchange ="typechose(this.value)" })
             <input type="submit" class="btn btn-block" />
         </div>
     </div>
 }
 
-@using (Html.BeginForm("Ajout", "Question", null, FormMethod.Post, null))
+@using (Html.BeginForm("Ajout", "Question", HttpContext.Current.User.Identity.Name, FormMethod.Post, null))
 {
     <div id="repZone" class="col-md-3 col-xs-12 col-sm-3">
         <ul class="download-btn">
@@ -42,9 +42,8 @@
                 <div id="hidden_divrep" class="hidden">
                     <div class="formrepholder">
                         <fieldset>
-                            @Html.TextBoxFor(Model => Model.Rep, htmlAttributes: new { id = "new_rep", type = "reponse", placeholder = "Réponse" })
-                            @*@Html.Action("Addrep")*@
-                            <input class="btn btn-andriod" value="Ajouter" type="submit" @*@Html.ActionLink("Ajouter", "N_question", "QuestionController", null, null)*@ />
+                            @Html.TextBoxFor(m=> m.Rep, htmlAttributes: new { id = "new_rep", type = "reponse", placeholder = "Réponse" })
+                            <input class="btn btn-andriod" value="Ajouter" type="submit" />
 
                         </fieldset>
                     </div>

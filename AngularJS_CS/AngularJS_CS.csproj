@@ -193,6 +193,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="TODOList.txt" />
     <Content Include="Views\Home\Doc.cshtml" />
     <None Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Web.config">
