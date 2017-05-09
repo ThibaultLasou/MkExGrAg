@@ -1,0 +1,26 @@
+﻿Mettre entre accolades qui s'occupe de quoi (on peut être plusieurs sur un même truc, évidemment) selon le modèle suivant :
+[Priorité] Description de la tâche {Qui taffe actuellement dessus}
+
+Rapport :
+	- Découpage du rapport en parties, création du plan
+	- Rédaction
+Messagerie :
+	- Questionnaires {Bryan, Mathieu}
+	- Messages {Mathieu}
+	- Notifications {Bryan, Tristan}
+Moins urgent : 
+	- Emploi du temps
+	- Interface multilingue
+	
+Administration :
+	- Vue d'ajout/suppression/edition [permissions] :
+		- Individus [Admin]
+		- Cours	[Admin, prof]
+		- Créneaux [Admin, prof]
+		- Documents [Admin, prof]
+
+
+Finitions :
+	- CSS / LESS
+	- Interface mobile à peaufiner
+	- Accès distant au serveur
