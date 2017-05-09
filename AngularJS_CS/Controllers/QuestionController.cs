@@ -17,10 +17,11 @@ namespace AngularJS_CS.Controllers
         private Dal db = new Dal();
         public ActionResult Index()
         {
+            QuestionView model = new QuestionView();
             ViewBag.ListRep = new MultiSelectList(db.Reponses(), "Id", "valeur");
             ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
             ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
-            return View();
+            return View(model);
         }
 
         [HttpPost]
