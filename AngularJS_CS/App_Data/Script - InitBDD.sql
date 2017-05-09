@@ -337,4 +337,9 @@ Modèle de script de post-déploiement
   (6, 'Tristan', 'Hermant', 'hermtris', 66666666),
   (7, 'Yasmine', 'Kertous', 'kertyasm', 77777777),
   (8, 'Bryan', 'Vigee', 'vigebrya', 88888888);
+Insert into Option_Questionnaire (valeur) VALUES ('Oui'),('Non'),('Peut-Etre'),
+('Eventuellement'),('Lundi'),('Mardi'),
+('Mercredi'),('Jeudi'),('Vendredi'),
+('Samedi'),('Toujours'),('Jamais');
+Insert INTO Type_Questionnaire (type) VALUES ('Oui-Non'),('Oui-Non+'),('Choix de Jour'),('Custom');
 

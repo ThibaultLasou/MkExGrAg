@@ -83,5 +83,31 @@ namespace AngularJS_CS.Models
 
             return ind?.prenom ?? "Individu inconnu";
         }
+        public void AddMessage(Message m)
+        {
+            bdd.Message.Add(m);
+            bdd.SaveChanges();
+        }
+        public int GetLastIdMessage()
+        {
+            return bdd.Message.Last().Id;
+        }
+        public void AddQuesiton(Questionnaire q)
+        {
+            bdd.Questionnaire.Add(q);
+            bdd.SaveChanges();
+        }
+        public int GetLastQuestion()
+        {
+            return bdd.Questionnaire.Last().Id;
+        }
+        public Type_Questionnaire getTypeQuestion(int id)
+        {
+            return bdd.Type_Questionnaire.Find(id);
+        }
+        public List<Type_Questionnaire> GetTypes()
+        {
+            return bdd.Type_Questionnaire.ToList();
+        }
     }
 }
