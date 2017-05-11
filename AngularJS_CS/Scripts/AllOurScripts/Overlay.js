@@ -55,17 +55,15 @@ function typechose(value) {
             document.getElementById("rep_list").options[6].selected = true;
             document.getElementById("rep_list").options[7].selected = true;
             document.getElementById("rep_list").options[9].selected = true;
-            document.getElementById("rep_list").options[10].selected = true;
-            document.getElementById("rep_list").options[11].selected = true;
+            document.getElementById("rep_list").options[8].selected = true;
             break;
         case "4":
-            break;
         default:
     }
 }
 
 function customtype(){
-    document.getElementById("type_choice").value = '';
+    document.getElementById("type_choice").value = '4';
 }
 
 function show_messages(id_section) {

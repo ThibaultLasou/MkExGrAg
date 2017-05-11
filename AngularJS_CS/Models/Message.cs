@@ -28,6 +28,8 @@ namespace AngularJS_CS.Models
         public bool recu { get; set; }
         public bool lu { get; set; }
         public string contenu { get; set; }
+        public System.DateTime envoi { get; set; }
+        public System.DateTime lecture { get; set; }
     
         public virtual Individu Individu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

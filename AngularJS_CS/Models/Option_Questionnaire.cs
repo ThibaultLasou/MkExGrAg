@@ -18,6 +18,7 @@ namespace AngularJS_CS.Models
         public Option_Questionnaire()
         {
             this.Questionnaire = new HashSet<Questionnaire>();
+            this.Questionnaire1 = new HashSet<Questionnaire>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace AngularJS_CS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questionnaire> Questionnaire { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Questionnaire> Questionnaire1 { get; set; }
     }
 }

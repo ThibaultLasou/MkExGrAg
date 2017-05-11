@@ -23,5 +23,6 @@ namespace AngularJS_CS.Models
         int GetLastQuestion();
         List<Type_Questionnaire> GetTypes();
         string GetName(string id);
+        void Savedb();
     }
 }

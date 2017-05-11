@@ -53,7 +53,10 @@ namespace AngularJS_CS.Models
         {
             throw new NotImplementedException();
         }
-
+        public List<Questionnaire> GetQuestion()
+        {
+            return bdd.Questionnaire.ToList();
+        }
         public List<Option_Questionnaire> Reponses()
         {
             return bdd.Option_Questionnaire.ToList();
@@ -86,20 +89,22 @@ namespace AngularJS_CS.Models
         public void AddMessage(Message m)
         {
             bdd.Message.Add(m);
-            bdd.SaveChanges();
         }
         public int GetLastIdMessage()
         {
-            return bdd.Message.Last().Id;
+            if (bdd.Message.Count() > 0)
+                return bdd.Message.ToList()[bdd.Message.Count()-1].Id;
+            return 0;
         }
         public void AddQuesiton(Questionnaire q)
         {
             bdd.Questionnaire.Add(q);
-            bdd.SaveChanges();
         }
         public int GetLastQuestion()
         {
-            return bdd.Questionnaire.Last().Id;
+            if (bdd.Questionnaire.Count() >= 1)
+                return bdd.Questionnaire.ToList()[bdd.Questionnaire.Count()-1].Id;
+            return 0;
         }
         public Type_Questionnaire getTypeQuestion(int id)
         {
@@ -108,6 +113,11 @@ namespace AngularJS_CS.Models
         public List<Type_Questionnaire> GetTypes()
         {
             return bdd.Type_Questionnaire.ToList();
+        }
+
+        public void Savedb()
+        {
+            bdd.SaveChanges();
         }
     }
 }

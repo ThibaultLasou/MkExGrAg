@@ -23,10 +23,12 @@ namespace AngularJS_CS.Models
         public int Id { get; set; }
         public int Id_message { get; set; }
         public int type { get; set; }
+        public Nullable<int> Id_rep { get; set; }
     
         public virtual Message Message { get; set; }
         public virtual Type_Questionnaire Type_Questionnaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Option_Questionnaire> Option_Questionnaire { get; set; }
+        public virtual Option_Questionnaire Option_Questionnaire1 { get; set; }
     }
 }

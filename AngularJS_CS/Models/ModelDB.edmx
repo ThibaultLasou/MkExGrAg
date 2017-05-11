@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MainDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MainDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activite">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,7 +14,7 @@
           <Property Name="Id_reunion" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Appartenance' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Appartenance' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Appartenance">
           <Key>
             <PropertyRef Name="Id_groupe" />
@@ -24,7 +24,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_individu" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Auteur_Doc' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Auteur_Doc' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Auteur_Doc">
           <Key>
             <PropertyRef Name="Id_individu" />
@@ -42,7 +42,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_groupe" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Creneau' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Creneau' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Creneau">
           <Key>
             <PropertyRef Name="id" />
@@ -58,7 +58,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_Activite" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Doc_Contenu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Doc_Contenu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Doc_Contenu">
           <Key>
             <PropertyRef Name="Id_doc" />
@@ -75,7 +75,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Document_Groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Document_Groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Document_Groupe">
           <Key>
             <PropertyRef Name="Id_Document" />
@@ -110,10 +110,12 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="sujet" Type="varchar" MaxLength="40" />
           <Property Name="recu" Type="bit" Nullable="false" />
           <Property Name="lu" Type="bit" Nullable="false" />
+          <Property Name="envoi" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="lecture" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="contenu" Type="text" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Diffusion' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Diffusion' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Notification_Diffusion">
           <Key>
             <PropertyRef Name="Id_groupe" />
@@ -123,7 +125,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_message" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Simple' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Simple' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Notification_Simple">
           <Key>
             <PropertyRef Name="Id_message" />
@@ -146,9 +148,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_message" Type="int" Nullable="false" />
           <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="Id_rep" Type="int" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Reponses' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Reponses' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Reponses">
           <Key>
             <PropertyRef Name="Id_question" />
@@ -158,7 +161,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id_reponse" Type="int" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Responsable_groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Responsable_groupe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Responsable_groupe">
           <Key>
             <PropertyRef Name="Id_individu" />
@@ -190,7 +193,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="nom" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Statut_Individu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Statut_Individu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Statut_Individu">
           <Key>
             <PropertyRef Name="Id_individu" />
@@ -389,6 +392,18 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             </Principal>
             <Dependent Role="Message">
               <PropertyRef Name="Id_expediteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_givenRep">
+          <End Role="Option_Questionnaire" Type="Self.Option_Questionnaire" Multiplicity="0..1" />
+          <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option_Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionnaire">
+              <PropertyRef Name="Id_rep" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -661,6 +676,10 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Message" EntitySet="Message" />
           </AssociationSet>
+          <AssociationSet Name="FK_givenRep" Association="Self.FK_givenRep">
+            <End Role="Option_Questionnaire" EntitySet="Option_Questionnaire" />
+            <End Role="Questionnaire" EntitySet="Questionnaire" />
+          </AssociationSet>
           <AssociationSet Name="FK_groupe_reponsable_groupe" Association="Self.FK_groupe_reponsable_groupe">
             <End Role="Groupe" EntitySet="Groupe" />
             <End Role="Responsable_groupe" EntitySet="Responsable_groupe" />
@@ -706,8 +725,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             <End Role="Questionnaire" EntitySet="Questionnaire" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MainDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -785,6 +803,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <NavigationProperty Name="Questionnaire" Relationship="Self.FK_contenu_questionnaire" FromRole="Message" ToRole="Questionnaire" />
           <NavigationProperty Name="Groupe" Relationship="Self.Notification_Diffusion" FromRole="Message" ToRole="Groupe" />
           <NavigationProperty Name="Individu1" Relationship="Self.Notification_Simple" FromRole="Message" ToRole="Individu" />
+          <Property Name="envoi" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="lecture" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Option_Questionnaire">
           <Key>
@@ -793,6 +813,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="valeur" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Questionnaire" Relationship="Self.Reponses" FromRole="Option_Questionnaire" ToRole="Questionnaire" />
+          <NavigationProperty Name="Questionnaire1" Relationship="MainDBModel.FK_givenRep" FromRole="Option_Questionnaire" ToRole="Questionnaire" />
         </EntityType>
         <EntityType Name="Questionnaire">
           <Key>
@@ -804,6 +825,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <NavigationProperty Name="Message" Relationship="Self.FK_contenu_questionnaire" FromRole="Questionnaire" ToRole="Message" />
           <NavigationProperty Name="Type_Questionnaire" Relationship="Self.FK_Type_Questionnaire" FromRole="Questionnaire" ToRole="Type_Questionnaire" />
           <NavigationProperty Name="Option_Questionnaire" Relationship="Self.Reponses" FromRole="Questionnaire" ToRole="Option_Questionnaire" />
+          <Property Name="Id_rep" Type="Int32" />
+          <NavigationProperty Name="Option_Questionnaire1" Relationship="MainDBModel.FK_givenRep" FromRole="Questionnaire" ToRole="Option_Questionnaire" />
         </EntityType>
         <EntityType Name="Salle">
           <Key>
@@ -1075,7 +1098,23 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Statut" EntitySet="Statut" />
           </AssociationSet>
+          <AssociationSet Name="FK_givenRep" Association="MainDBModel.FK_givenRep">
+            <End Role="Option_Questionnaire" EntitySet="Option_Questionnaire" />
+            <End Role="Questionnaire" EntitySet="Questionnaire" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_givenRep">
+          <End Type="MainDBModel.Option_Questionnaire" Role="Option_Questionnaire" Multiplicity="0..1" />
+          <End Type="MainDBModel.Questionnaire" Role="Questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option_Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionnaire">
+              <PropertyRef Name="Id_rep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1130,6 +1169,8 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <EntitySetMapping Name="Message">
             <EntityTypeMapping TypeName="MainDBModel.Message">
               <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="lecture" ColumnName="lecture" />
+                <ScalarProperty Name="envoi" ColumnName="envoi" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_expediteur" ColumnName="Id_expediteur" />
                 <ScalarProperty Name="sujet" ColumnName="sujet" />
@@ -1150,6 +1191,7 @@ avertissement 6002: La table/vue 'C:\USERS\MATHIEU\SOURCE\REPOS\MKEXGRAG\ANGULAR
           <EntitySetMapping Name="Questionnaire">
             <EntityTypeMapping TypeName="MainDBModel.Questionnaire">
               <MappingFragment StoreEntitySet="Questionnaire">
+                <ScalarProperty Name="Id_rep" ColumnName="Id_rep" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_message" ColumnName="Id_message" />
                 <ScalarProperty Name="type" ColumnName="type" />

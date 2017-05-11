@@ -197,6 +197,8 @@ CREATE TABLE [dbo].[Message]
 	sujet varchar(40) null,
     [recu] BIT NOT NULL,
 	lu BIT NOT NULL,
+	envoi DATETIME2 not null,
+	lecture DATETIME2 not null,
 	contenu text NOT NULL, 
 	constraint [FK_expediteur_message] foreign key (Id_expediteur) references Individu (Id)
 
@@ -250,6 +252,8 @@ CREATE TABLE [dbo].[Questionnaire]
 	[Id] INT NOT NULL Identity(1,1) PRIMARY KEY,
 	Id_message int not null,
 	[type] int not null,
+	Id_rep int null,
+	constraint [FK_givenRep] foreign key (Id_rep) references Option_Questionnaire(Id),
 	constraint [FK_contenu_questionnaire] foreign key (Id_message) references Message (Id),
 	constraint [FK_Type_Questionnaire] foreign key ([type]) references Type_Questionnaire ([Id])
 )

@@ -36,6 +36,7 @@
         <AssociationConnector Association="MainDBModel.Reponses" ManuallyRouted="false" />
         <AssociationConnector Association="MainDBModel.Responsable_groupe" ManuallyRouted="false" />
         <AssociationConnector Association="MainDBModel.Statut_Individu" ManuallyRouted="false" />
+        <AssociationConnector Association="MainDBModel.FK_givenRep" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

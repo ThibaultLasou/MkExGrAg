@@ -10,3 +10,8 @@ $(document).mouseup(function (e) {
     if (!container.is(e.target) && container.has(e.target).length === 0)
         container.hide();
 });
+
+$('#rep_list').change(function () {
+    document.getElementById("type_choice").value = '4';
+    $('#type_choice').value = '4';
+});

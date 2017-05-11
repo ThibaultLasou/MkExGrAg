@@ -1,6 +1,6 @@
 ﻿@{
     Layout = null;
-    <link rel="stylesheet/less" href="~/Content/less/sidenav.less">  
+    <link rel="stylesheet/less" href="~/Content/less/sidenav.less">
 }
 
 <div id="Overlay" class="overlay" onclick="closeNav()">
@@ -9,7 +9,27 @@
 
 <div id="Sidenav" class="sidenav">
     <section id="message_section">
-        <a href="#" >Messages</a>
+        <a href="#">Messages</a>
+        @{
+            if (Request.IsAuthenticated)
+            {
+                AngularJS_CS.Models.Dal dal = new AngularJS_CS.Models.Dal();
+                AngularJS_CS.Models.Individu logged = dal.GetIndividus().Find(i => i.Id == int.Parse(HttpContext.Current.User.Identity.Name));
+                foreach (AngularJS_CS.Models.Message mes in logged.Message1)
+                {
+                    if (!mes.lu && mes.envoi.Hour <= System.DateTime.Now.Hour + 1)
+                    {
+
+                        if (mes.sujet == "")
+                        {
+                            <a href="#">Aucun sujet</a>
+                        }
+                        //mes.sujet;
+                        //mes.contenu;
+                    }
+                }
+            }
+        }
     </section>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">About</a>
