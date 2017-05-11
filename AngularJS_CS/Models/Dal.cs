@@ -14,6 +14,11 @@ namespace AngularJS_CS.Models
             bdd = new MainDBEntities();
         }
 
+        ~Dal()
+        {
+            this.Dispose();
+        }
+
         public Individu Authenticate(string username, string password)
         {
             return bdd.Individu.FirstOrDefault(ind => ind.userLogin == username && ind.numCarte == password);
