@@ -8,16 +8,10 @@ namespace AngularJS_CS.Models
 {
     public class Dal : IDal
     {
-        private MainDBEntities bdd;
-        public Dal()
-        {
-            bdd = new MainDBEntities();
-        }
+        private MainDBEntities5 bdd;
+        public Dal() { bdd = new MainDBEntities5(); }
 
-        ~Dal()
-        {
-            this.Dispose();
-        }
+        ~Dal() { this.Dispose(); }
 
         public Individu Authenticate(string username, string password)
         {
@@ -34,38 +28,23 @@ namespace AngularJS_CS.Models
             //return null;
         }
 
-        public void Dispose()
-        {
-            bdd.Dispose();
-        }
+        public void Dispose() { bdd.Dispose(); }
 
         public Doc_Web ObtenirDoc(string nom)
         {
             throw new NotImplementedException();
         }
 
-        public List<Groupe> GetGroupes()
-        {
-            return bdd.Groupe.ToList();
-        }
+        public List<Groupe> GetGroupes() { return bdd.Groupe.ToList(); }
 
-        public List<Individu> GetIndividus()
-        {
-            return bdd.Individu.ToList();
-        }
+        public List<Individu> GetIndividus() { return bdd.Individu.ToList(); }
 
         public Individu ObtenirInidividu()
         {
             throw new NotImplementedException();
         }
-        public List<Questionnaire> GetQuestion()
-        {
-            return bdd.Questionnaire.ToList();
-        }
-        public List<Option_Questionnaire> Reponses()
-        {
-            return bdd.Option_Questionnaire.ToList();
-        }
+        public List<Questionnaire> GetQuestion() { return bdd.Questionnaire.ToList(); }
+        public List<Option_Questionnaire> Reponses() { return bdd.Option_Questionnaire.ToList(); }
         public void AddRep(string rep)
         {
             if (rep != "" && rep != null)
@@ -91,38 +70,25 @@ namespace AngularJS_CS.Models
 
             return ind?.prenom ?? "Individu inconnu";
         }
-        public void AddMessage(Message m)
-        {
-            bdd.Message.Add(m);
-        }
+        public void AddMessage(Message m) { bdd.Message.Add(m); }
         public int GetLastIdMessage()
         {
             if (bdd.Message.Count() > 0)
-                return bdd.Message.ToList()[bdd.Message.Count()-1].Id;
+                return bdd.Message.ToList()[bdd.Message.Count() - 1].Id;
             return 0;
         }
-        public void AddQuesiton(Questionnaire q)
-        {
-            bdd.Questionnaire.Add(q);
-        }
+        public void AddQuesiton(Questionnaire q) { bdd.Questionnaire.Add(q); }
         public int GetLastQuestion()
         {
             if (bdd.Questionnaire.Count() >= 1)
-                return bdd.Questionnaire.ToList()[bdd.Questionnaire.Count()-1].Id;
+                return bdd.Questionnaire.ToList()[bdd.Questionnaire.Count() - 1].Id;
             return 0;
         }
-        public Type_Questionnaire getTypeQuestion(int id)
-        {
-            return bdd.Type_Questionnaire.Find(id);
-        }
-        public List<Type_Questionnaire> GetTypes()
-        {
-            return bdd.Type_Questionnaire.ToList();
-        }
+        public Type_Questionnaire getTypeQuestion(int id) { return bdd.Type_Questionnaire.Find(id); }
+        public List<Type_Questionnaire> GetTypes() { return bdd.Type_Questionnaire.ToList(); }
 
-        public void Savedb()
-        {
-            bdd.SaveChanges();
-        }
+        public void Savedb() { bdd.SaveChanges(); }
+        public void Addreponse(Reponses rep) { bdd.Reponses.Add(rep); }
+        public List<Reponses> GetRep() { return bdd.Reponses.ToList(); }
     }
 }

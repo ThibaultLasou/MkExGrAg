@@ -55,7 +55,6 @@ namespace AngularJS_CS.Controllers
                 sujet = mod.sujet,
                 lu = false,
                 recu = false,
-                Groupe = groupes,
                 Id_expediteur = int.Parse(User.Identity.Name),
                 Id = db.GetLastIdMessage() + 1,
                 envoi = System.DateTime.Now,
@@ -67,40 +66,68 @@ namespace AngularJS_CS.Controllers
                 type = mod.type,
                 Type_Questionnaire = db.getTypeQuestion(mod.type),
                 Id_message = content.Id,
-                Option_Questionnaire = new List<Option_Questionnaire>(),
+
             };
             foreach (int i in mod.Reponses)
             {
                 var opt = db.Reponses()[i - 1];
-                question.Option_Questionnaire.Add(opt);
-                opt.Questionnaire.Add(question);
-                //question.Option_Questionnaire.Add(new Option_Questionnaire { Id = i, valeur = db.Reponses().FirstOrDefault(r => r.Id == i).valeur });
-                //db.Reponses().FirstOrDefault(r => r.Id == i).Questionnaire.Add(db.GetQuestion()[db.GetQuestion().Count - 1]);
+                int idrep = db.GetRep().Count;
+                idrep += i;
+                Reponses rep = new Reponses
+                {
+                    Questionnaire = question,
+                    Id = idrep,
+                    Id_question = question.Id,
+                    Id_reponse = i,
+                    Option_Questionnaire = opt
+                };
+                db.Addreponse(rep);
+                opt.Reponses.Add(rep);
+                question.Reponses.Add(rep);
             }
 
             db.GetIndividus().Find(i => i.Id == int.Parse(User.Identity.Name)).Message.Add(content);
             db.GetQuestion().Add(question);
             db.AddMessage(content);
-            //db.AddQuesiton(question);
-            db.Savedb();
 
-            //db.AddMessage(content);
-            //db.AddQuesiton(question);
-            db.Savedb();
             question.Message = content;
-            db.Savedb();
             foreach (Individu ind in destinataires)
                 if (ind != null)
                 {
-                    ind.Message1.Add(content);
-                    content.Individu1.Add(ind);
+                    Notification_Simple notif = new Notification_Simple
+                    {
+                        Id_individu = ind.Id,
+                        Individu = ind,
+                        Id_message = content.Id,
+                        Message = content
+                    };
+                    ind.Notification_Simple.Add(notif);
+                    content.Notification_Simple.Add(notif);
+                }
+            foreach (Groupe gr in groupes)
+                if (gr != null)
+                {
+                    Notification_Diffusion not = new Notification_Diffusion
+                    {
+                        Id_groupe = gr.Id,
+                        Groupe = gr,
+                        Id_message = content.Id,
+                        Message = content,
+                    };
+                    gr.Notification_Diffusion.Add(not);
+                    content.Notification_Diffusion.Add(not);
                 }
 
             content.Questionnaire.Add(question);
             db.Savedb();
-            db.Dispose();
             return RedirectToAction("Index", "Home");
 
+        }
+
+        [HttpPost]
+        public void Retorque(QuestionView mod)
+        {
+            string k= ValueProvider.GetValue("posrep").AttemptedValue;
         }
     }
 }

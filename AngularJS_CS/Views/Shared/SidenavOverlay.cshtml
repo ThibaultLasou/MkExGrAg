@@ -8,30 +8,45 @@
 </div>
 
 <div id="Sidenav" class="sidenav">
-    <section id="message_section">
-        <a href="#">Messages</a>
-        @{
-            if (Request.IsAuthenticated)
-            {
-                AngularJS_CS.Models.Dal dal = new AngularJS_CS.Models.Dal();
-                AngularJS_CS.Models.Individu logged = dal.GetIndividus().Find(i => i.Id == int.Parse(HttpContext.Current.User.Identity.Name));
-                foreach (AngularJS_CS.Models.Message mes in logged.Message1)
-                {
-                    if (!mes.lu && mes.envoi.Hour <= System.DateTime.Now.Hour + 1)
-                    {
-
-                        if (mes.sujet == "")
-                        {
-                            <a href="#">Aucun sujet</a>
-                        }
-                        //mes.sujet;
-                        //mes.contenu;
-                    }
-                }
-            }
-        }
-    </section>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <section id="message_section">
+        <a href="#" type="title">Messages</a>
+        @if (Request.IsAuthenticated)
+            {
+            <div>
+                @foreach (AngularJS_CS.Models.Notification_Simple mes in new AngularJS_CS.Models.Dal().GetIndividus().Find(i => i.Id == int.Parse(HttpContext.Current.User.Identity.Name)).Notification_Simple)
+                {
+                    using (Html.BeginForm())
+                    {
+                        if (!mes.Message.lu && mes.Message.envoi.Hour <= System.DateTime.Now.Hour + 1)
+                        {
+                            if (mes.Message.sujet == "")
+                            { <a type="subtitle" href="#">Aucun sujet</a> }
+                            else
+                            { <a type="subtitle" href="#">@(mes.Message.sujet)</a> }
+                            <p>Envoyé le @(mes.Message.envoi)</p>
+                                <p>@(mes.Message.contenu)</p>
+                            if (mes.Message.Questionnaire.Count > 0)
+                            {
+                                <select id="list_rep" data-val="true" type="rep_list" name="posrep" required="True">
+                                    @{
+                                        <option typeof="reponses" value="">Réponses</option>
+                                        foreach (AngularJS_CS.Models.Reponses rep in mes.Message.Questionnaire.ElementAt(0).Reponses)
+                                        {
+                                            <option type="reponses" value=@(rep.Id_reponse)>@(rep.Option_Questionnaire.valeur) </option>
+                                        }
+                                    }
+                                </select>
+                                        }
+                                        <textarea type="repbox" id="reptext" name="reptxt"></textarea>
+                                            <input type="submit" value="Répondre &#128389;" onclick="closeNav()" />
+                                                }
+                                            }
+                                        }
+            </div>
+                                        }
+
+    </section>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>

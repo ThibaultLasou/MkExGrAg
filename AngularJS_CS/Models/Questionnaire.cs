@@ -17,7 +17,7 @@ namespace AngularJS_CS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Questionnaire()
         {
-            this.Option_Questionnaire = new HashSet<Option_Questionnaire>();
+            this.Reponses = new HashSet<Reponses>();
         }
     
         public int Id { get; set; }
@@ -26,9 +26,9 @@ namespace AngularJS_CS.Models
         public Nullable<int> Id_rep { get; set; }
     
         public virtual Message Message { get; set; }
-        public virtual Type_Questionnaire Type_Questionnaire { get; set; }
+        public virtual Option_Questionnaire Option_Questionnaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Option_Questionnaire> Option_Questionnaire { get; set; }
-        public virtual Option_Questionnaire Option_Questionnaire1 { get; set; }
+        public virtual ICollection<Reponses> Reponses { get; set; }
+        public virtual Type_Questionnaire Type_Questionnaire { get; set; }
     }
 }

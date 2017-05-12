@@ -206,6 +206,7 @@ CREATE TABLE [dbo].[Message]
 
 CREATE TABLE [dbo].[Notification_Diffusion]
 (
+	Id int identity(1,1) not null,
 	[Id_groupe] INT NOT NULL ,
 	Id_message int NOT NULL ,
 	constraint [Fk_Dif_Notif_groupe] foreign key (Id_groupe) references Groupe (Id),
@@ -217,9 +218,11 @@ ON dbo.Notification_Diffusion
 (
 Id_groupe, Id_message
 );
+ALTER TABLE Notification_Diffusion Add constraint PK_Notif_Diff PRIMARY KEY (Id);
 
 CREATE TABLE [dbo].[Notification_Simple]
 (
+	Id int identity(1,1) not null,
 	[Id_message] INT NOT NULL ,
 	Id_individu int not null,
 	constraint [FK_Snotif_message] foreign key (Id_message) references Message (Id),
@@ -234,6 +237,7 @@ ON dbo.Notification_Simple
 Id_message, Id_individu
 );
 
+ALTER TABLE Notification_Simple Add constraint PK_Notif_Simp PRIMARY KEY (Id);
 CREATE TABLE [dbo].[Option_Questionnaire]
 (
 Id int Identity(1,1) not null primary key,
@@ -259,6 +263,7 @@ CREATE TABLE [dbo].[Questionnaire]
 )
 
 Create Table [dbo].[Reponses](
+	Id int identity(1,1) not null,
 	Id_question int not null,
 	Id_reponse int not null,
 	constraint [FK_option_questionnaire] foreign key (Id_question) references Questionnaire (Id),
@@ -270,6 +275,7 @@ On dbo.Reponses(
 Id_question,Id_reponse
 );
 
+ALTER TABLE Reponses Add constraint PK_rep PRIMARY KEY (Id);
 
 CREATE TABLE [dbo].[Responsable_groupe]
 (

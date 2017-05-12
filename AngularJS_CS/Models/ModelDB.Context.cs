@@ -13,10 +13,10 @@ namespace AngularJS_CS.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MainDBEntities : DbContext
+    public partial class MainDBEntities5 : DbContext
     {
-        public MainDBEntities()
-            : base("name=MainDBEntities")
+        public MainDBEntities5()
+            : base("name=MainDBEntities5")
         {
         }
     
@@ -31,8 +31,11 @@ namespace AngularJS_CS.Models
         public virtual DbSet<Groupe> Groupe { get; set; }
         public virtual DbSet<Individu> Individu { get; set; }
         public virtual DbSet<Message> Message { get; set; }
+        public virtual DbSet<Notification_Diffusion> Notification_Diffusion { get; set; }
+        public virtual DbSet<Notification_Simple> Notification_Simple { get; set; }
         public virtual DbSet<Option_Questionnaire> Option_Questionnaire { get; set; }
         public virtual DbSet<Questionnaire> Questionnaire { get; set; }
+        public virtual DbSet<Reponses> Reponses { get; set; }
         public virtual DbSet<Salle> Salle { get; set; }
         public virtual DbSet<Sous_doc_Web> Sous_doc_Web { get; set; }
         public virtual DbSet<Statut> Statut { get; set; }

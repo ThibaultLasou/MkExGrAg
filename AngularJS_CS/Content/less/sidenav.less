@@ -1,6 +1,9 @@
 ﻿@color_1: #818181;
 @color_2: #f1f1f1;
 @background_color_1: #0b324e;
+@blue_polytech: #00afec;
+@green_psud: #6fbf39;
+@bg_white: #fff;
 
 /* The navigation menu links */
 /* When you mouse over the navigation links, change their color */
@@ -18,7 +21,7 @@
     color: black;
     overflow-x: hidden;
     background-color: black;
-    //transition: 0.2s;
+    transition: 0.1s;
 }
 
 .sidenav {
@@ -33,8 +36,21 @@
     padding-top: 60px;
     transition: 0.9s;
 
-    a {
-        padding: 8px 8px 8px 32px;
+    a[type="subtitle"] {
+        padding: 8px 0px 0px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: aliceblue;
+        transition: 0.3s;
+        display: block;
+
+        &:hover {
+            color: crimson;
+        }
+    }
+
+    a[type="title"] {
+        padding: 8px 0px 0px 32px;
         text-decoration: none;
         font-size: 25px;
         color: @color_1;
@@ -42,9 +58,10 @@
         transition: 0.3s;
 
         &:hover {
-            color: @color_1;
+            color: @color_2;
         }
     }
+
 
     .closebtn {
         position: absolute;
@@ -53,7 +70,58 @@
         font-size: 36px;
         margin-right: 0px;
     }
+
+    p {
+        padding: 8px 8px 8px 32px;
+        color: antiquewhite;
+        display: block;
+        font-size: 15px;
+        text-overflow: clip;
+    }
+
+    select[type="rep_list"] {
+        padding: 8px 8px 8px 32px;
+        display: block;
+        transition: 0.3s;
+        margin: 20px;
+    }
+
+    option[type="reponses"] {
+        display: block;
+        transition: 0.3s;
+    }
+
+
+    textarea[type="repbox"] {
+        resize: none;
+        padding: 7px 5px;
+        margin: 10px 0;
+        width: 100%;
+        display: block;
+        font-size: 12px;
+        border: 1px inset silver;
+    }
+
+    input[type="submit"] {
+        background: @green_psud;
+        border: 1px solid transparent;
+        -webkit-transition: .2s all;
+        -o-transition: .2s all;
+        transition: .2s all;
+        padding: 10px;
+        font-size: 20px;
+        display: block;
+        width: 100%;
+        color: @bg_white;
+
+        &:hover {
+            color: @green_psud;
+            background: @bg_white;
+            border: 1px solid @green_psud;
+        }
+    }
 }
+
 
 .offcanvas {
     a {

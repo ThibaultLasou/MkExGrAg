@@ -18,8 +18,8 @@ namespace AngularJS_CS.Models
         public Message()
         {
             this.Questionnaire = new HashSet<Questionnaire>();
-            this.Groupe = new HashSet<Groupe>();
-            this.Individu1 = new HashSet<Individu>();
+            this.Notification_Diffusion = new HashSet<Notification_Diffusion>();
+            this.Notification_Simple = new HashSet<Notification_Simple>();
         }
     
         public int Id { get; set; }
@@ -27,16 +27,16 @@ namespace AngularJS_CS.Models
         public string sujet { get; set; }
         public bool recu { get; set; }
         public bool lu { get; set; }
-        public string contenu { get; set; }
         public System.DateTime envoi { get; set; }
         public System.DateTime lecture { get; set; }
+        public string contenu { get; set; }
     
         public virtual Individu Individu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questionnaire> Questionnaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groupe> Groupe { get; set; }
+        public virtual ICollection<Notification_Diffusion> Notification_Diffusion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Individu> Individu1 { get; set; }
+        public virtual ICollection<Notification_Simple> Notification_Simple { get; set; }
     }
 }

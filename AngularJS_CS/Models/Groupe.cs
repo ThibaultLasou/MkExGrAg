@@ -18,9 +18,9 @@ namespace AngularJS_CS.Models
         public Groupe()
         {
             this.Cours = new HashSet<Cours>();
+            this.Notification_Diffusion = new HashSet<Notification_Diffusion>();
             this.Individu = new HashSet<Individu>();
             this.Doc_Web = new HashSet<Doc_Web>();
-            this.Message = new HashSet<Message>();
             this.Individu1 = new HashSet<Individu>();
         }
     
@@ -30,11 +30,11 @@ namespace AngularJS_CS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cours> Cours { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notification_Diffusion> Notification_Diffusion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Individu> Individu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Doc_Web> Doc_Web { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> Message { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Individu> Individu1 { get; set; }
     }

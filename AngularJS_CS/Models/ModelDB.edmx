@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MainDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MainDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activite">
           <Key>
             <PropertyRef Name="Id" />
@@ -114,23 +114,19 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="lecture" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="contenu" Type="text" Nullable="false" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Diffusion' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Notification_Diffusion">
           <Key>
-            <PropertyRef Name="Id_groupe" />
-            <PropertyRef Name="Id_message" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_groupe" Type="int" Nullable="false" />
           <Property Name="Id_message" Type="int" Nullable="false" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Notification_Simple' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Notification_Simple">
           <Key>
-            <PropertyRef Name="Id_message" />
-            <PropertyRef Name="Id_individu" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_message" Type="int" Nullable="false" />
           <Property Name="Id_individu" Type="int" Nullable="false" />
         </EntityType>
@@ -150,13 +146,11 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="type" Type="int" Nullable="false" />
           <Property Name="Id_rep" Type="int" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS_CS\APP_DATA\MAINDB.MDF.dbo.Reponses' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Reponses">
           <Key>
-            <PropertyRef Name="Id_question" />
-            <PropertyRef Name="Id_reponse" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_question" Type="int" Nullable="false" />
           <Property Name="Id_reponse" Type="int" Nullable="false" />
         </EntityType>
@@ -546,8 +540,11 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <EntitySet Name="Groupe" EntityType="Self.Groupe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Individu" EntityType="Self.Individu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification_Diffusion" EntityType="Self.Notification_Diffusion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification_Simple" EntityType="Self.Notification_Simple" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Option_Questionnaire" EntityType="Self.Option_Questionnaire" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reponses" EntityType="Self.Reponses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Salle" EntityType="Self.Salle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sous_doc_Web" EntityType="Self.Sous_doc_Web" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statut" EntityType="Self.Statut" Schema="dbo" store:Type="Tables" />
@@ -585,24 +582,6 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
     [Document_Groupe].[Id_Document] AS [Id_Document], 
     [Document_Groupe].[Id_groupe] AS [Id_groupe]
     FROM [dbo].[Document_Groupe] AS [Document_Groupe]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Notification_Diffusion" EntityType="Self.Notification_Diffusion" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Notification_Diffusion].[Id_groupe] AS [Id_groupe], 
-    [Notification_Diffusion].[Id_message] AS [Id_message]
-    FROM [dbo].[Notification_Diffusion] AS [Notification_Diffusion]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Notification_Simple" EntityType="Self.Notification_Simple" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Notification_Simple].[Id_message] AS [Id_message], 
-    [Notification_Simple].[Id_individu] AS [Id_individu]
-    FROM [dbo].[Notification_Simple] AS [Notification_Simple]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Reponses" EntityType="Self.Reponses" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Reponses].[Id_question] AS [Id_question], 
-    [Reponses].[Id_reponse] AS [Id_reponse]
-    FROM [dbo].[Reponses] AS [Reponses]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Responsable_groupe" EntityType="Self.Responsable_groupe" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -725,7 +704,8 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             <End Role="Questionnaire" EntitySet="Questionnaire" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MainDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -767,9 +747,9 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nom" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cours" Relationship="Self.Fk_cours_groupe" FromRole="Groupe" ToRole="Cours" />
+          <NavigationProperty Name="Notification_Diffusion" Relationship="Self.Fk_Dif_Notif_groupe" FromRole="Groupe" ToRole="Notification_Diffusion" />
           <NavigationProperty Name="Individu" Relationship="Self.Appartenance" FromRole="Groupe" ToRole="Individu" />
           <NavigationProperty Name="Doc_Web" Relationship="Self.Document_Groupe" FromRole="Groupe" ToRole="Doc_Web" />
-          <NavigationProperty Name="Message" Relationship="Self.Notification_Diffusion" FromRole="Groupe" ToRole="Message" />
           <NavigationProperty Name="Individu1" Relationship="Self.Responsable_groupe" FromRole="Groupe" ToRole="Individu" />
         </EntityType>
         <EntityType Name="Individu">
@@ -783,9 +763,9 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="numCarte" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cours" Relationship="Self.Fk_cours_prof" FromRole="Individu" ToRole="Cours" />
           <NavigationProperty Name="Message" Relationship="Self.FK_expediteur_message" FromRole="Individu" ToRole="Message" />
+          <NavigationProperty Name="Notification_Simple" Relationship="Self.FK_Snotif_individu" FromRole="Individu" ToRole="Notification_Simple" />
           <NavigationProperty Name="Groupe" Relationship="Self.Appartenance" FromRole="Individu" ToRole="Groupe" />
           <NavigationProperty Name="Doc_Web" Relationship="Self.Auteur_Doc" FromRole="Individu" ToRole="Doc_Web" />
-          <NavigationProperty Name="Message1" Relationship="Self.Notification_Simple" FromRole="Individu" ToRole="Message" />
           <NavigationProperty Name="Groupe1" Relationship="Self.Responsable_groupe" FromRole="Individu" ToRole="Groupe" />
           <NavigationProperty Name="Statut" Relationship="Self.Statut_Individu" FromRole="Individu" ToRole="Statut" />
         </EntityType>
@@ -798,13 +778,33 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="sujet" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="recu" Type="Boolean" Nullable="false" />
           <Property Name="lu" Type="Boolean" Nullable="false" />
+          <Property Name="envoi" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="lecture" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Individu" Relationship="Self.FK_expediteur_message" FromRole="Message" ToRole="Individu" />
           <NavigationProperty Name="Questionnaire" Relationship="Self.FK_contenu_questionnaire" FromRole="Message" ToRole="Questionnaire" />
-          <NavigationProperty Name="Groupe" Relationship="Self.Notification_Diffusion" FromRole="Message" ToRole="Groupe" />
-          <NavigationProperty Name="Individu1" Relationship="Self.Notification_Simple" FromRole="Message" ToRole="Individu" />
-          <Property Name="envoi" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="lecture" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Notification_Diffusion" Relationship="Self.Fk_Dif_Notif_message" FromRole="Message" ToRole="Notification_Diffusion" />
+          <NavigationProperty Name="Notification_Simple" Relationship="Self.FK_Snotif_message" FromRole="Message" ToRole="Notification_Simple" />
+        </EntityType>
+        <EntityType Name="Notification_Diffusion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_groupe" Type="Int32" Nullable="false" />
+          <Property Name="Id_message" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groupe" Relationship="Self.Fk_Dif_Notif_groupe" FromRole="Notification_Diffusion" ToRole="Groupe" />
+          <NavigationProperty Name="Message" Relationship="Self.Fk_Dif_Notif_message" FromRole="Notification_Diffusion" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="Notification_Simple">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_message" Type="Int32" Nullable="false" />
+          <Property Name="Id_individu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Individu" Relationship="Self.FK_Snotif_individu" FromRole="Notification_Simple" ToRole="Individu" />
+          <NavigationProperty Name="Message" Relationship="Self.FK_Snotif_message" FromRole="Notification_Simple" ToRole="Message" />
         </EntityType>
         <EntityType Name="Option_Questionnaire">
           <Key>
@@ -812,8 +812,8 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="valeur" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Questionnaire" Relationship="Self.Reponses" FromRole="Option_Questionnaire" ToRole="Questionnaire" />
-          <NavigationProperty Name="Questionnaire1" Relationship="MainDBModel.FK_givenRep" FromRole="Option_Questionnaire" ToRole="Questionnaire" />
+          <NavigationProperty Name="Questionnaire" Relationship="Self.FK_givenRep" FromRole="Option_Questionnaire" ToRole="Questionnaire" />
+          <NavigationProperty Name="Reponses" Relationship="Self.FK_rep_quest" FromRole="Option_Questionnaire" ToRole="Reponses" />
         </EntityType>
         <EntityType Name="Questionnaire">
           <Key>
@@ -822,11 +822,21 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_message" Type="Int32" Nullable="false" />
           <Property Name="type" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Message" Relationship="Self.FK_contenu_questionnaire" FromRole="Questionnaire" ToRole="Message" />
-          <NavigationProperty Name="Type_Questionnaire" Relationship="Self.FK_Type_Questionnaire" FromRole="Questionnaire" ToRole="Type_Questionnaire" />
-          <NavigationProperty Name="Option_Questionnaire" Relationship="Self.Reponses" FromRole="Questionnaire" ToRole="Option_Questionnaire" />
           <Property Name="Id_rep" Type="Int32" />
-          <NavigationProperty Name="Option_Questionnaire1" Relationship="MainDBModel.FK_givenRep" FromRole="Questionnaire" ToRole="Option_Questionnaire" />
+          <NavigationProperty Name="Message" Relationship="Self.FK_contenu_questionnaire" FromRole="Questionnaire" ToRole="Message" />
+          <NavigationProperty Name="Option_Questionnaire" Relationship="Self.FK_givenRep" FromRole="Questionnaire" ToRole="Option_Questionnaire" />
+          <NavigationProperty Name="Reponses" Relationship="Self.FK_option_questionnaire" FromRole="Questionnaire" ToRole="Reponses" />
+          <NavigationProperty Name="Type_Questionnaire" Relationship="Self.FK_Type_Questionnaire" FromRole="Questionnaire" ToRole="Type_Questionnaire" />
+        </EntityType>
+        <EntityType Name="Reponses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_question" Type="Int32" Nullable="false" />
+          <Property Name="Id_reponse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Option_Questionnaire" Relationship="Self.FK_rep_quest" FromRole="Reponses" ToRole="Option_Questionnaire" />
+          <NavigationProperty Name="Questionnaire" Relationship="Self.FK_option_questionnaire" FromRole="Reponses" ToRole="Questionnaire" />
         </EntityType>
         <EntityType Name="Salle">
           <Key>
@@ -931,6 +941,18 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fk_Dif_Notif_groupe">
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="1" />
+          <End Role="Notification_Diffusion" Type="Self.Notification_Diffusion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification_Diffusion">
+              <PropertyRef Name="Id_groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_expediteur_message">
           <End Role="Individu" Type="Self.Individu" Multiplicity="1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
@@ -943,6 +965,18 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Snotif_individu">
+          <End Role="Individu" Type="Self.Individu" Multiplicity="1" />
+          <End Role="Notification_Simple" Type="Self.Notification_Simple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification_Simple">
+              <PropertyRef Name="Id_individu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_contenu_questionnaire">
           <End Role="Message" Type="Self.Message" Multiplicity="1" />
           <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="*" />
@@ -952,6 +986,66 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             </Principal>
             <Dependent Role="Questionnaire">
               <PropertyRef Name="Id_message" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Dif_Notif_message">
+          <End Role="Message" Type="Self.Message" Multiplicity="1" />
+          <End Role="Notification_Diffusion" Type="Self.Notification_Diffusion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification_Diffusion">
+              <PropertyRef Name="Id_message" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Snotif_message">
+          <End Role="Message" Type="Self.Message" Multiplicity="1" />
+          <End Role="Notification_Simple" Type="Self.Notification_Simple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification_Simple">
+              <PropertyRef Name="Id_message" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_givenRep">
+          <End Role="Option_Questionnaire" Type="Self.Option_Questionnaire" Multiplicity="0..1" />
+          <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option_Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionnaire">
+              <PropertyRef Name="Id_rep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rep_quest">
+          <End Role="Option_Questionnaire" Type="Self.Option_Questionnaire" Multiplicity="1" />
+          <End Role="Reponses" Type="Self.Reponses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option_Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reponses">
+              <PropertyRef Name="Id_reponse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_option_questionnaire">
+          <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
+          <End Role="Reponses" Type="Self.Reponses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reponses">
+              <PropertyRef Name="Id_question" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -995,18 +1089,6 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <End Role="Doc_Web" Type="Self.Doc_Web" Multiplicity="*" />
           <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
         </Association>
-        <Association Name="Notification_Diffusion">
-          <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
-          <End Role="Message" Type="Self.Message" Multiplicity="*" />
-        </Association>
-        <Association Name="Notification_Simple">
-          <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
-          <End Role="Message" Type="Self.Message" Multiplicity="*" />
-        </Association>
-        <Association Name="Reponses">
-          <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="*" />
-          <End Role="Option_Questionnaire" Type="Self.Option_Questionnaire" Multiplicity="*" />
-        </Association>
         <Association Name="Responsable_groupe">
           <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
           <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
@@ -1015,15 +1097,18 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
           <End Role="Statut" Type="Self.Statut" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MainDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MainDBEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activite" EntityType="Self.Activite" />
           <EntitySet Name="Cours" EntityType="Self.Cours" />
           <EntitySet Name="Doc_Web" EntityType="Self.Doc_Web" />
           <EntitySet Name="Groupe" EntityType="Self.Groupe" />
           <EntitySet Name="Individu" EntityType="Self.Individu" />
           <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="Notification_Diffusion" EntityType="Self.Notification_Diffusion" />
+          <EntitySet Name="Notification_Simple" EntityType="Self.Notification_Simple" />
           <EntitySet Name="Option_Questionnaire" EntityType="Self.Option_Questionnaire" />
           <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" />
+          <EntitySet Name="Reponses" EntityType="Self.Reponses" />
           <EntitySet Name="Salle" EntityType="Self.Salle" />
           <EntitySet Name="Sous_doc_Web" EntityType="Self.Sous_doc_Web" />
           <EntitySet Name="Statut" EntityType="Self.Statut" />
@@ -1046,13 +1131,41 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Cours" EntitySet="Cours" />
           </AssociationSet>
+          <AssociationSet Name="Fk_Dif_Notif_groupe" Association="Self.Fk_Dif_Notif_groupe">
+            <End Role="Groupe" EntitySet="Groupe" />
+            <End Role="Notification_Diffusion" EntitySet="Notification_Diffusion" />
+          </AssociationSet>
           <AssociationSet Name="FK_expediteur_message" Association="Self.FK_expediteur_message">
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Message" EntitySet="Message" />
           </AssociationSet>
+          <AssociationSet Name="FK_Snotif_individu" Association="Self.FK_Snotif_individu">
+            <End Role="Individu" EntitySet="Individu" />
+            <End Role="Notification_Simple" EntitySet="Notification_Simple" />
+          </AssociationSet>
           <AssociationSet Name="FK_contenu_questionnaire" Association="Self.FK_contenu_questionnaire">
             <End Role="Message" EntitySet="Message" />
             <End Role="Questionnaire" EntitySet="Questionnaire" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Dif_Notif_message" Association="Self.Fk_Dif_Notif_message">
+            <End Role="Message" EntitySet="Message" />
+            <End Role="Notification_Diffusion" EntitySet="Notification_Diffusion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Snotif_message" Association="Self.FK_Snotif_message">
+            <End Role="Message" EntitySet="Message" />
+            <End Role="Notification_Simple" EntitySet="Notification_Simple" />
+          </AssociationSet>
+          <AssociationSet Name="FK_givenRep" Association="Self.FK_givenRep">
+            <End Role="Option_Questionnaire" EntitySet="Option_Questionnaire" />
+            <End Role="Questionnaire" EntitySet="Questionnaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rep_quest" Association="Self.FK_rep_quest">
+            <End Role="Option_Questionnaire" EntitySet="Option_Questionnaire" />
+            <End Role="Reponses" EntitySet="Reponses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_option_questionnaire" Association="Self.FK_option_questionnaire">
+            <End Role="Questionnaire" EntitySet="Questionnaire" />
+            <End Role="Reponses" EntitySet="Reponses" />
           </AssociationSet>
           <AssociationSet Name="FK_Type_Questionnaire" Association="Self.FK_Type_Questionnaire">
             <End Role="Type_Questionnaire" EntitySet="Type_Questionnaire" />
@@ -1078,18 +1191,6 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             <End Role="Doc_Web" EntitySet="Doc_Web" />
             <End Role="Groupe" EntitySet="Groupe" />
           </AssociationSet>
-          <AssociationSet Name="Notification_Diffusion" Association="Self.Notification_Diffusion">
-            <End Role="Groupe" EntitySet="Groupe" />
-            <End Role="Message" EntitySet="Message" />
-          </AssociationSet>
-          <AssociationSet Name="Notification_Simple" Association="Self.Notification_Simple">
-            <End Role="Individu" EntitySet="Individu" />
-            <End Role="Message" EntitySet="Message" />
-          </AssociationSet>
-          <AssociationSet Name="Reponses" Association="Self.Reponses">
-            <End Role="Questionnaire" EntitySet="Questionnaire" />
-            <End Role="Option_Questionnaire" EntitySet="Option_Questionnaire" />
-          </AssociationSet>
           <AssociationSet Name="Responsable_groupe" Association="Self.Responsable_groupe">
             <End Role="Groupe" EntitySet="Groupe" />
             <End Role="Individu" EntitySet="Individu" />
@@ -1098,29 +1199,13 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             <End Role="Individu" EntitySet="Individu" />
             <End Role="Statut" EntitySet="Statut" />
           </AssociationSet>
-          <AssociationSet Name="FK_givenRep" Association="MainDBModel.FK_givenRep">
-            <End Role="Option_Questionnaire" EntitySet="Option_Questionnaire" />
-            <End Role="Questionnaire" EntitySet="Questionnaire" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_givenRep">
-          <End Type="MainDBModel.Option_Questionnaire" Role="Option_Questionnaire" Multiplicity="0..1" />
-          <End Type="MainDBModel.Questionnaire" Role="Questionnaire" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Option_Questionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Questionnaire">
-              <PropertyRef Name="Id_rep" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities">
+        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities5">
           <EntitySetMapping Name="Activite">
             <EntityTypeMapping TypeName="MainDBModel.Activite">
               <MappingFragment StoreEntitySet="Activite">
@@ -1169,14 +1254,32 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <EntitySetMapping Name="Message">
             <EntityTypeMapping TypeName="MainDBModel.Message">
               <MappingFragment StoreEntitySet="Message">
-                <ScalarProperty Name="lecture" ColumnName="lecture" />
-                <ScalarProperty Name="envoi" ColumnName="envoi" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_expediteur" ColumnName="Id_expediteur" />
                 <ScalarProperty Name="sujet" ColumnName="sujet" />
                 <ScalarProperty Name="recu" ColumnName="recu" />
                 <ScalarProperty Name="lu" ColumnName="lu" />
+                <ScalarProperty Name="envoi" ColumnName="envoi" />
+                <ScalarProperty Name="lecture" ColumnName="lecture" />
                 <ScalarProperty Name="contenu" ColumnName="contenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification_Diffusion">
+            <EntityTypeMapping TypeName="MainDBModel.Notification_Diffusion">
+              <MappingFragment StoreEntitySet="Notification_Diffusion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_groupe" ColumnName="Id_groupe" />
+                <ScalarProperty Name="Id_message" ColumnName="Id_message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification_Simple">
+            <EntityTypeMapping TypeName="MainDBModel.Notification_Simple">
+              <MappingFragment StoreEntitySet="Notification_Simple">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_message" ColumnName="Id_message" />
+                <ScalarProperty Name="Id_individu" ColumnName="Id_individu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1191,10 +1294,19 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <EntitySetMapping Name="Questionnaire">
             <EntityTypeMapping TypeName="MainDBModel.Questionnaire">
               <MappingFragment StoreEntitySet="Questionnaire">
-                <ScalarProperty Name="Id_rep" ColumnName="Id_rep" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_message" ColumnName="Id_message" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Id_rep" ColumnName="Id_rep" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reponses">
+            <EntityTypeMapping TypeName="MainDBModel.Reponses">
+              <MappingFragment StoreEntitySet="Reponses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_question" ColumnName="Id_question" />
+                <ScalarProperty Name="Id_reponse" ColumnName="Id_reponse" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1279,30 +1391,6 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
             </EndProperty>
             <EndProperty Name="Groupe">
               <ScalarProperty Name="Id" ColumnName="Id_groupe" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Notification_Diffusion" TypeName="MainDBModel.Notification_Diffusion" StoreEntitySet="Notification_Diffusion">
-            <EndProperty Name="Groupe">
-              <ScalarProperty Name="Id" ColumnName="Id_groupe" />
-            </EndProperty>
-            <EndProperty Name="Message">
-              <ScalarProperty Name="Id" ColumnName="Id_message" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Notification_Simple" TypeName="MainDBModel.Notification_Simple" StoreEntitySet="Notification_Simple">
-            <EndProperty Name="Individu">
-              <ScalarProperty Name="Id" ColumnName="Id_individu" />
-            </EndProperty>
-            <EndProperty Name="Message">
-              <ScalarProperty Name="Id" ColumnName="Id_message" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Reponses" TypeName="MainDBModel.Reponses" StoreEntitySet="Reponses">
-            <EndProperty Name="Questionnaire">
-              <ScalarProperty Name="Id" ColumnName="Id_question" />
-            </EndProperty>
-            <EndProperty Name="Option_Questionnaire">
-              <ScalarProperty Name="Id" ColumnName="Id_reponse" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="Responsable_groupe" TypeName="MainDBModel.Responsable_groupe" StoreEntitySet="Responsable_groupe">
