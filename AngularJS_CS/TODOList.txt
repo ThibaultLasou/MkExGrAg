@@ -7,7 +7,7 @@ Rapport :
 Messagerie :
 	- [1] Questionnaires {Bryan, Mathieu}
 	- [1] Messages {Mathieu}
-	- [1] Notifications {Bryan, Tristan}
+	- [1] Notifications {Bryan, Tristan, Mathieu}
 Moins urgent : 
 	- [3 ou 4] Emploi du temps
 	- [3 ou 4] Interface multilingue
