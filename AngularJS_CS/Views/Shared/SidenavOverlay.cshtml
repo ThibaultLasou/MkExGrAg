@@ -2,6 +2,10 @@
     Layout = null;
     <link rel="stylesheet/less" href="~/Content/less/sidenav.less">
 }
+@using AngularJS_CS.ViewModels
+@using AngularJS_CS.Controllers
+@using AngularJS_CS.Models
+@model AngularJS_CS.ViewModels.AnswerView
 
 @section scripts{
     <!--Script references. -->
@@ -16,108 +20,48 @@
 
 <div id="Sidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <section id="message_section">
-        <a href="#" type="title">Messages</a>
-        <ul id="listNotifs"></ul>
-        @if (Request.IsAuthenticated)
-        {
-            <script type="text/javascript">
-                $(function () {
-                    // Declare a proxy to reference the hub.
-                    var notifs = $.connection.notificationsHub;
-                    //// Create a function that the hub can call to broadcast messages.
-                    //notifs.client.broadcastNotification = function (author, message) {
-                    //    // Html encode display name and message.
-                    //    var encodedName = $('<div />').text(author).html();
-                    //    var encodedMsg = $('<div />').text(message).html();
-                    //    // Add the message to the page.
-                    //    $('#discussion').append('<li><strong>' + encodedName
-                    //        + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-                    //};
-                    //// Get the user name and store it to prepend to messages.
-                    //var v = document.getElementById("displayname");
-                    //v.value = 'mwa';
-                    //// Set initial focus to message input box.
-                    //$('#message').focus();
-                    // Start the connection.
-                    $.connection.hub.start().done(function () {
-                        //Client en lecture de notifications seulement, méthode vide
-                    });
-                });
-            </script>
+    @if (Request.IsAuthenticated)
+            {
+        <section id="message_section">
+            <a href="#" type="title">Messages</a>
             <div>
-                @foreach (AngularJS_CS.Models.Notification_Simple mes in new AngularJS_CS.Models.Dal().GetIndividus().Find(i => i.Id == int.Parse(HttpContext.Current.User.Identity.Name)).Notification_Simple)
+                @foreach (Notification_Simple mes in new Dal().GetIndividus().Find(i => i.Id == int.Parse(HttpContext.Current.User.Identity.Name)).Notification_Simple)
                 {
-
-                    MvcForm form = Html.BeginForm();
-                    form.ToString();
-                    <text>"Affichage du form" + @(form.ToString())</text>
-
-                    if (!mes.Message.lu && mes.Message.envoi.Hour <= System.DateTime.Now.Hour + 1)
+                    using (Html.BeginForm("Retorque", "Question", FormMethod.Post))
                     {
-                        if (mes.Message.sujet == "")
+                        if (!mes.Message.lu /*&& mes.Message.envoi.Hour <= System.DateTime.Now.Hour + 1*/)
                         {
-                            <a type="subtitle" href="#">Aucun sujet</a>
-                        }
-                        else
-                        {
-                            <a type="subtitle" href="#">@(mes.Message.sujet)</a>
-                        }
-                        <p>Envoyé le @(mes.Message.envoi)</p>
-                        <p>@(mes.Message.contenu)</p>
-                        if (mes.Message.Questionnaire.Count > 0)
-                        {
-                            <select id="list_rep" data-val="true" type="rep_list" name="posrep" required>
-
-                                <option typeof="reponses" value="">Réponses</option>
-                                @foreach (AngularJS_CS.Models.Reponses rep in mes.Message.Questionnaire.ElementAt(0).Reponses)
-                                {
-                                    <option type="reponses" value=@(rep.Id_reponse)>@(rep.Option_Questionnaire.valeur) </option>
-                                }
-                            </select>
-                        }
-                        <textarea type="repbox" id="reptext" name="reptxt"></textarea>
-                        <input type="submit" value="Répondre &#128389;" onclick="closeNav()" />
-                    }
-                    form.EndForm();
-
-                    using (Html.BeginForm())
-                    {
-                        if (!mes.Message.lu && mes.Message.envoi.Hour <= System.DateTime.Now.Hour + 1)
-                        {
-                            if (mes.Message.sujet == "")
-                            {
-                                <a type="subtitle" href="#">Aucun sujet</a>
+                            if (mes.Message.sujet == "" || mes.Message.sujet == null)
+                            { @Html.ActionLink("Aucun sujet", "Read", "Question", null, htmlAttributes: new { type = "subtitle" });/*<a type="subtitle" href="#">Aucun sujet</a>*/
                             }
                             else
-                            {
-                                <a type="subtitle" href="#">@(mes.Message.sujet)</a>
-                            }
+                            { @*@Html.ActionLink(mes.Message.sujet, "Read", "Question", Model, htmlAttributes: new { type = "subtitle" });*@ <a type="subtitle" href="#">@(mes.Message.sujet)</a> }
                             <p>Envoyé le @(mes.Message.envoi)</p>
                             <p>@(mes.Message.contenu)</p>
                             if (mes.Message.Questionnaire.Count > 0)
                             {
-                                <select id="list_rep" data-val="true" type="rep_list" name="posrep" required>
-
-                                    <option typeof="reponses" value="">Réponses</option>
-                                    @foreach (AngularJS_CS.Models.Reponses rep in mes.Message.Questionnaire.ElementAt(0).Reponses)
-                                    {
-                                        <option type="reponses" value=@(rep.Id_reponse)>@(rep.Option_Questionnaire.valeur) </option>
-                                    }
-                                </select>
+                                Model.id_message = mes.Id_message;
+                                Model.actualurl = HttpContext.Current.Request.Url.AbsolutePath;
+                                mes.Message.recu = true;
+                                Model.subject = mes.Message.sujet;
+                                Model.dest = mes.Message.Id_expediteur;
+                                ViewBag.Reps = new SelectList(mes.Message.Questionnaire.ElementAt(0).Reponses, "Id_reponse", "Option_Questionnaire.valeur");
+                                @Html.DropDownListFor(model => model.repchosen, ViewBag.Reps as SelectList, "Réponses", htmlAttributes: new { name = "repchosen", id = "list_rep", type = "rep_list", required = "True" })
                             }
-                            <textarea type="repbox" id="reptext" name="reptxt"></textarea>
-                            <input type="submit" value="Répondre &#128389;" onclick="closeNav()" />
+                            @Html.TextAreaFor(model => model.rep, htmlAttributes: new { type = "repbox", id = "reptext", name = "rep" });
+                            @Html.HiddenFor(model => model.subject)
+                            @Html.HiddenFor(model => model.dest)
+                            @Html.HiddenFor(model => model.actualurl)
+                            @Html.HiddenFor(model=>model.id_message)
+                            <input id="Answer" type="submit" value="Répondre &#128389;" onclick="closeNav()" />
                         }
                     }
-
                 }
             </div>
-        }
-
-    </section>
-    @*<a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>*@
+        </section>
+    }
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
 </div>
