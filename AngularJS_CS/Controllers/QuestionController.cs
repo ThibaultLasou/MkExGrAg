@@ -125,9 +125,44 @@ namespace AngularJS_CS.Controllers
         }
 
         [HttpPost]
-        public void Retorque(QuestionView mod)
+        public ActionResult Read(AnswerView mod)
         {
-            string k= ValueProvider.GetValue("posrep").AttemptedValue;
+            int laappa = 0;
+            return RedirectToAction("Index", "Question");
+
+        }
+
+        [HttpPost]
+        public ActionResult Retorque(AnswerView mod)
+        {
+            Dal db = new Dal();
+            Individu receveur = db.GetIndividus().Find(i => i.Id == mod.dest);
+            Individu sender = db.GetIndividus().Find(i => i.Id == int.Parse(User.Identity.Name));
+            sender.Notification_Simple.FirstOrDefault(m => m.Id_message == mod.id_message && m.Id_individu ==int.Parse(User.Identity.Name)).Message.lu = true;
+            sender.Notification_Simple.First(m => m.Id_message == mod.id_message && m.Id_individu == int.Parse(User.Identity.Name)).Message.lecture = System.DateTime.Now;
+            Message rep = new Message
+            {
+                Individu = sender,
+                contenu = db.Reponses().Find(q=>q.Id ==mod.repchosen).valeur+"\n"+ mod.rep,
+                envoi = System.DateTime.Now,
+                lecture = System.DateTime.Now,
+                recu = false,
+                lu = false,
+                Id_expediteur = sender.Id,
+                Questionnaire = null,
+                sujet = mod.subject.StartsWith("Re:") ? mod.subject : "Re:" + mod.subject,                
+            };
+            Notification_Simple notif = new Notification_Simple
+            {
+                Id_individu = int.Parse(User.Identity.Name),
+                Id_message =rep.Id,
+                Individu = sender,
+                Message = rep,
+            };
+            sender.Notification_Simple.Add(notif);
+            rep.Notification_Simple.Add(notif);
+            db.Savedb();
+            return RedirectToAction(mod.actualurl);
         }
     }
 }
