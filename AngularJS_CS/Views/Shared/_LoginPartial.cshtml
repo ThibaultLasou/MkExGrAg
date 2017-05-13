@@ -36,7 +36,7 @@
             <div class="formholder">
                 <fieldset>
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-                {
+                    {
                         @Html.TextBoxFor(m => m.UserID, htmlAttributes: new { @class = "form-control", type = "user-identifier", placeholder = "Utilisateur" })
                         @Html.TextBoxFor(m => m.Password, htmlAttributes: new { type = "password", placeholder = "Mot de passe" })
                         <input type="submit" value="Entrer" />
