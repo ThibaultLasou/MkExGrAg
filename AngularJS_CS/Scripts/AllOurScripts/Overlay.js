@@ -81,6 +81,7 @@ function submitFormWithModel(id, url, sujet, dest, rep, repChosen) {
                 ActualUrl: url,
                 Subject: sujet,
                 Dest: dest,
-            })
+            }
+        })
     });
 }

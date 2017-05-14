@@ -20,11 +20,6 @@ namespace AngularJS_CS.Models
         {
         }
 
-        public override int SaveChanges()
-        {
-            return base.SaveChanges();
-        }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

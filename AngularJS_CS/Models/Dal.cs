@@ -17,16 +17,6 @@ namespace AngularJS_CS.Models
         public Individu Authenticate(string username, string password)
         {
             return bdd.Individu.FirstOrDefault(ind => ind.userLogin == username && ind.numCarte == password);
-
-            //Individu res = (from ind in bdd.Individu
-            //                where ind.userLogin == username && ind.numCarte == password
-            //                select ind).FirstOrDefault();
-            //return res;
-
-            //foreach (Individu ind in bdd.Individu)
-            //    if (ind.userLogin == username && ind.numCarte == password)
-            //        return ind;
-            //return null;
         }
 
         public void Dispose() { bdd.Dispose(); }
@@ -120,14 +110,15 @@ namespace AngularJS_CS.Models
             List<string> destinataires = mod.dests.Split(';').ToList();
             HashSet<int> set = new HashSet<int>();
             
-            //On ne prend que ceux qui étaient dans la liste de destinataires (et on les supprime pour limiter le nombre d'itérations)
+            //On ne prend que ceux qui étaient dans la liste de destinataires
             set.UnionWith(from ind in bdd.Individu
-                          where destinataires.Remove(ind.userLogin) 
+                          where destinataires.Contains(ind.userLogin) == true
                           select ind.Id);
+           
 
-            //Normalement, il ne reste que des groupes
+            //Il ne reste que les groupes à traiter
             IEnumerable<Groupe> grps = from grp in bdd.Groupe
-                                       where destinataires.Remove(grp.nom)
+                                       where destinataires.Contains(grp.nom)
                                        select grp;
 
             set.UnionWith(from g in grps

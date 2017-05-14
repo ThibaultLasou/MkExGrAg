@@ -120,6 +120,7 @@ namespace AngularJS_CS.Controllers
 
             content.Questionnaire.Add(question);
             db.Savedb();
+            NotificationsHub.GetNotificationHtml(content, db.GetIdsDestinataires(mod));
             return RedirectToAction("Index", "Home");
 
         }
