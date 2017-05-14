@@ -9,6 +9,9 @@ using System.Web;
 
 namespace AngularJS_CS.Controllers
 {
+    /// <summary>
+    /// Contrôleur du compte
+    /// </summary>
     public class AccountController : Controller
     {
         private IDal dal;
@@ -56,6 +59,12 @@ namespace AngularJS_CS.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Tente d'identifier un utilisateur.
+        /// </summary>
+        /// <param name="model">Modèle de données pour l'identification</param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
@@ -81,6 +90,10 @@ namespace AngularJS_CS.Controllers
             return RedirectToAction("Index", "Account", model);
         }
 
+        /// <summary>
+        /// Déconnecte un utilisateur.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Deconnexion()
         {
             FormsAuthentication.SignOut();

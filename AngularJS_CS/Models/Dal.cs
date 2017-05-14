@@ -7,9 +7,15 @@ using System.Web;
 
 namespace AngularJS_CS.Models
 {
+    /// <summary>
+    /// Data Access Layer ou Couche d'Accès aux Données. Permet de s'abstraire de la communication avec la base de données
+    /// </summary>
     public class Dal : IDal
     {
         private MainDBEntities bdd;
+        /// <summary>
+        /// Constructeur permettant d'accéder à la base de données simplement.
+        /// </summary>
         public Dal() { bdd = new MainDBEntities(); }
 
 		/// <summary>
@@ -146,6 +152,11 @@ namespace AngularJS_CS.Models
 		/// </summary>
 		/// <param name="q">questionnaire à ajouter</param>
         public void AddQuesiton(Questionnaire q) { bdd.Questionnaire.Add(q); }
+
+        /// <summary>
+        /// Retourne l'identifiant unique de la dernière question envoyée.
+        /// </summary>
+        /// <returns></returns>
         public int GetLastQuestion()
         {
             if (bdd.Questionnaire.Count() >= 1)
@@ -158,7 +169,7 @@ namespace AngularJS_CS.Models
 		/// </summary>
 		/// <param name="id">id du questionnaire dont on cherche le type</param>
 		/// <returns></returns>
-        public Type_Questionnaire getTypeQuestion(int id) { return bdd.Type_Questionnaire.Find(id); }
+        public Type_Questionnaire GetTypeQuestion(int id) { return bdd.Type_Questionnaire.Find(id); }
 
 		/// <summary>
 		/// Récupère la liste de types des questionnaires disponibles dans la BDD
@@ -186,9 +197,9 @@ namespace AngularJS_CS.Models
         /// <summary>
         /// Renvoie les identifiants uniques de chaque destinataire.
         /// </summary>
-        /// <param name="m">Message dont les destinataires sont recherchés.</param>
+        /// <param name="mod">Message dont les destinataires sont recherchés.</param>
         /// <returns></returns>
-        public HashSet<int> GetIdsDestinataires(QuestionView mod)
+        public HashSet<int> GetIdsDestinataires(QuestionViewModel mod)
         {
             List<string> destinataires = mod.Dests.Split(';').ToList();
             HashSet<int> set = new HashSet<int>();

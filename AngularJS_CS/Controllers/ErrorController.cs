@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace AngularJS_CS.Controllers
 {
+    /// <summary>
+    /// Controlleur permettant de rediriger les 404.
+    /// </summary>
     public sealed class ErrorController : Controller
     {
         

@@ -9,8 +9,14 @@ using AngularJS_CS.ViewModels;
 
 namespace AngularJS_CS.Controllers
 {
+    /// <summary>
+    /// Controlleur de la page des questionnaires.
+    /// </summary>
     public class QuestionController : Controller
     {
+        /// <summary>
+        /// Questionnaire de la page.
+        /// </summary>
         public Questionnaire Question { get; set; }
         //public Message Message { get; set; }
         // GET: Question
@@ -24,7 +30,7 @@ namespace AngularJS_CS.Controllers
             if (HttpContext.Request.IsAuthenticated)
             {
                 Dal db = new Dal();
-                QuestionView mod = new QuestionView();
+                QuestionViewModel mod = new QuestionViewModel();
                 ViewBag.ListRep = new MultiSelectList(db.Reponses(), "Id", "valeur");
                 ViewBag.ListIndividus = new SelectList(db.GetIndividus(), "Id", "userLogin");
                 ViewBag.ListGroupe = new SelectList(db.GetGroupes(), "Id", "nom");
@@ -40,7 +46,7 @@ namespace AngularJS_CS.Controllers
 		/// <param name="mod">model qui représente la vue questionnaire</param>
 		/// <returns></returns>
         [HttpPost]
-        public ActionResult Ajout(QuestionView mod)
+        public ActionResult Ajout(QuestionViewModel mod)
         {
             new Dal().AddRep(mod.Rep);
             return RedirectToAction("Index", "Question");
@@ -52,7 +58,7 @@ namespace AngularJS_CS.Controllers
 		/// <param name="mod">model qui représente la vue questionnaire</param>
 		/// <returns></returns>
 		[HttpPost]
-        public ActionResult Action(QuestionView mod)
+        public ActionResult Action(QuestionViewModel mod)
         {
             Dal db = new Dal();
             List<Individu> destinataires = new List<Individu>();
@@ -80,7 +86,7 @@ namespace AngularJS_CS.Controllers
                 {
                     Id = db.GetLastQuestion() + 1,
                     type = mod.Type,
-                    Type_Questionnaire = db.getTypeQuestion(mod.Type),
+                    Type_Questionnaire = db.GetTypeQuestion(mod.Type),
                     Id_message = content.Id,
 
                 };
@@ -143,21 +149,26 @@ namespace AngularJS_CS.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult Read(string url)
-        {
-            int laappa = 0;
-            return RedirectToAction(url);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="url"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public ActionResult Read(string url)
+        //{
+        //    int laappa = 0;
+        //    return RedirectToAction(url);
 
-        }
+        //}
 
 		/// <summary>
-		/// 
+		/// Génère la réponse à un questionnaire.
 		/// </summary>
 		/// <param name="mod"></param>
 		/// <returns></returns>
         [HttpPost]
-        public ActionResult Retorque(AnswerView mod)
+        public ActionResult Retorque(AnswerViewModel mod)
         {
             Dal db = new Dal();
             Individu receveur = db.GetIndividus().Find(i => i.Id == mod.Dest);

@@ -7,10 +7,13 @@ using System.Web.Routing;
 
 namespace AngularJS_CS
 {
+    /// <summary>
+    /// Configurateur de table de routage.
+    /// </summary>
     public class RouteConfig
     { 
 		/// <summary>
-		/// Enregistre les itinéraires
+		/// Configure la table de routage.
 		/// </summary>
 		/// <param name="routes">Collection de routes à enregistrer</param>
         public static void RegisterRoutes(RouteCollection routes)

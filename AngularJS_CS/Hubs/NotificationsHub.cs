@@ -7,8 +7,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace AngularJS_CS.Models
-{
-    //[System.Web.Mvc.Authorize]
+{   
+    /// <summary>
+    /// Hub de notifications, chargé de la diffusion (ciblée) des messages.
+    /// </summary>
     [HubName("notificationsHub")]
     public class NotificationsHub : Hub
     {
@@ -19,6 +21,10 @@ namespace AngularJS_CS.Models
         //Couples d'Identifiant d'individu - Identifiants SignalR
         private static readonly ConcurrentDictionary<string, int> users = new ConcurrentDictionary<string, int>();
 
+        /// <summary>
+        /// Recense le nouveau client connecté.
+        /// </summary>
+        /// <returns></returns>
         public override Task OnConnected()
         {
             int id;
@@ -32,16 +38,20 @@ namespace AngularJS_CS.Models
             return base.OnConnected();
         }
 
+        /// <summary>
+        /// Supprimme le client déconnecté du registre.
+        /// </summary>
+        /// <param name="stopCalled"></param>
+        /// <returns></returns>
         public override Task OnDisconnected(bool stopCalled)
         {
             int id;
-            int deletedID;
             using (Dal d = new Dal())
             {
                 id = d.GetIndividu(Context.User.Identity.Name).Id;
             }
 
-            users.TryRemove(Context.ConnectionId, out deletedID);
+            users.TryRemove(Context.ConnectionId, out int deletedID);   //Novices, voici une déclaration inline.
 
             if (deletedID != id)
                 Console.Error.WriteLine("Individu " + id + "déconnecté par la connexion" + Context.ConnectionId);

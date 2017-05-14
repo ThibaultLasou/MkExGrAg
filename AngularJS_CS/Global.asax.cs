@@ -6,6 +6,9 @@ using System.Web.Routing;
 
 namespace AngularJS_CS
 {
+    /// <summary>
+    /// Point de démarrage de l'application
+    /// </summary>
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
@@ -15,6 +18,9 @@ namespace AngularJS_CS
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
+        /// <summary>
+        /// Réaction en cas d'erreur de routage. Gère notamment les 404.
+        /// </summary>
         protected void Application_EndRequest()
         {
             if (Context.Response.StatusCode == 404)

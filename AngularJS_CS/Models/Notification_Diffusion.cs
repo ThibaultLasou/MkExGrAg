@@ -9,15 +9,12 @@
 
 namespace AngularJS_CS.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Notification_Diffusion
     {
         public int Id { get; set; }
         public int Id_groupe { get; set; }
         public int Id_message { get; set; }
-    
+
         public virtual Groupe Groupe { get; set; }
         public virtual Message Message { get; set; }
     }
