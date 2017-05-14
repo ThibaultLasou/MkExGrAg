@@ -16,7 +16,7 @@ namespace AngularJS_CS.ViewModels
         public string sujet { get; set; }
         public string detail { get; set; }
         public IEnumerable<int> Reponses { get; set; }
-        public int type { get; set; }
+        public int Type { get; set; }
         public string Rep { get; set; }
     }
 }

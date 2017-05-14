@@ -8,7 +8,11 @@ using System.Web.Routing;
 namespace AngularJS_CS
 {
     public class RouteConfig
-    {
+    { 
+		/// <summary>
+		/// Enregistre les itinéraires
+		/// </summary>
+		/// <param name="routes">Collection de routes à enregistrer</param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

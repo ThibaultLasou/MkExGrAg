@@ -13,10 +13,17 @@ namespace AngularJS_CS.Controllers
     {
         private IDal dal;
 
+		/// <summary>
+		/// Constructeur par défaut
+		/// </summary>
         public AccountController() : this(new Dal())
         {
         }
 
+		/// <summary>
+		/// Constructeur de copie
+		/// </summary>
+		/// <param name="dalIoc"></param>
         public AccountController(IDal dalIoc)
         {
             this.dal = dalIoc;
@@ -33,6 +40,12 @@ namespace AngularJS_CS.Controllers
         //    return View();
         //}
 
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="model">model</param>
+			/// <param name="returnUrl">nom de l'url</param>
+			/// <returns></returns>
         public ActionResult Index(LoginViewModel model, string returnUrl)
         {
             //LoginViewModel uvm = new LoginViewModel { Authenticated = HttpContext.User.Identity.IsAuthenticated };
