@@ -78,7 +78,6 @@ namespace AngularJS_CS.Controllers
             if (ind != null) //Authentification réussie
             {
                 FormsAuthentication.SetAuthCookie(ind.Id.ToString(), false);
-                model.Authenticated = true;
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
                 return RedirectToAction("Index", "Home");
@@ -86,7 +85,6 @@ namespace AngularJS_CS.Controllers
 
             //"Login" est le getter dans le viewModel
             ModelState.AddModelError(nameof(Login), "Identifiant et/ou numéro de carte invalide(s)");
-            model.Authenticated = false;
             return RedirectToAction("Index", "Account", model);
         }
 

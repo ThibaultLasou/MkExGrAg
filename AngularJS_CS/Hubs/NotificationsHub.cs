@@ -46,12 +46,13 @@ namespace AngularJS_CS.Models
         public override Task OnDisconnected(bool stopCalled)
         {
             int id;
+            int deletedID;
             using (Dal d = new Dal())
             {
                 id = d.GetIndividu(Context.User.Identity.Name).Id;
             }
 
-            users.TryRemove(Context.ConnectionId, out int deletedID);   //Novices, voici une déclaration inline.
+            users.TryRemove(Context.ConnectionId, out deletedID);   
 
             if (deletedID != id)
                 Console.Error.WriteLine("Individu " + id + "déconnecté par la connexion" + Context.ConnectionId);
