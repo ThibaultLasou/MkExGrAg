@@ -38,39 +38,46 @@ namespace AngularJS_CS.Models
         /// </summary>
         /// <returns></returns>
         List<Option_Questionnaire> Reponses();
+	
         /// <summary>
         /// Renvoie un document web, identifié par son nom.
         /// </summary>
         /// <param name="nom"></param>
         /// <returns></returns>
-        Doc_Web ObtenirDoc(string nom);
-        /// <summary>
+        Doc_Web ObtenirDoc(string nom, Groupe groupe);
+        
+	/// <summary>
         /// Renvoie l'identifiant du dernier message.
         /// </summary>
         /// <returns></returns>
         int GetLastIdMessage();
-        /// <summary>
+        
+	/// <summary>
         /// Renvoie l'identifiant de la dernière question.
         /// </summary>
         /// <returns></returns>
         int GetLastQuestion();
-        /// <summary>
+        
+	/// <summary>
         /// Renvoie tous les types de questionnaires.
         /// </summary>
         /// <returns></returns>
         List<Type_Questionnaire> GetTypes();
-        /// <summary>
+        
+	/// <summary>
         /// Renvoie le nom d'un individu à partir de son identifiant unique.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         string GetName(string userId);
-        /// <summary>
+        
+	/// <summary>
         /// Renvoie toutes les réponses.
         /// </summary>
         /// <returns></returns>
         List<Reponses> GetRep();
-        /// <summary>
+        
+	/// <summary>
         /// Sauvegarde les modifications de la base de données.
         /// </summary>
         void Savedb();

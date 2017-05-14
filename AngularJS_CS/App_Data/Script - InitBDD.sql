@@ -353,3 +353,13 @@ Insert into Option_Questionnaire (valeur) VALUES ('Oui'),('Non'),('Peut-Etre'),
 ('Samedi'),('Toujours'),('Jamais');
 Insert INTO Type_Questionnaire (type) VALUES ('Oui-Non'),('Oui-Non+'),('Choix de Jour'),('Custom');
 
+INSERT INTO Doc_Web (nom) VALUES ('Doc_1');
+INSERT INTO Sous_doc_Web (contenu_html) VALUES ('<h1>Document 1</h1>');
+INSERT INTO Sous_doc_Web (contenu_html) VALUES ('<p>Ceci est du texte</p>');
+INSERT INTO Doc_Contenu (Id_doc, Id_contenu) VALUES (1,1), (1,2);
+INSERT INTO Auteur_Doc (Id_individu, Id_Doc) VALUEs (5,1);
+INSERT INTO Doc_Web (nom) VALUES ('Doc_2');
+INSERT INTO Sous_doc_Web (contenu_html) VALUES ('<h1>Document 2</h1>');
+INSERT INTO Sous_doc_Web (contenu_html) VALUES ('<p>Ceci est du texte</p>');
+INSERT INTO Doc_Contenu (Id_doc, Id_contenu) VALUES (2,3), (2,4);
+INSERT INTO Auteur_Doc (Id_individu, Id_Doc) VALUEs (5,2);

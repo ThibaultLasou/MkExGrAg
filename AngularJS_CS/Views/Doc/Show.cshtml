@@ -1,0 +1,26 @@
+﻿@model AngularJS_CS.ViewModels.LoginViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    AngularJS_CS.Models.Doc_Web doc = (AngularJS_CS.Models.Doc_Web) ViewData["Doc"];
+    AngularJS_CS.Models.Individu indi = (AngularJS_CS.Models.Individu) ViewData["Ind"];
+}
+
+<script src="~/Assets/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/AllOurScripts/editor.js"></script>
+
+<div id="document">
+@{int i = 0;
+    foreach (AngularJS_CS.Models.Sous_doc_Web subDoc in doc.Sous_doc_Web)
+    {
+        i++;
+        string str = "subDoc" + i;
+        <div id="@str">
+            @Html.Raw(subDoc.contenu_html)
+        </div>
+        if(indi != null && indi.Id == doc.Individu.First().Id)
+        {
+            <input onclick="createEditor(@i);" type="button" value="Modifier" id="create_@i">
+            <input onclick="removeEditor(@i);" type="button" value="Valider" id="remove_@i" style="display:none">
+        }
+    }
+}</div>

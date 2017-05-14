@@ -7,12 +7,12 @@ function createEditor(i) {
         return;
     }
 
-    html = document.getElementById('editor'+i).textContent;
+    html = document.getElementById('subDoc'+i).textContent;
 
     // Create a new editor instance inside the <div id="editor"> element,
     // setting its value to html.
     var config = {};
-    editors[i] = CKEDITOR.replace('editor'+i, config, html);
+    editors[i] = CKEDITOR.replace('subDoc'+i, config, html);
 
     // Update button states.
     document.getElementById('remove_'+i).style.display = '';
@@ -29,7 +29,7 @@ function removeEditor(i) {
     html = editors[i].getData();
 
     // Update <div> with "Edited Content".
-    document.getElementById('editor'+i).innerHTML = html;
+    document.getElementById('subDoc'+i).innerHTML = html;
     // Show <div> with "Edited Content".
     //document.getElementById('content1').style.display = '';
     // Update button states.
