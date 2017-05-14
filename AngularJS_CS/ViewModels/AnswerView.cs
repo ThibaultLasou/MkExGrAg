@@ -10,17 +10,17 @@ namespace AngularJS_CS.ViewModels
     public class AnswerView
     {
         [Required]
-        public string rep { get; set; }
+        public string Rep { get; set; }
         [Required]
-        public int repchosen { get; set; }
-        public int dest { get; set; }
-        public int id_message { get; set; }
-        public string subject { get; set; }
-        public string actualurl { get; set; }
-        public Notification_Simple not { get; set; }
+        public int Repchosen { get; set; }
+        public int Dest { get; set; }
+        public int Id_message { get; set; }
+        public string Subject { get; set; }
+        public string Actualurl { get; set; }
+        public Notification_Simple Not { get; set; }
         public AnswerView Init(Notification_Simple notif)
         {
-            var ret = new AnswerView() { not = notif };
+            var ret = new AnswerView() { Not = notif };
             return ret;
         }
     }

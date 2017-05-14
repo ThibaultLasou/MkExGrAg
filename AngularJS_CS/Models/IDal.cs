@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace AngularJS_CS.Models
 {
-    //Interface définissant la Data Access Layer (ou couche d'accès aux données)
-    public interface IDal : IDisposable
+	
+	/// <summary>
+	/// Interface définissant la Data Access Layer (ou couche d'accès aux données)
+	/// </summary>
+	public interface IDal : IDisposable
     {
         Individu Authenticate(string username, string password);
 

@@ -4,7 +4,6 @@
 function openNav() {
     document.getElementById("Overlay").style.width = "100%";
     document.getElementById("Sidenav").style.width = "20%";
-    document.body.style.backgroundColor = document.getElementById("head").style.backgroundColor = "rgba(0,0,0,0.2)";
 
 }
 
@@ -12,7 +11,6 @@ function openNav() {
 function closeNav() {
     document.getElementById("Overlay").style.width = "0";
     document.getElementById("Sidenav").style.width = "0";
-    document.body.style.backgroundColor = document.getElementById("head").style.backgroundColor = "white";
 }
 
 function isopen() {
@@ -62,10 +60,34 @@ function typechose(value) {
     }
 }
 
-function customtype(){
+function customtype() {
     document.getElementById("type_choice").value = '4';
 }
 
+function questionswitch(checkbocElem) {
+    if (checkbocElem.checked) {
+        document.getElementById("contentarea").style.width = "100%";
+        document.getElementById("Title").textContent = "Nouveau Message";
+        document.getElementById("rep_list").style.height = "0%";
+        document.getElementById("rep_list").style.width = "25%";
+        document.getElementById("type_choice").style.visibility = "hidden";
+        document.getElementById("rep_list").style.visibility = "hidden";
+        document.getElementById("repZone").style.visibility = "hidden";
+        document.getElementById("type_choice").value = '4';
+        //document.getElementById("rep_list").required = "False";
+    }
+    else {
+        document.getElementById("contentarea").style.width = "74%";
+        document.getElementById("Title").textContent = "Nouveau Questionnaire";
+        document.getElementById("rep_list").style.height = "400px";
+        document.getElementById("rep_list").style.width = "25%";
+        document.getElementById("type_choice").style.visibility = "visible";
+        document.getElementById("rep_list").style.visibility = "visible";
+        document.getElementById("repZone").style.visibility = "visible";
+        document.getElementById("type_choice").value = "";
+        //document.getElementById("rep_list").required = "True";
+    }
+}
 function show_messages(id_section) {
 
 }

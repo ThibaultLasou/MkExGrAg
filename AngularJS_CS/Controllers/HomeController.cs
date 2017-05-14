@@ -10,6 +10,11 @@ namespace AngularJS_CS.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
         public ActionResult Index(string id)
         {
             if (id == null)
@@ -18,6 +23,11 @@ namespace AngularJS_CS.Controllers
                 return View("Error");
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
         public ActionResult Doc(string id)
         {
             if(id != null)

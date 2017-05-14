@@ -7,33 +7,32 @@
 
 
 <link rel="stylesheet/less" href="~/Content/less/questionnaire.less" />
-<h2>Nouveau Questionnaire</h2>
+<h2 id="Title">Nouveau Questionnaire</h2>
 
 
-@using (Html.BeginForm("Action","Question", new { id_exp = HttpContext.Current.User.Identity.Name }, FormMethod.Post, null))
+@using (Html.BeginForm("Action", "Question", new { id_exp = HttpContext.Current.User.Identity.Name }, FormMethod.Post, null))
 {
     <div class="form-horizontal">
-        <hr />
+        Message ordinaire: @Html.CheckBoxFor(model => model.question, htmlAttributes: new { id = "is_quest", onchange = "questionswitch(this)", value = true})
         <div class="form-group">
             <div class="col-ld-10">
                 <h5>Destinataires</h5>
                 @Html.DropDownList("desinchoi", ViewBag.ListIndividus as SelectList, "Individus", htmlAttributes: new { id = "destinchoi", onchange = "newDestin(this.value)", type = "destlist" })
                 @Html.DropDownList("destgrchoi", ViewBag.ListGroupe as SelectList, "Groupes", htmlAttributes: new { id = "destgrchoi", onchange = "newDestgr(this.value)", type = "destlist" })
-                @Html.TextBoxFor(model => model.dests, htmlAttributes: new { id = "destbox", type = "destinataire", placeholder = "Destinataire(s)", required = true })
+                @Html.TextBoxFor(model => model.Dests, htmlAttributes: new { id = "destbox", type = "destinataire", placeholder = "Destinataire(s)", required = true })
                 <h5>Sujet du questionnaire</h5>
-                @Html.TextBoxFor(model => model.sujet, htmlAttributes: new { type = "sujet", placeholder = "sujet" })
+                @Html.TextBoxFor(model => model.Sujet, htmlAttributes: new { type = "sujet", placeholder = "sujet" })
             </div>
-            @Html.TextAreaFor(model => model.detail, htmlAttributes: new { type = "detail", placeholder = "Details" })
-            @Html.ListBoxFor(model => model.Reponses, list, htmlAttributes: new {id = "rep_list", type = "reponses", required = true , onchange="custom_type()", onclick= "custom_type()" })
-            @Html.DropDownListFor(model=>model.type, ViewBag.ListType as SelectList, "Type de questionnaire", htmlAttributes:new {id = "type_choice", required = true, onchange ="typechose(this.value)" })
+            @Html.TextAreaFor(model => model.Detail, htmlAttributes: new { type = "detail", placeholder = "Details", id = "contentarea" })
+            @Html.ListBoxFor(model => model.Reponses, list, htmlAttributes: new { id = "rep_list", type = "reponses", onchange = "custom_type()", onclick = "custom_type()"})
+            @Html.DropDownListFor(model => model.Type, ViewBag.ListType as SelectList, "Type de questionnaire", htmlAttributes: new { id = "type_choice", onchange = "typechose(this.value)" })
             <input type="submit" class="btn btn-block" />
         </div>
     </div>
 }
 
 @using (Html.BeginForm("Ajout", "Question", null, FormMethod.Post, null))
-{
-    <div id="repZone" class="col-md-3 col-xs-12 col-sm-3">
+{    <div id="repZone" class="col-md-3 col-xs-12 col-sm-3">
         <ul class="download-btn">
             <li>
                 <div>
@@ -42,7 +41,7 @@
                 <div id="hidden_divrep" class="hidden">
                     <div class="formrepholder">
                         <fieldset>
-                            @Html.TextBoxFor(m=> m.Rep, htmlAttributes: new { id = "new_rep", type = "reponse", placeholder = "Réponse" })
+                            @Html.TextBoxFor(m => m.Rep, htmlAttributes: new { id = "new_rep", type = "reponse", placeholder = "Réponse" })
                             <input class="btn btn-andriod" value="Ajouter" type="submit" />
 
                         </fieldset>
