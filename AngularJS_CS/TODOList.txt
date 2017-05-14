@@ -2,12 +2,12 @@
 [Priorité] Description de la tâche {Qui taffe actuellement dessus}
 
 Rapport :
-	- [2] Découpage du rapport en parties, création du plan
-	- [3] Rédaction
+	- [2] Découpage du rapport en parties, création du plan {Yasmine}
+	- [3] Rédaction {Bryan, Yasmine, Mathieu}
 Messagerie :
 	- [1] Questionnaires {Bryan, Mathieu}
-	- [1] Messages {Mathieu}
-	- [1] Notifications {Bryan, Tristan, Mathieu}
+	- [1] Messages {Bryan}
+	- [1] Notifications {Bryan, Mathieu}
 Moins urgent : 
 	- [3 ou 4] Emploi du temps
 	- [3 ou 4] Interface multilingue
@@ -17,10 +17,10 @@ Administration :
 		- Individus [Admin]
 		- Cours	[Admin, prof]
 		- Créneaux [Admin, prof]
-		- Documents [Admin, prof]
+		- Documents [Admin, prof] {Thibault}
 
 
-Finitions :
-	- [4] CSS / LESS
+Finitions {Initialement Yasmine} :
+	- [4] CSS / LESS 
 	- [4] Interface mobile à peaufiner
 	- [4] Accès distant au serveur
