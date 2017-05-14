@@ -1097,7 +1097,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
           <End Role="Individu" Type="Self.Individu" Multiplicity="*" />
           <End Role="Statut" Type="Self.Statut" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MainDBEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MainDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activite" EntityType="Self.Activite" />
           <EntitySet Name="Cours" EntityType="Self.Cours" />
           <EntitySet Name="Doc_Web" EntityType="Self.Doc_Web" />
@@ -1205,7 +1205,7 @@ avertissement 6002: La table/vue 'C:\USERS\BRYAN\SOURCE\REPOS\MKEXGRAG\ANGULARJS
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities5">
+        <EntityContainerMapping StorageEntityContainer="MainDBModelStoreContainer" CdmEntityContainer="MainDBEntities">
           <EntitySetMapping Name="Activite">
             <EntityTypeMapping TypeName="MainDBModel.Activite">
               <MappingFragment StoreEntitySet="Activite">

@@ -25,41 +25,88 @@
         <section id="message_section">
             <a href="#" type="title">Messages</a>
             <div>
-                @foreach (Notification_Simple mes in new Dal().GetIndividus().Find(i => i.Id == int.Parse(HttpContext.Current.User.Identity.Name)).Notification_Simple)
-                {
-                    using (Html.BeginForm("Retorque", "Question", FormMethod.Post))
-                    {
-                        if (!mes.Message.lu /*&& mes.Message.envoi.Hour <= System.DateTime.Now.Hour + 1*/)
-                        {
-                            if (mes.Message.sujet == "" || mes.Message.sujet == null)
-                            { @Html.ActionLink("Aucun sujet", "Read", "Question", null, htmlAttributes: new { type = "subtitle" });/*<a type="subtitle" href="#">Aucun sujet</a>*/
-                            }
-                            else
-                            { @*@Html.ActionLink(mes.Message.sujet, "Read", "Question", Model, htmlAttributes: new { type = "subtitle" });*@ <a type="subtitle" href="#">@(mes.Message.sujet)</a> }
-                            <p>Envoyé le @(mes.Message.envoi)</p>
-                            <p>@(mes.Message.contenu)</p>
-                            if (mes.Message.Questionnaire.Count > 0)
+                <ul id="listNotifs"></ul>>
+                <script type="text/javascript">
+                    $(function () {
+                        // Declare a proxy to reference the hub.
+                        var notifs = $.connection.notificationsHub;
+                        // Create a function that the hub can call to broadcast messages.
+                        notifs.client.broadcastNotification = function (notif, mes) {
+                            // Html encode display name and message.
+                            var beginForm = '<form action="/Question/Retorque" method="post">';
+                            var subtitle = '<a href="#" type="subtitle">' + (mes.sujet == "" || mes.sujet == null) ? "Aucun sujet" : mes.sujet + '</a>';
+                            var dSent = '<p>Envoyé le ' + mes.envoi + '</p>';
+                            var contenu = '<p>' + mes.contenu + '</p>'
+                            var selectList = ""
+                            var endContent = "";
+
+                            if (mes.Questionnaire.Count > 0)
                             {
-                                Model.id_message = mes.Id_message;
-                                Model.actualurl = HttpContext.Current.Request.Url.AbsolutePath;
-                                mes.Message.recu = true;
-                                Model.subject = mes.Message.sujet;
-                                Model.dest = mes.Message.Id_expediteur;
-                                ViewBag.Reps = new SelectList(mes.Message.Questionnaire.ElementAt(0).Reponses, "Id_reponse", "Option_Questionnaire.valeur");
-                                @Html.DropDownListFor(model => model.repchosen, ViewBag.Reps as SelectList, "Réponses", htmlAttributes: new { name = "repchosen", id = "list_rep", type = "rep_list", required = "True" })
+                                selectList += '<select name="repchosen" id="list_rep" required="True" type="rep_list" data-val-required="Le champ repchosen est requis." data-val="true" data-val-number="Le champ repchosen doit être un nombre."><option value="">Réponses</option>';
+                                for (var i = 1; i < mes.Questionnaire.Count; i++) {
+                                    selectList += "<option value=" + i + ">" + mes.Questionnaire.ElementAt(0).Reponses[i] + "</option>";
+                                }
+                                selectList += "</select>";
                             }
-                            @Html.TextAreaFor(model => model.rep, htmlAttributes: new { type = "repbox", id = "reptext", name = "rep" });
-                            @Html.HiddenFor(model => model.subject)
-                            @Html.HiddenFor(model => model.dest)
-                            @Html.HiddenFor(model => model.actualurl)
-                            @Html.HiddenFor(model=>model.id_message)
-                            <input id="Answer" type="submit" value="Répondre &#128389;" onclick="closeNav()" />
+                            // Add the message to the page.
+                            $('#listNotif').append('<li>'
+                                + beginForm
+                                + subtitle
+                                + dsent
+                                + contenu
+                                + selectList
+                                + endContent
+                                + '<input id="Answer" type= "submit" value= "Répondre &#128389;" onclick= "closeNav()" />'//Faire son truc ici.
+                                + "</form>"
+                                + '</li>');
+                        };
+                        // Start the connection.
+                        $.connection.hub.start().done(function () {
+                            //Hub en lecture seule, rien à mettre ici.
+                        });
+                    });
+                </script>
+                @using (IDal d = new Dal())
+                {
+                    Individu i = d.GetIndividu(HttpContext.Current.User.Identity.Name);
+                    foreach (Notification_Simple mes in i.Notification_Simple)
+                    {
+                        using (Html.BeginForm("Retorque", "Question", FormMethod.Post))
+                        {
+                            if (!mes.Message.lu /*&& mes.Message.envoi.Hour <= System.DateTime.Now.Hour + 1*/)
+                            {
+                                if (string.IsNullOrWhiteSpace(mes.Message.sujet))
+                                { @Html.ActionLink("Aucun sujet", "Read", "Question", null, htmlAttributes: new { type = "subtitle" });/*<a type="subtitle" href="#">Aucun sujet</a>*/
+                                }
+                                else
+                                {
+                                    @*@Html.ActionLink(mes.Message.sujet, "Read", "Question", Model, htmlAttributes: new { type = "subtitle" });*@ <a type="subtitle" href="#">@(mes.Message.sujet) </a>
+                                }
+                                <p>Envoyé le @(mes.Message.envoi)</p>
+                                <p>@(mes.Message.contenu)</p>
+                                if (mes.Message.Questionnaire.Count > 0)
+                                {
+                                    Model.id_message = mes.Id_message;
+                                    Model.actualurl = HttpContext.Current.Request.Url.AbsolutePath;
+                                    mes.Message.recu = true;
+                                    Model.subject = mes.Message.sujet;
+                                    Model.dest = mes.Message.Id_expediteur;
+                                    ViewBag.Reps = new SelectList(mes.Message.Questionnaire.ElementAt(0).Reponses, "Id_reponse", "Option_Questionnaire.valeur");
+                                    @Html.DropDownListFor(model => model.repchosen, ViewBag.Reps as SelectList, "Réponses", htmlAttributes: new { name = "repchosen", id = "list_rep", type = "rep_list", required = "True" })
+                                }
+                                @Html.TextAreaFor(model => model.rep, htmlAttributes: new { type = "repbox", id = "reptext", name = "rep" });
+                                @Html.HiddenFor(model => model.subject)
+                                @Html.HiddenFor(model => model.dest)
+                                @Html.HiddenFor(model => model.actualurl)
+                                @Html.HiddenFor(model => model.id_message)
+                                <input id="Answer" type="submit" value="Répondre &#128389;" onclick="closeNav()" />
+                            }
                         }
                     }
                 }
             </div>
         </section>
-    }
+}
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>

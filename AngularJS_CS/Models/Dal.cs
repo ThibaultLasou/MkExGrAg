@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AngularJS_CS.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace AngularJS_CS.Models
 {
     public class Dal : IDal
     {
-        private MainDBEntities5 bdd;
-        public Dal() { bdd = new MainDBEntities5(); }
+        private MainDBEntities bdd;
+        public Dal() { bdd = new MainDBEntities(); }
 
         ~Dal() { this.Dispose(); }
 
@@ -39,10 +40,28 @@ namespace AngularJS_CS.Models
 
         public List<Individu> GetIndividus() { return bdd.Individu.ToList(); }
 
-        public Individu ObtenirInidividu()
+        /// <summary>
+        /// Renvoi l'individu dont l'ID correspondant à cette ID dans la base de données
+        /// </summary>
+        /// <param name="identifier">Identifiant unique de l'utilisateur.</param>
+        /// <returns></returns>
+        public Individu GetIndividu(string identifier)
         {
-            throw new NotImplementedException();
+            int id = -1;
+            int.TryParse(identifier, out id);
+            return GetIndividu(id);
         }
+
+        /// <summary>
+        /// Renvoi l'individu dont l'ID correspondant à cette ID dans la base de données
+        /// </summary>
+        /// <param name="identifier">Identifiant unique de l'utilisateur.</param>
+        /// <returns></returns>
+        public Individu GetIndividu(int identifier)
+        {
+            return bdd.Individu.FirstOrDefault(indiv => indiv.Id == identifier);
+        }
+
         public List<Questionnaire> GetQuestion() { return bdd.Questionnaire.ToList(); }
         public List<Option_Questionnaire> Reponses() { return bdd.Option_Questionnaire.ToList(); }
         public void AddRep(string rep)
@@ -90,5 +109,32 @@ namespace AngularJS_CS.Models
         public void Savedb() { bdd.SaveChanges(); }
         public void Addreponse(Reponses rep) { bdd.Reponses.Add(rep); }
         public List<Reponses> GetRep() { return bdd.Reponses.ToList(); }
+
+        /// <summary>
+        /// Renvoie les identifiants uniques de chaque destinataire.
+        /// </summary>
+        /// <param name="m">Message dont les destinataires sont recherchés.</param>
+        /// <returns></returns>
+        public HashSet<int> GetIdsDestinataires(QuestionView mod)
+        {
+            List<string> destinataires = mod.dests.Split(';').ToList();
+            HashSet<int> set = new HashSet<int>();
+            
+            //On ne prend que ceux qui étaient dans la liste de destinataires (et on les supprime pour limiter le nombre d'itérations)
+            set.UnionWith(from ind in bdd.Individu
+                          where destinataires.Remove(ind.userLogin) 
+                          select ind.Id);
+
+            //Normalement, il ne reste que des groupes
+            IEnumerable<Groupe> grps = from grp in bdd.Groupe
+                                       where destinataires.Remove(grp.nom)
+                                       select grp;
+
+            set.UnionWith(from g in grps
+                          from ind in g.Individu
+                          select ind.Id);
+
+            return set;
+        }
     }
 }

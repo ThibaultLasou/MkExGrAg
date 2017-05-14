@@ -69,3 +69,18 @@ function customtype(){
 function show_messages(id_section) {
 
 }
+
+function submitFormWithModel(id, url, sujet, dest, rep, repChosen) {
+    $.ajax({
+        url: '@Url.Action("Retorque", "Question")',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            mod: {
+                Id_message: id,
+                ActualUrl: url,
+                Subject: sujet,
+                Dest: dest,
+            })
+    });
+}

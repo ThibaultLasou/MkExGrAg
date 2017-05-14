@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AngularJS_CS.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,6 @@ namespace AngularJS_CS.Models
     {
         Individu Authenticate(string username, string password);
 
-        Individu ObtenirInidividu();
 
         List<Individu> GetIndividus();
 
@@ -25,5 +25,26 @@ namespace AngularJS_CS.Models
         string GetName(string id);
         List<Reponses> GetRep();
         void Savedb();
+
+        /// <summary>
+        /// Renvoi l'individu dont l'ID correspondant à cette ID dans la base de données
+        /// </summary>
+        /// <param name="identifier">Identifiant unique de l'utilisateur.</param>
+        /// <returns></returns>
+        Individu GetIndividu(string identifier);
+
+        /// <summary>
+        /// Renvoi l'individu dont l'ID correspondant à cette ID dans la base de données
+        /// </summary>
+        /// <param name="identifier">Identifiant unique de l'utilisateur.</param>
+        /// <returns></returns>
+        Individu GetIndividu(int identifier);
+
+        /// <summary>
+        /// Renvoie les identifiants uniques de chaque destinataire.
+        /// </summary>
+        /// <param name="m">Message dont les destinataires sont recherchés.</param>
+        /// <returns></returns>
+        HashSet<int> GetIdsDestinataires(QuestionView m);
     }
 }
