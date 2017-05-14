@@ -57,6 +57,7 @@ ul {
 #repZone {
     padding-top: 5px;
     margin: 0 75%;
+
     .download-btn {
         li {
             display: inline-block;
@@ -132,7 +133,7 @@ ul {
                         box-shadow: 0 0 1px 1px @green_psud;
                     }
                 }
-                
+
                 input[type="submit"] {
                     background: @green_psud;
                     border: 1px solid transparent;
@@ -199,23 +200,24 @@ input[type="submit"] {
 textarea[type="detail"] {
     padding: 7px 5px;
     margin: 10px 0px;
-    width: 70%;
+    width: 74%;
     resize: none;
     min-height: 70%;
     height: 400px;
     max-height: 80%;
     font-size: 16px;
     border: 1px solid red;
+    transition: 0.4s;
 }
 
-select[type = reponses] {
+select[type = "reponses"] {
     padding: 7px 5px;
     margin: 10px 0px;
     width: 25%;
     height: 400px;
 }
 
-select[type=destlist] {
+select[type="destlist"] {
     padding: 7px 5px;
     margin: 10px 0;
     width: 8%;
@@ -224,7 +226,7 @@ select[type=destlist] {
     visibility: visible;
 }
 
-input[type=radio] {
+input[type="radio"] {
     padding: 7px 5px;
     margin: 0px 0px 0px 90%;
     text-align: right;

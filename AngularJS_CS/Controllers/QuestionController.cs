@@ -45,7 +45,6 @@ namespace AngularJS_CS.Controllers
             List<Groupe> groupes = new List<Groupe>();
             foreach (string str in mod.dests.Split(';'))
                 destinataires.Add(db.GetIndividus().FirstOrDefault(i => i.userLogin == str));
-
             foreach (string str in mod.dests.Split(';'))
                 groupes.Add(db.GetGroupes().FirstOrDefault(g => g.nom == str));
             Message content = new Message
@@ -60,37 +59,42 @@ namespace AngularJS_CS.Controllers
                 envoi = System.DateTime.Now,
                 lecture = System.DateTime.Now
             };
-            Questionnaire question = new Questionnaire
+            if (!mod.question)
             {
-                Id = db.GetLastQuestion() + 1,
-                type = mod.type,
-                Type_Questionnaire = db.getTypeQuestion(mod.type),
-                Id_message = content.Id,
-
-            };
-            foreach (int i in mod.Reponses)
-            {
-                var opt = db.Reponses()[i - 1];
-                int idrep = db.GetRep().Count;
-                idrep += i;
-                Reponses rep = new Reponses
+                Questionnaire question = new Questionnaire
                 {
-                    Questionnaire = question,
-                    Id = idrep,
-                    Id_question = question.Id,
-                    Id_reponse = i,
-                    Option_Questionnaire = opt
+                    Id = db.GetLastQuestion() + 1,
+                    type = mod.type,
+                    Type_Questionnaire = db.getTypeQuestion(mod.type),
+                    Id_message = content.Id,
+
                 };
-                db.Addreponse(rep);
-                opt.Reponses.Add(rep);
-                question.Reponses.Add(rep);
+                foreach (int i in mod.Reponses)
+                {
+                    var opt = db.Reponses()[i - 1];
+                    int idrep = db.GetRep().Count;
+                    idrep += i;
+                    Reponses rep = new Reponses
+                    {
+                        Questionnaire = question,
+                        Id = idrep,
+                        Id_question = question.Id,
+                        Id_reponse = i,
+                        Option_Questionnaire = opt
+                    };
+                    db.Addreponse(rep);
+                    opt.Reponses.Add(rep);
+                    question.Reponses.Add(rep);
+                }
+
+                db.GetIndividus().Find(i => i.Id == int.Parse(User.Identity.Name)).Message.Add(content);
+                db.GetQuestion().Add(question);
+                db.AddMessage(content);
+
+                question.Message = content;
+                content.Questionnaire.Add(question);
             }
 
-            db.GetIndividus().Find(i => i.Id == int.Parse(User.Identity.Name)).Message.Add(content);
-            db.GetQuestion().Add(question);
-            db.AddMessage(content);
-
-            question.Message = content;
             foreach (Individu ind in destinataires)
                 if (ind != null)
                 {
@@ -118,17 +122,16 @@ namespace AngularJS_CS.Controllers
                     content.Notification_Diffusion.Add(not);
                 }
 
-            content.Questionnaire.Add(question);
             db.Savedb();
             return RedirectToAction("Index", "Home");
 
         }
 
         [HttpPost]
-        public ActionResult Read(AnswerView mod)
+        public ActionResult Read(string url)
         {
             int laappa = 0;
-            return RedirectToAction("Index", "Question");
+            return RedirectToAction(url);
 
         }
 
@@ -138,24 +141,24 @@ namespace AngularJS_CS.Controllers
             Dal db = new Dal();
             Individu receveur = db.GetIndividus().Find(i => i.Id == mod.dest);
             Individu sender = db.GetIndividus().Find(i => i.Id == int.Parse(User.Identity.Name));
-            sender.Notification_Simple.FirstOrDefault(m => m.Id_message == mod.id_message && m.Id_individu ==int.Parse(User.Identity.Name)).Message.lu = true;
+            sender.Notification_Simple.FirstOrDefault(m => m.Id_message == mod.id_message && m.Id_individu == int.Parse(User.Identity.Name)).Message.lu = true;
             sender.Notification_Simple.First(m => m.Id_message == mod.id_message && m.Id_individu == int.Parse(User.Identity.Name)).Message.lecture = System.DateTime.Now;
             Message rep = new Message
             {
                 Individu = sender,
-                contenu = db.Reponses().Find(q=>q.Id ==mod.repchosen).valeur+"\n"+ mod.rep,
+                contenu = db.Reponses().Find(q => q.Id == mod.repchosen).valeur + "\n" + mod.rep,
                 envoi = System.DateTime.Now,
                 lecture = System.DateTime.Now,
                 recu = false,
                 lu = false,
                 Id_expediteur = sender.Id,
                 Questionnaire = null,
-                sujet = mod.subject.StartsWith("Re:") ? mod.subject : "Re:" + mod.subject,                
+                sujet = mod.subject.StartsWith("Re:") ? mod.subject : "Re:" + mod.subject,
             };
             Notification_Simple notif = new Notification_Simple
             {
                 Id_individu = int.Parse(User.Identity.Name),
-                Id_message =rep.Id,
+                Id_message = rep.Id,
                 Individu = sender,
                 Message = rep,
             };

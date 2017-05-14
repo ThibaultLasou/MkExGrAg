@@ -48,7 +48,19 @@
             color: crimson;
         }
     }
+    a[type="action"]{
+        padding: 0px 0px 0px 32px;
+        text-decoration:none;
+        font-size:13px;
+        color: crimson;
+        transition:0.4s;
+        display:block;
 
+        &:hover{
+            color:aqua;
+            font-size:15px;
+        }
+    }
     a[type="title"] {
         padding: 8px 0px 0px 32px;
         text-decoration: none;
@@ -69,6 +81,10 @@
         right: 25px;
         font-size: 36px;
         margin-right: 0px;
+    }
+
+    div[type="mes"]{
+        border: solid black 1px;
     }
 
     p {

@@ -10,9 +10,9 @@ namespace AngularJS_CS.ViewModels
 {
     public class QuestionView 
     {
-
+        public bool question { get; set; }
+        [Required]
         public string dests { get; set; }
-        [MaxLength(40)]
         public string sujet { get; set; }
         public string detail { get; set; }
         public IEnumerable<int> Reponses { get; set; }
