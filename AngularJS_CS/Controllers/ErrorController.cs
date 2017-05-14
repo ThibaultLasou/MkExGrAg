@@ -8,7 +8,11 @@ namespace AngularJS_CS.Controllers
 {
     public sealed class ErrorController : Controller
     {
-        // GET: Error
+        
+		/// <summary>
+		/// Cas declenché en cas d'erreur
+		/// </summary>
+		/// <returns></returns>
         public ActionResult Index()
         {
             return View();

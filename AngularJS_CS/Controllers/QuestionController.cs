@@ -15,6 +15,10 @@ namespace AngularJS_CS.Controllers
         //public Message Message { get; set; }
         // GET: Question
 
+		/// <summary>
+		/// Affiche le questionnaire
+		/// </summary>
+		/// <returns></returns>
         public ActionResult Index()
         {
             if (HttpContext.Request.IsAuthenticated)
@@ -30,6 +34,11 @@ namespace AngularJS_CS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+		/// <summary>
+		/// Ajout de questionnaire
+		/// </summary>
+		/// <param name="mod">model qui représente la vue questionnaire</param>
+		/// <returns></returns>
         [HttpPost]
         public ActionResult Ajout(QuestionView mod)
         {
@@ -37,22 +46,27 @@ namespace AngularJS_CS.Controllers
             return RedirectToAction("Index", "Question");
         }
 
-        [HttpPost]
+		/// <summary>
+		/// Recupere les actions effectuées sur le questionnaire
+		/// </summary>
+		/// <param name="mod">model qui représente la vue questionnaire</param>
+		/// <returns></returns>
+		[HttpPost]
         public ActionResult Action(QuestionView mod)
         {
             Dal db = new Dal();
             List<Individu> destinataires = new List<Individu>();
             List<Groupe> groupes = new List<Groupe>();
-            foreach (string str in mod.dests.Split(';'))
+            foreach (string str in mod.Dests.Split(';'))
                 destinataires.Add(db.GetIndividus().FirstOrDefault(i => i.userLogin == str));
 
-            foreach (string str in mod.dests.Split(';'))
+            foreach (string str in mod.Dests.Split(';'))
                 groupes.Add(db.GetGroupes().FirstOrDefault(g => g.nom == str));
             Message content = new Message
             {
                 Individu = db.GetIndividus().Find(i => i.Id == int.Parse(User.Identity.Name)),
-                contenu = mod.detail,
-                sujet = mod.sujet,
+                contenu = mod.Detail,
+                sujet = mod.Sujet,
                 lu = false,
                 recu = false,
                 Id_expediteur = int.Parse(User.Identity.Name),
@@ -63,8 +77,8 @@ namespace AngularJS_CS.Controllers
             Questionnaire question = new Questionnaire
             {
                 Id = db.GetLastQuestion() + 1,
-                type = mod.type,
-                Type_Questionnaire = db.getTypeQuestion(mod.type),
+                type = mod.Type,
+                Type_Questionnaire = db.getTypeQuestion(mod.Type),
                 Id_message = content.Id,
 
             };
@@ -132,25 +146,30 @@ namespace AngularJS_CS.Controllers
 
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="mod"></param>
+		/// <returns></returns>
         [HttpPost]
         public ActionResult Retorque(AnswerView mod)
         {
             Dal db = new Dal();
-            Individu receveur = db.GetIndividus().Find(i => i.Id == mod.dest);
+            Individu receveur = db.GetIndividus().Find(i => i.Id == mod.Dest);
             Individu sender = db.GetIndividus().Find(i => i.Id == int.Parse(User.Identity.Name));
-            sender.Notification_Simple.FirstOrDefault(m => m.Id_message == mod.id_message && m.Id_individu ==int.Parse(User.Identity.Name)).Message.lu = true;
-            sender.Notification_Simple.First(m => m.Id_message == mod.id_message && m.Id_individu == int.Parse(User.Identity.Name)).Message.lecture = System.DateTime.Now;
+            sender.Notification_Simple.FirstOrDefault(m => m.Id_message == mod.Id_message && m.Id_individu ==int.Parse(User.Identity.Name)).Message.lu = true;
+            sender.Notification_Simple.First(m => m.Id_message == mod.Id_message && m.Id_individu == int.Parse(User.Identity.Name)).Message.lecture = System.DateTime.Now;
             Message rep = new Message
             {
                 Individu = sender,
-                contenu = db.Reponses().Find(q=>q.Id ==mod.repchosen).valeur+"\n"+ mod.rep,
+                contenu = db.Reponses().Find(q=>q.Id ==mod.Repchosen).valeur+"\n"+ mod.Rep,
                 envoi = System.DateTime.Now,
                 lecture = System.DateTime.Now,
                 recu = false,
                 lu = false,
                 Id_expediteur = sender.Id,
                 Questionnaire = null,
-                sujet = mod.subject.StartsWith("Re:") ? mod.subject : "Re:" + mod.subject,                
+                sujet = mod.Subject.StartsWith("Re:") ? mod.Subject : "Re:" + mod.Subject,                
             };
             Notification_Simple notif = new Notification_Simple
             {
@@ -162,7 +181,7 @@ namespace AngularJS_CS.Controllers
             sender.Notification_Simple.Add(notif);
             rep.Notification_Simple.Add(notif);
             db.Savedb();
-            return RedirectToAction(mod.actualurl);
+            return RedirectToAction(mod.Actualurl);
         }
     }
 }
