@@ -190,7 +190,7 @@ namespace AngularJS_CS.Models
         /// <returns></returns>
         public HashSet<int> GetIdsDestinataires(QuestionView mod)
         {
-            List<string> destinataires = mod.dests.Split(';').ToList();
+            List<string> destinataires = mod.Dests.Split(';').ToList();
             HashSet<int> set = new HashSet<int>();
             
             //On ne prend que ceux qui étaient dans la liste de destinataires
